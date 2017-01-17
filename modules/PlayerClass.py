@@ -26,6 +26,6 @@ class Player:
 		return self.__editScore(number, lambda x, y: x + y)
 
 	# substract score from the current player.
-	def substractScore(self, number): 
+	def subtractScore(self, number): 
 		return self.__editScore(number, lambda x,y: x - y)
 
