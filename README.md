@@ -1,5 +1,5 @@
 # Project 2 Battleport INF1F Groep-2
-This is the repository containing the latest version of Battelport. 
+This is the repository containing the latest version of Battleport. 
 
 # Requires
 - Python >= 3.0
