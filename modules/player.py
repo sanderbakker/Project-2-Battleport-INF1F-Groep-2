@@ -24,11 +24,11 @@ class Player:
 
 	# add score to the current player. 
 	def add_score(self, number):
-		return self.__editScore(number, lambda x, y: x + y)
+		return self.__edit_score(number, lambda x, y: x + y)
 
 	# substract score from the current player.
 	def subtract_score(self, number): 
-		return self.__editScore(number, lambda x,y: x - y)
+		return self.__edit_score(number, lambda x, y: x - y)
 
 	# retrieve the normal cards of the player
 	def get_normal_cards():
