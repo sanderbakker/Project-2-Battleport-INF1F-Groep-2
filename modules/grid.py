@@ -9,10 +9,10 @@ height = 600
 
 
 display = ((width_screen, height))
-screen = pygame.display.set_mode(display)
 #make a display
 class Grid: 
-    def __init__ (self, x_blocks, y_blocks, opacity_grid, move_grid):
+    def __init__ (self, screen, x_blocks, y_blocks, opacity_grid, move_grid):
+        self.screen = screen
         self.number_of_blocks = x_blocks
         self.x = 0 
         self.y = 0
@@ -87,15 +87,14 @@ class Grid:
 
          
     def Place_Square(self, rect_x, rect_y):
-        print(self.move_grid)
+        screen = self.screen
+
         middle_box = ((self.opacity_grid/self.number_of_blocks) / 2)  
         rect_x = ((rect_x * (middle_box)) + middle_box * (rect_x - 2)) + self.move_grid
         rect_y = ((rect_y * (middle_box)) + middle_box * (rect_y - 2)) + self.move_grid
         pygame.draw.rect(screen, (100,200,250), pygame.Rect((int(rect_x), int(rect_y)), (self.number_of_blocks, self.number_of_blocks)))
                 
    
-opacity_grid = 400
-
 
 
 
@@ -110,9 +109,4 @@ opacity_grid = 400
     
 
     
-                                             
-test = Grid(20, 20, opacity_grid, 100)
-test.Place_Square(20, 20)
-
-#filps the screen
-pygame.display.flip()
+                                            

@@ -12,9 +12,11 @@ class Player:
 	def get_score(self):
 		return self.Score
 
-	# number = int value which will be added to the current score of the player
-	# method = lambda which determines what to do (add, substract, etc)
-	# return = new score
+	"""
+	 number = int: value which will be added to the current score of the player
+	 method = lambda: which determines what to do (add, substract, etc)
+	 return = new score
+	"""
 	def __edit_score(self, number, method):
 		if (isinstance(number, int)):
 			self.Score = method(self.Score, number)

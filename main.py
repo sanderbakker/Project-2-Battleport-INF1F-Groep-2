@@ -9,36 +9,22 @@ import pygame, sys, pymysql
 
 # Import all files stated in the __all__ variable in modules/__init__.py
 from modules import *
+import game
 
-Player1 = player.Player('Test persoon')
+Player1 = player.Player('Frits')
+Player2 = player.Player('Henk')
 
-print(Player1.get_name())
+Game = game.Game(600, 600) 
 
-class Game:
-
-	def __init__(self):
-		pygame.init()
-		width_screen = 600
-		height = 600 
-
-		display = ((width_screen, height))
-		self.screen = pygame.display.set_mode(display)		
-
-	def update(self):
-		pygame.display.flip()
-
-	def draw_name_player(self, player_name):
-		test_font = pygame.font.SysFont("monospace", 15)
-		score_text = test_font.render(player_name, 1, (0, 255, 0))
-		self.screen.blit(score_text, (16, 16))
-
-Game = Game()
-
-while True: 
-	Game.draw_name_player(Player1.get_name())
+while not Game.quit():
+	Game.reset_font()
+	Game.draw_text("Turn: " , (100,10))
+	Game.set_font("inherit", (255, 0, 0))
+	Game.draw_text(Player1.get_name(), (150, 10))
 
 	opacity_grid = 400
-	grid.Grid().grid(int(opacity_grid), 20, 20)
+	field = grid.Grid(Game.get_screen(), 20, 20, opacity_grid, 100)
+	field.Place_Square(20, 20)
 
 	Game.update()
 
