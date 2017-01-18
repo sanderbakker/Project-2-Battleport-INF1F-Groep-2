@@ -1,2 +1,2 @@
 #the __all__ variable should contain all files in the folder 'modules'. 
-__all__ = ['player', 'grid']
+__all__ = ['player', 'grid', 'ships']
