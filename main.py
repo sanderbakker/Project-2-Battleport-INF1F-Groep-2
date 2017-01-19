@@ -17,7 +17,7 @@ Player1 = player.Player('Frits')
 Player2 = player.Player('Henk')
 
 Turn = player.Turn(Player2)
-Game = game.Game(800, 625)
+Game = game.Game(800, 575)
 
 field_size = 400
 
@@ -27,13 +27,21 @@ if (len(ship_list)) > 0:
     print(str(ship_list))
 """End save logic for ship movement"""
 
+Game.get_screen().fill((235, 235, 235))
 
 while not Game.events():
     # get the current player
     Player = Turn.player
     #Game.get_screen().fill((0, 0, 0))
+
     # show the current player stats ( name and score )
     player_turn.Show(Game, Player)
+
+    # show sidebar
+    sidebar.Show(Game, Player)
+
+    # show deck of current player
+    deck.Show(Game, Player)
 
     main_grid = grid.Grid({
         'screen': Game.get_screen(),
@@ -41,7 +49,7 @@ while not Game.events():
         'y_blocks': 20,
         'opacity_grid': field_size,
         'move_grid': 50,
-        'background_color': (0, 255, 0)
+        #'background_color': (0, 255, 0)
     })
 
 

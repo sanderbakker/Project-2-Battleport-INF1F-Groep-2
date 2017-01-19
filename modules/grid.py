@@ -1,6 +1,6 @@
 import pygame, math
  
-WHITE = (255, 255, 255)
+WHITE = (124, 124, 124)
 # adds some colors 
 pygame.init()
 
