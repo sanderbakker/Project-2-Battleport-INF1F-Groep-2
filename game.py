@@ -56,6 +56,15 @@ class Game:
     def get_grid_click(self):
         return self.grid_pos
 
+    # get the display height  
+    def get_display_height(self):  
+        return self.height
+
+    # get the display width
+    def get_display_width(self):
+        return self.width
+
+
     """
      set the font parameters
      font_size = int: size of the font
