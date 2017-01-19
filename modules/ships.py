@@ -31,7 +31,7 @@ class Saltire(MainShip):
         self.x = y
         self.y = y
         self.health = 2
-        self.size = 2
+        self.size = 1
 
 
 class Windsurf(MainShip):
@@ -41,7 +41,7 @@ class Windsurf(MainShip):
         self.x = x
         self.y = y
         self.health = 3
-        self.size = 3
+        self.size = 2
 
 
 class Amadea(MainShip):
@@ -51,4 +51,4 @@ class Amadea(MainShip):
         self.x = x
         self.y = y
         self.health = 4
-        self.size = 4
+        self.size = 3
