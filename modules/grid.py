@@ -17,8 +17,12 @@ class Grid:
         self.opacity_grid = options['opacity_grid']
         self.move_grid = options['move_grid']
 
-        if(options['background_color'] in locals()):
+        try:
+            background_color = options['background_color']
             self.set_grid_color(options['background_color'])
+        except KeyError:
+            pass
+
 
         self.draw_grid()
 
