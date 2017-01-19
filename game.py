@@ -17,7 +17,7 @@ class Game:
         #Font parameters
         self.font       = "arial"
         self.font_size  = 20
-        self.font_color = (255, 255, 255)
+        self.font_color = (124, 124, 124)
 
         #Grid
         self.grid = 0
@@ -84,7 +84,7 @@ class Game:
     def reset_font(self):
         self.font       = "arial"
         self.font_size  = 20
-        self.font_color = (255, 255, 255)
+        self.font_color = (124, 124, 124)
     
     #get current font parameters    
     def get_font(self):
