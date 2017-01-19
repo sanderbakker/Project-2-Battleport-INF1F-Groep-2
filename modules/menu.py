@@ -18,7 +18,7 @@ class Menu:
 
     def add_logo(self):
         img = pygame.image.load("logo.png")
-        screen.blit(img, ((self.distance_border + (width_screen - 380) / 2), (self.distance_border + (width_screen - 700) / 2)))
+        screen.blit(img, ((self.distance_border + (width_screen - 380) / 2), (self.distance_border + (width_screen - (width_screen - 100)) / 2)))
 
 def process_events():
     for event in pygame.event.get():
@@ -28,12 +28,15 @@ def process_events():
 
     return False
 
-
-
+def draw_button():
+    pygame.draw.rect(screen, (48, 148, 51), pygame.Rect((103, 479), (100, 35)))
+    pygame.draw.rect(screen, (48, 148, 51), pygame.Rect((356, 479), (100, 35)))
+    pygame.draw.rect(screen, (48, 148, 51), pygame.Rect((610, 479), (100, 35)))
 def program():
     while not process_events():
         Menu(20).draw_frame()
         Menu(20).add_logo()
+        draw_button()
         pygame.display.flip()
 
 
