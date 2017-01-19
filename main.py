@@ -9,6 +9,8 @@ import pygame, sys, pymysql
 
 # Import all files stated in the __all__ variable in modules/__init__.py
 from modules import *
+
+from view import *
 import game
 
 Player1 = player.Player('Frits')
@@ -23,14 +25,8 @@ while not Game.events():
 	# get the current player
 	Player = Turn.player
 
-	#Game.get_screen().fill((0,0,0))
-	Game.reset_font()
-	Game.draw_text("Turn: " , (100,10))
-	Game.set_font("inherit", (255, 0, 0))
-
-	Game.draw_text(str(Player.get_name()), (150, 10))
-	Game.reset_font()
-	Game.draw_text("Score:" + str(Player.get_score()), (300, 10))		
+	# show the current player stats ( name and score )
+	player_turn.Show(Game, Player)	
 
 	main_grid = grid.Grid(Game.get_screen(), 20, 20, field_size, 50)
 	main_grid.Place_Square(10, 20)
