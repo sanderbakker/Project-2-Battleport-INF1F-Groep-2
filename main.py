@@ -17,7 +17,7 @@ Player1 = player.Player('Frits')
 Player2 = player.Player('Henk')
 
 Turn = player.Turn(Player2)
-Game = game.Game(800, 550)
+Game = game.Game(800, 625)
 
 field_size = 400
 
