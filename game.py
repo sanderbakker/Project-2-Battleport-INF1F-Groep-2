@@ -35,7 +35,7 @@ class Game:
                 pos = self.grid.process_events(event)
                 if(pos):
                     self.grid_pos = pos
-
+                    return
 
         self.grid_pos = 0
         return False

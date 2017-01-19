@@ -28,7 +28,14 @@ while not Game.events():
 	# show the current player stats ( name and score )
 	player_turn.Show(Game, Player)	
 
-	main_grid = grid.Grid(Game.get_screen(), 20, 20, field_size, 50)
+	main_grid = grid.Grid({
+		'screen': Game.get_screen(), 
+		'x_blocks':20,
+		'y_blocks':20,
+		'opacity_grid': field_size, 
+		'move_grid':50,
+		'background_color': (0, 255, 0)
+	})
 	main_grid.Place_Square(10, 20)
 	Game.set_grid(main_grid)
 	click = Game.get_grid_click()

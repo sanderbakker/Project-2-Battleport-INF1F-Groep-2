@@ -5,15 +5,25 @@ WHITE = (255, 255, 255)
 pygame.init()
 
 class Grid: 
-    def __init__ (self, screen, x_blocks, y_blocks, opacity_grid, move_grid):
-        self.screen = screen
-        self.number_of_blocks = x_blocks
-        self.x = 0 
+    def __init__ (self, options):
+        screen = options['screen']
+
+        self.screen = options['screen']
+        self.number_of_blocks = options['x_blocks']
+        self.x = 0
         self.y = 0
-        self.x_blocks = x_blocks    
-        self.y_blocks = y_blocks 
-        self.opacity_grid = opacity_grid
-        self.move_grid = move_grid
+        self.x_blocks = options['x_blocks']    
+        self.y_blocks = options['y_blocks']
+        self.opacity_grid = options['opacity_grid']
+        self.move_grid = options['move_grid']
+
+        if(options['background_color'] in locals()):
+            self.set_grid_color(options['background_color'])
+
+        self.draw_grid()
+
+    def draw_grid(self):
+        screen = self.screen
         #drawing the horizontal part of the grid 
         opacity_grid = self.opacity_grid + self.move_grid
         width = self.opacity_grid/self.x_blocks 
@@ -85,22 +95,7 @@ class Grid:
       
     def set_grid_color(self, color):
         screen = self.screen
-        pygame.draw.rect(screen, (color), pygame.Rect((self.move_grid, (self.move_grid)), (opacity_grid, opacity_grid)))
-    
-    def set_background_color(self, color):
-        screen = self.screen
-        pass          
-
-    def get_event(self):
-        ev = pygame.event.get()
-    
-        for event in ev:
-            if event.type == pygame.MOUSEBUTTONUP: 
-                pos = pygame.mouse.get_pos()
-                # print(pos)
-
-                if pos[0] > self.move_grid and pos[1] > self.move_grid:
-                    newpos = (int(math.floor((pos[0] - self.move_grid) / 20) + 1), int(math.floor((pos[1] - self.move_grid)/ 20) + 1))
+        pygame.draw.rect(screen, (color), pygame.Rect((self.move_grid, (self.move_grid)), (self.opacity_grid, self.opacity_grid)))
 
     def process_events(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:
@@ -108,7 +103,6 @@ class Grid:
             if pos[0] > self.move_grid and pos[1] > self.move_grid:
                 if pos[0] < self.move_grid + (self.opacity_grid) and pos[1] < self.move_grid + (self.opacity_grid):
                     newpos = (int(math.floor((pos[0] - self.move_grid) / 20) + 1), int(math.floor((pos[1] - self.move_grid)/ 20) + 1))
-                    self.Place_Square(newpos[0], newpos[1])
                     return newpos
 
         return False
