@@ -1,7 +1,7 @@
 import pygame 
 WHITE = (255 ,255 ,255)
 pygame.init()
-width_screen = 400
+width_screen = 800
 height = 575
 # Set height and width of the screen
 display = ((width_screen, height))
@@ -17,8 +17,40 @@ class Menu:
                                      ((width_screen - self.distance_border * 2), (height - self.distance_border * 2))))
 
     def add_logo(self):
+        size_image = 280
+        radius_image = 280/2
+
         img = pygame.image.load("logo.png")
-        screen.blit(img, ((self.distance_border + (width_screen/ 2), (self.distance_border + (width_screen - (width_screen - 100)) / 2))))
+        screen.blit(img, (width_screen/2 - radius_image, width_screen*(1/16)))
+
+    def add_help(self, position):
+        help_img = pygame.image.load("help.png")
+
+        help_positon_x = width_screen - self.distance_border - position
+        pygame.draw.rect(screen, (212, 212, 212),
+                         pygame.Rect((help_positon_x, self.distance_border),(position, position)))
+        screen.blit(help_img, (help_positon_x, self.distance_border))
+
+
+    def draw_button(self, width_blocks, number_blocks):
+        # calculates the remaining space after the blocks are added
+        space_left_with_blocks = width_screen - (width_blocks * number_blocks)
+        # space left after space_left_with_block - distance_border
+        space_left = space_left_with_blocks - (self.distance_border * 2)
+        # distance between border and first block
+        distance_between = space_left / (number_blocks + 1)
+        # space between the blocks
+        space_between = width_blocks + distance_between
+        # start point of the blocks
+        start_point = distance_between + self.distance_border
+        # end point of the blocks
+        end_point = width_screen - int(start_point + width_blocks)
+        x = start_point
+        # draws the blocks on the screen
+        while x <= end_point:
+            pygame.draw.rect(screen, (48, 148, 51),
+                             pygame.Rect((x, ((height - self.distance_border * 2) * (7 / 8))), (width_blocks, 35)))
+            x = x + space_between
 
 def process_events():
     for event in pygame.event.get():
@@ -27,25 +59,15 @@ def process_events():
             return True
 
     return False
-distance_border = 20
-def draw_button(width_blocks, number_blocks):
-    space_left_with_blocks = width_screen - (width_blocks * number_blocks)
-    space_left = space_left_with_blocks - (distance_border * 2)
-    distance_between = space_left/(number_blocks+1)
-    space_between = width_blocks + distance_between
-    start_point = distance_between + distance_border
-    end_point = width_screen - int(start_point + width_blocks)
-    x = start_point
 
-    while x <= end_point:
-        pygame.draw.rect(screen, (48, 148, 51), pygame.Rect((x, 479), (width_blocks, 35)))
-        x = x + space_between
+
 
 def program():
     while not process_events():
         Menu(20).draw_frame()
-        #Menu(20).add_logo()
-        draw_button(50, 3)
+        Menu(20).add_logo()
+        Menu(20).add_help(40)
+        Menu(20).draw_button(100, 3)
         pygame.display.flip()
 
 
