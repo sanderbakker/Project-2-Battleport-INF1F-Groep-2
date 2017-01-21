@@ -1,8 +1,10 @@
-import pygame 
+import pygame
+import math
 WHITE = (255 ,255 ,255)
 pygame.init()
 width_screen = 800
 height = 575
+
 # Set height and width of the screen
 display = ((width_screen, height))
 screen = pygame.display.set_mode(display)
@@ -50,7 +52,27 @@ class Menu:
         while x <= end_point:
             pygame.draw.rect(screen, (48, 148, 51),
                              pygame.Rect((x, ((height - self.distance_border * 2) * (7 / 8))), (width_blocks, 35)))
+
             x = x + space_between
+        #formula by Gerard Bakker
+        x = start_point
+        fonts = pygame.font.SysFont("arial", 20)
+        start = fonts.render("Start", 1, (0, 0, 0))
+        stop = fonts.render("Stop", 1, (0, 0, 0))
+        highscores = fonts.render("Highscores", 1, (0, 0, 0))
+        stop_position = (stop.get_rect())  # 34, 24
+        start_position = (start.get_rect())
+        highscores_position = (highscores.get_rect())
+        screen.blit(start, (math.ceil(x + ((width_blocks - start_position[2]) /2)), ((height - self.distance_border * 2) * (7 / 8) + 5)))
+        x = x + space_between
+        screen.blit(stop, (math.ceil(x + ((width_blocks - stop_position[2]) /2)), ((height - self.distance_border * 2) * (7 / 8) + 5)))
+        x = x + space_between
+        screen.blit(highscores, (math.floor(x + ((width_blocks - highscores_position[2]) /2)), ((height - self.distance_border * 2) * (7 / 8) + 5)))
+    def render_font(self, text):
+        pass
+
+    def menu_font(self):
+        pass
 
 def process_events():
     for event in pygame.event.get():
@@ -59,7 +81,7 @@ def process_events():
             return True
 
     return False
-
+distance_border = 20
 
 
 def program():
@@ -68,6 +90,7 @@ def program():
         Menu(20).add_logo()
         Menu(20).add_help(40)
         Menu(20).draw_button(100, 3)
+
         pygame.display.flip()
 
 
