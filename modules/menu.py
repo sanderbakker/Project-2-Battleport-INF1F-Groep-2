@@ -60,19 +60,18 @@ class Menu:
         start = fonts.render("Start", 1, (0, 0, 0))
         stop = fonts.render("Stop", 1, (0, 0, 0))
         highscores = fonts.render("Highscores", 1, (0, 0, 0))
-        stop_position = (stop.get_rect())  # 34, 24
+        stop_position = (stop.get_rect())  
         start_position = (start.get_rect())
         highscores_position = (highscores.get_rect())
-        screen.blit(start, (math.ceil(x + ((width_blocks - start_position[2]) /2)), ((height - self.distance_border * 2) * (7 / 8) + 5)))
-        x = x + space_between
-        screen.blit(stop, (math.ceil(x + ((width_blocks - stop_position[2]) /2)), ((height - self.distance_border * 2) * (7 / 8) + 5)))
-        x = x + space_between
-        screen.blit(highscores, (math.floor(x + ((width_blocks - highscores_position[2]) /2)), ((height - self.distance_border * 2) * (7 / 8) + 5)))
-    def render_font(self, text):
-        pass
+        list_of_fonts = [start_position, stop_position, highscores_position]
+        list_of_text = [start, stop, highscores]
 
-    def menu_font(self):
-        pass
+        text_items = 0
+        for position_items in range(number_blocks):
+            screen.blit(list_of_text[text_items], (math.ceil(x + ((width_blocks - list_of_fonts[position_items][2]) /2)), ((height - self.distance_border * 2) * (7 / 8) + 5)))
+            x = x + space_between
+            position_items = position_items + 1
+            text_items = text_items+ 1
 
 def process_events():
     for event in pygame.event.get():
@@ -90,7 +89,6 @@ def program():
         Menu(20).add_logo()
         Menu(20).add_help(40)
         Menu(20).draw_button(100, 3)
-
         pygame.display.flip()
 
 
