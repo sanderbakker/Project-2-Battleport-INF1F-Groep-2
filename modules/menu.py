@@ -60,11 +60,11 @@ class Menu:
         start = fonts.render("Start", 1, (0, 0, 0))
         stop = fonts.render("Stop", 1, (0, 0, 0))
         highscores = fonts.render("Highscores", 1, (0, 0, 0))
-        stop_position = (stop.get_rect())  
+        stop_position = (stop.get_rect())
         start_position = (start.get_rect())
         highscores_position = (highscores.get_rect())
         list_of_fonts = [start_position, stop_position, highscores_position]
-        list_of_text = [start, stop, highscores]
+        list_of_text = [stop, start, highscores]
 
         text_items = 0
         for position_items in range(number_blocks):
@@ -78,10 +78,18 @@ def process_events():
         if event.type == pygame.QUIT:
             # Give the signal to quit
             return True
+        mouse = pygame.mouse.get_pos()
+        print(mouse)
+        if (mouse[1] >= 470 and mouse[1] <= 505):
+            if (mouse[0] >= 135 and mouse[0] <= 235):
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    return True
+            elif (mouse[0] >= 350 and mouse[0] <= 450):
+                pass
+            elif (mouse[0] >= 565 and mouse[0] <= 656):
+                pass
 
     return False
-distance_border = 20
-
 
 def program():
     while not process_events():
