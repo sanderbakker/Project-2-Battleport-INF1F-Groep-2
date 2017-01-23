@@ -29,6 +29,7 @@ class Menu:
         self.start_point = self.distance_between + self.distance_border
         # end point of the blocks
         self.end_point = self.width_screen - int(self.start_point + self.width_blocks)
+        self.help_needed = False
     def draw_frame(self):
         pygame.draw.rect(self.screen, (212, 212, 212),
                          pygame.Rect((self.distance_border, self.distance_border),
@@ -84,7 +85,17 @@ class Menu:
             menu.add_logo()
             menu.add_help(40)
             menu.draw_button()
+            menu.show_instructions()
             pygame.display.flip()
+
+    def show_instructions(self):
+
+        mouse = pygame.mouse.get_pos()
+        if mouse[1] >= 20 and mouse[1] <= 60:
+            if mouse[0] >= 740 and mouse[0] <= 780:
+                image = pygame.image.load("assets\game2.png")
+                self.screen.blit(image, (0, 0))
+
 
     def process_events(self):
         coordinates = self.start_point
@@ -102,5 +113,6 @@ class Menu:
                         return True
                 elif (mouse[0] >= (coordinates + (self.distance_between *2)) and mouse[0] <= (coordinates + (self.distance_between * 2) + self.width_blocks)):
                     pass
+
 
         return False
