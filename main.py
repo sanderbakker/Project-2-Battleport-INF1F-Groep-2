@@ -19,6 +19,11 @@ pygame.display.set_caption("Battleport")
 Player1 = player.Player('Frits')
 Player2 = player.Player('Henk')
 
+
+""" display menu screen """
+menu_screen = menu.Menu(20, 800, 575)
+menu_screen.show()
+
 Turn = player.Turn(Player2)
 Game = game.Game(800, 575)
 
@@ -44,7 +49,7 @@ while not Game.events():
     sidebar.Show(Game, Player)
 
     # show deck of current player
-    deck.Show(Game, Player)
+    deck.Show(Game, Player, Turn)
 
     main_grid = grid.Grid({
         'screen': Game.get_screen(),

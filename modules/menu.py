@@ -1,4 +1,4 @@
-import pygame
+import pygame, sys
 import math
 WHITE = (255 ,255 ,255)
 pygame.init()
@@ -15,8 +15,7 @@ class Menu:
         self.height = height
         self.display = ((width_screen, height))
         self.screen = pygame.display.set_mode(self.display)
-        self.check_menu = True
-        self.game_quited = False
+
     def draw_frame(self):
         pygame.draw.rect(self.screen, (212, 212, 212),
                          pygame.Rect((self.distance_border, self.distance_border),
@@ -26,11 +25,11 @@ class Menu:
         size_image = 280
         radius_image = 280/2
 
-        img = pygame.image.load("logo.png")
+        img = pygame.image.load("assets/logo.png")
         self.screen.blit(img, (self.width_screen/2 - radius_image, self.width_screen*(1/16)))
 
     def add_help(self, position):
-        help_img = pygame.image.load("help.png")
+        help_img = pygame.image.load("assets/help.png")
 
         help_positon_x = self.width_screen - self.distance_border - position
         pygame.draw.rect(self.screen, (212, 212, 212),
@@ -77,8 +76,8 @@ class Menu:
             position_items = position_items + 1
             text_items = text_items+ 1
 
-    def program(self):
-        while not self.process_events() or self.check_menu:
+    def show(self):
+        while not self.process_events():
             menu = Menu(20, 800, 575)
             menu.draw_frame()
             menu.add_logo()
@@ -92,26 +91,14 @@ class Menu:
                 # Give the signal to quit
                 return True
             mouse = pygame.mouse.get_pos()
-            #print(self.check_menu)
             if (mouse[1] >= 470 and mouse[1] <= 505):
                 if (mouse[0] >= 135 and mouse[0] <= 235):
                     if event.type == pygame.MOUSEBUTTONDOWN:
-                        self.check_menu = False
-                        self.game_quited = True
-                        return True
+                        sys.exit()
                 elif (mouse[0] >= 350 and mouse[0] <= 450):
                     if event.type == pygame.MOUSEBUTTONDOWN:
-                        self.check_menu = False
                         return True
                 elif (mouse[0] >= 565 and mouse[0] <= 656):
                     pass
 
         return False
-
-    def game_quited(self):
-        return self.game_quited
-
-
-
-
-Menu(20, 800, 575).program()
