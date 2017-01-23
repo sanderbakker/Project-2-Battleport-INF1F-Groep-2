@@ -13,6 +13,9 @@ from modules import *
 from view import *
 import game
 
+"""Sets window title"""
+pygame.display.set_caption("Battleport")
+
 Player1 = player.Player('Frits')
 Player2 = player.Player('Henk')
 

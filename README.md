@@ -4,7 +4,7 @@ This is the repository containing the latest version of Battleport.
 # Requires
 - Python >= 3.0
 - PyGame >= 1.9.2
-- PyMSQL >= 0.7.9
+- PyMySQL >= 0.7.9
 
 # Developer notes
 
