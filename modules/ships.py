@@ -22,16 +22,8 @@ class MainShip:
 
     def movement(self, x, y):
         """Allows for movement on the grid"""
-        if pygame.event.get().key == pygame.KEYUP:
-            self.x =+ 1
-        if pygame.event.get().key == pygame.KEYDOWN:
-            self.x -= 1
-        if pygame.event.get().key == pygame.K_LEFT:
-            self.y -= 1
-        if pygame.event.get().key == pygame.K_RIGHT:
-            self.x =+ 1
-        if pygame.event.get().key == pygame.K_x:
-            self.position()
+        if pygame.event.get().key == pygame.K_w:
+            self.x += 1
 
     def position(self):
         """Turns ship 180 degrees, allowing for offensive and defensive positioning"""
@@ -47,7 +39,7 @@ class Saltire(MainShip):
         self.x = y
         self.y = y
         self.health = 2
-        self.size = 1
+        self.size = 2
 
 
 class Windsurf(MainShip):
@@ -58,7 +50,7 @@ class Windsurf(MainShip):
         self.x = x
         self.y = y
         self.health = 3
-        self.size = 2
+        self.size = 3
 
 
 class Amadea(MainShip):
@@ -69,4 +61,4 @@ class Amadea(MainShip):
         self.x = x
         self.y = y
         self.health = 4
-        self.size = 3
+        self.size = 4
