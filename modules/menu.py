@@ -15,7 +15,20 @@ class Menu:
         self.height = height
         self.display = ((width_screen, height))
         self.screen = pygame.display.set_mode(self.display)
-
+        # formula by Gerard Bakker
+        self.width_blocks = 100
+        self.number_blocks = 3
+        self.space_left_with_blocks = self.width_screen - (self.width_blocks * self.number_blocks)
+        # space left after space_left_with_block - distance_border
+        self.space_left = self.space_left_with_blocks - (self.distance_border * 2)
+        # distance between border and first block
+        self.distance_between = self.space_left / (self.number_blocks + 1)
+        # space between the blocks
+        self.space_between = self.width_blocks + self.distance_between
+        # start point of the blocks
+        self.start_point = self.distance_between + self.distance_border
+        # end point of the blocks
+        self.end_point = self.width_screen - int(self.start_point + self.width_blocks)
     def draw_frame(self):
         pygame.draw.rect(self.screen, (212, 212, 212),
                          pygame.Rect((self.distance_border, self.distance_border),
@@ -37,28 +50,17 @@ class Menu:
         self.screen.blit(help_img, (help_positon_x, self.distance_border))
 
 
-    def draw_button(self, width_blocks, number_blocks):
+    def draw_button(self):
         # calculates the remaining space after the blocks are added
-        space_left_with_blocks = self.width_screen - (width_blocks * number_blocks)
-        # space left after space_left_with_block - distance_border
-        space_left = space_left_with_blocks - (self.distance_border * 2)
-        # distance between border and first block
-        distance_between = space_left / (number_blocks + 1)
-        # space between the blocks
-        space_between = width_blocks + distance_between
-        # start point of the blocks
-        start_point = distance_between + self.distance_border
-        # end point of the blocks
-        end_point = self.width_screen - int(start_point + width_blocks)
-        x = start_point
-        # draws the blocks on the screen
-        while x <= end_point:
-            pygame.draw.rect(self.screen, (48, 148, 51),
-                             pygame.Rect((x, ((self.height - self.distance_border * 2) * (7 / 8))), (width_blocks, 35)))
 
-            x = x + space_between
-        #formula by Gerard Bakker
-        x = start_point
+        x = self.start_point
+        # draws the blocks on the screen
+        while x <= self.end_point:
+            pygame.draw.rect(self.screen, (48, 148, 51),
+                             pygame.Rect((x, ((self.height - self.distance_border * 2) * (7 / 8))), (self.width_blocks, 35)))
+
+            x = x + self.space_between
+        x = self.start_point
         fonts = pygame.font.SysFont("arial", 20)
         start = fonts.render("Start", 1, (0, 0, 0))
         stop = fonts.render("Stop", 1, (0, 0, 0))
@@ -68,11 +70,10 @@ class Menu:
         highscores_position = (highscores.get_rect())
         list_of_fonts = [start_position, stop_position, highscores_position]
         list_of_text = [stop, start, highscores]
-
         text_items = 0
-        for position_items in range(number_blocks):
-            self.screen.blit(list_of_text[text_items], (math.ceil(x + ((width_blocks - list_of_fonts[position_items][2]) /2)), ((self.height - self.distance_border * 2) * (7 / 8) + 5)))
-            x = x + space_between
+        for position_items in range(self.number_blocks):
+            self.screen.blit(list_of_text[text_items], (math.ceil(x + ((self.width_blocks - list_of_fonts[position_items][2]) /2)), ((self.height - self.distance_border * 2) * (7 / 8) + 5)))
+            x = x + self.space_between
             position_items = position_items + 1
             text_items = text_items+ 1
 
@@ -82,23 +83,24 @@ class Menu:
             menu.draw_frame()
             menu.add_logo()
             menu.add_help(40)
-            menu.draw_button(100, 3)
+            menu.draw_button()
             pygame.display.flip()
 
     def process_events(self):
+        coordinates = self.start_point
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 # Give the signal to quit
-                return True
+                sys.exit()
             mouse = pygame.mouse.get_pos()
-            if (mouse[1] >= 470 and mouse[1] <= 505):
-                if (mouse[0] >= 135 and mouse[0] <= 235):
+            if (mouse[1] >= (math.ceil(((7/8) * self.height) - 35)) and mouse[1] <= math.ceil(7/8 * self.height)):
+                if (mouse[0] >= coordinates and mouse[0] <= coordinates + self.width_blocks):
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         sys.exit()
-                elif (mouse[0] >= 350 and mouse[0] <= 450):
+                elif (mouse[0] >= (coordinates + self.width_blocks +  self.distance_between) and mouse[0] <= (coordinates + self.width_blocks + self.distance_between + self.width_blocks)):
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         return True
-                elif (mouse[0] >= 565 and mouse[0] <= 656):
+                elif (mouse[0] >= (coordinates + (self.distance_between *2)) and mouse[0] <= (coordinates + (self.distance_between * 2) + self.width_blocks)):
                     pass
 
         return False
