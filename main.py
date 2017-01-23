@@ -46,7 +46,7 @@ while not Game.events():
     player_turn.Show(Game, Player)
 
     # show sidebar
-    sidebar.Show(Game, Player)
+    sidebar.Show(Game, Player, menu_screen)
 
     # show deck of current player
     deck.Show(Game, Player, Turn)
