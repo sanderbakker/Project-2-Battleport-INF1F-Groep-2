@@ -1,4 +1,6 @@
 """Module containing ship classes"""
+import pygame
+pygame.init()
 
 
 class MainShip:
@@ -18,7 +20,20 @@ class MainShip:
         """Allows for placement on the grid"""
         pass
 
-    def turn(self):
+    def movement(self, x, y):
+        """Allows for movement on the grid"""
+        if pygame.event.get().key == pygame.KEYUP:
+            self.x =+ 1
+        if pygame.event.get().key == pygame.KEYDOWN:
+            self.x -= 1
+        if pygame.event.get().key == pygame.K_LEFT:
+            self.y -= 1
+        if pygame.event.get().key == pygame.K_RIGHT:
+            self.x =+ 1
+        if pygame.event.get().key == pygame.K_x:
+            self.position()
+
+    def position(self):
         """Turns ship 180 degrees, allowing for offensive and defensive positioning"""
         self.x = self.x - 1
         self.y = self.y
@@ -27,6 +42,7 @@ class MainShip:
 class Saltire(MainShip):
     """Furgo Saltire & Santa Bettina class."""
     def __init__(self, name, x, y):
+        super().__init__(name, x, y)
         self.name = name
         self.x = y
         self.y = y
@@ -37,6 +53,7 @@ class Saltire(MainShip):
 class Windsurf(MainShip):
     """Silver Whisper, Windsurf, Sea Spirit & Intensity class"""
     def __init__(self, name, x, y):
+        super().__init__(name, x, y)
         self.name = name
         self.x = x
         self.y = y
@@ -47,6 +64,7 @@ class Windsurf(MainShip):
 class Amadea(MainShip):
     """Amadea & Merapi class"""
     def __init__(self, name, x, y):
+        super().__init__(name, x, y)
         self.name = name
         self.x = x
         self.y = y
