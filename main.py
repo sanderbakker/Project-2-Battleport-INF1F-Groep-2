@@ -29,7 +29,7 @@ Turn.add_normal_card(cards.normal_card().get_random())
 Turn.add_normal_card(cards.normal_card().get_random())
 
 Game = game.Game(800, 575)
-
+Game.set_menu(menu_screen)
 field_size = 400
 
 """Start save logic for ship movement"""

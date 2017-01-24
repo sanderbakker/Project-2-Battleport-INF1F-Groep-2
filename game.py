@@ -36,7 +36,11 @@ class Game:
                 if(pos):
                     self.grid_pos = pos
                     return
-
+            mouse = pygame.mouse.get_pos()
+            if mouse[1] >= 15 and mouse[1] <= 45:
+                if mouse[0] >= 575 and mouse[0] <= 650:
+                    if event.type == pygame.MOUSEBUTTONDOWN:
+                        self.get_menu().show()
         self.grid_pos = 0
         return False
 
@@ -51,6 +55,11 @@ class Game:
     # set grid object
     def set_grid(self, grid):
         self.grid = grid 
+    def set_menu(self, menu):
+        self.Menu = menu
+
+    def get_menu(self):
+        return self.Menu
 
     # get position of the grid if it's clicked
     def get_grid_click(self):
