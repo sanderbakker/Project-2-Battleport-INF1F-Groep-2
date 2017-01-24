@@ -71,7 +71,7 @@ class Show:
 		mouse = pygame.mouse.get_pos()
 		if mouse[1] >= 15 and mouse[1] <= 45:
 			if mouse[0] >= 700 and mouse[0] <= 775:
-				image = pygame.image.load("assets/game2.png")
+				image = pygame.image.load("assets/help.jpg")
 				self.Game.get_screen().blit(image, (0, 0))
 
 	def draw_normal_deck(self):
