@@ -57,8 +57,7 @@ while not Game.events():
     # show the current player stats ( name and score )
     player_turn.Show(Game, Player)
 
-    # show sidebar
-    sidebar.Show(Game, Player, menu_screen)
+
 
     # show deck of current player
     deck.Show(Game, Player, Turn)
@@ -106,6 +105,8 @@ while not Game.events():
         ship_list_player1[0].y -= 1
         main_grid.Place_Square(ship_list_player1[0].x, ship_list_player1[0].y)
 
+    # show sidebar
+    sidebar.Show(Game, Player, menu_screen)
     Game.update()
 
 # Turn = player.Turn(Player1)
