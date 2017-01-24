@@ -99,3 +99,8 @@ class Game:
         font_type = pygame.font.SysFont(self.font, self.font_size)
         text = font_type.render(text, 0, self.font_color)
         self.screen.blit(text, placement)
+
+
+    """ blit something on the screen """
+    def blit(self, obj, placement):
+        self.screen.blit(obj, placement)

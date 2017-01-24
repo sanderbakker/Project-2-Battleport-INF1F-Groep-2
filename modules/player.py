@@ -34,8 +34,8 @@ class Player:
 
 class Turn:
 	def __init__(self, player):
-		self.normalCards = []
-		self.specialCards = []
+		self.normal_cards = []
+		self.special_cards = []
 		self.player = player		
 
 	def get_player(self):
@@ -43,21 +43,21 @@ class Turn:
 
 	# retrieve the normal cards of the player
 	def get_normal_cards(self):
-		return self.normalCards 
+		return self.normal_cards 
 
 	# add a normal card to the player deck
 	def add_normal_card(self, card):
-		self.normalCards.append(card)
-		return self.normalCards
+		self.normal_cards.append(card)
+		return self.normal_cards
 
 	# retrieve the special cards of the player deck 
 	def get_special_cards(self):
-		return self.specialCards
+		return self.special_cards
 
 	# add a special card to the player deck
 	def add_special_cards(self, card):
-		self.specialCards = self.specialCards.append(card)
-		return self.specialCards
+		self.special_cards.append(card)
+		return self.special_cards
 
 	# get turn
 	def get_turn(self):
