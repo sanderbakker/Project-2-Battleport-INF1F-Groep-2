@@ -69,7 +69,6 @@ class normal_card:
 
 	def get_random(self):
 		card_list = self.__card_list()
-		print(card_list)
 		choice_list = []
 		for name, velocity in card_list.items():
 			for __ in range(velocity):
