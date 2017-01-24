@@ -1,4 +1,4 @@
-import os, pygame
+import os, pygame, random
 
 class card:
 	def __init__(self):
@@ -26,7 +26,7 @@ class card:
 		return self.velocity
 
 	def set_image(self, image):
-		self.image = pygame.image.load(os.path.dirname(os.path.abspath(__file__)) + '/../assets/defensive/' + image)
+		self.image = pygame.image.load(os.path.dirname(os.path.abspath(__file__)) + '/../assets/' + image)
 
 	def get_image(self):
 		return self.image
@@ -46,70 +46,138 @@ class normal_card:
 	def set_card_help(self):
 		self.Card.set_card_type('help')
 
+	# list containing all cards and velocity of the normal deck
+	def __card_list(self):
+		card_list = {
+			'FMJ_upgrade': 2,
+			'Rilfing': 2,
+			'Advanced_rifling': 2,
+			'Naval_mine': 6,
+			'EMP_upgrade': 4,
+			'Reinforced_hull': 2,
+			'Sonar': 4,
+			'Smokescreen': 2,
+			'Sabotage': 2,
+			'Backup': 2,
+			'Extra_fuel_II': 4,
+			'Extra_fuel': 2,
+			'Rally': 1,
+			'Adrenaline_rush': 4,
+		}
+
+		return card_list
+
+	def get_random(self):
+		card_list = self.__card_list()
+		print(card_list)
+		choice_list = []
+		for name, velocity in card_list.items():
+			for __ in range(velocity):
+				choice_list.append(name)
+
+		method = getattr(self, random.choice(choice_list))
+		return method()
+
 	# offensive cards 
-	def FMJ_upgrade():
+	def FMJ_upgrade(self):
 		self.set_card_offensive()
 		self.Card.set_velocity(2)
+		self.Card.set_image('Offensive/FMJ_upgrade.jpg')
 
-	def Rifling():
+		return self.Card
+
+	def Rifling(self):
 		self.set_card_offensive()
 		self.Card.set_velocity(2)
+		self.Card.set_image('Offensive/Rifling.jpg')
 
-	def Advanced_rifling():
+		return self.Card
+
+	def Advanced_rifling(self):
 		self.set_card_offensive()
 		self.Card.set_velocity(2)
+		self.Card.set_image('Offensive/Adv_rifling.png')
 
-	def Naval_mine():
+		return self.Card
+
+	def Naval_mine(self):
 		self.set_card_offensive()
 		self.Card.set_velocity(6)
+		self.Card.set_image('Offensive/Naval_mine.jpg')
 
-	def EMP_upgrade():
+		return self.Card
+
+	def EMP_upgrade(self):
 		self.set_card_offensive()
 		self.Card.set_velocity(4)
+		self.Card.set_image('Offensive/EMP_upgrade.jpg')
+
+		return self.Card
 
 	# defenisve cards 
 	def Reinforced_hull(self):
 		self.set_card_defensive()
 		self.Card.set_velocity(2)
-		self.Card.set_image('Reinforced_hull.jpg')
+		self.Card.set_image('Defensive/Reinforced_hull.jpg')
 
 		return self.Card
 
 	def Sonar(self):
 		self.set_card_defensive()
 		self.Card.set_velocity(4)
-		self.Card.set_image('Sonar.jpg')
+		self.Card.set_image('Defensive/Sonar.jpg')
+
+		return self.Card
 
 	def Smokescreen(self):
 		self.set_card_defensive()
 		self.Card.set_velocity(2)
-		self.Card.set_image('Smokescreen.jpg')
+		self.Card.set_image('Defensive/Smokescreen.jpg')
+
+		return self.Card
 
 	def Sabotage(self):
 		self.set_card_defensive()
 		self.Card.set_velocity(2)
-		self.Card.set_image('Sabotage.jpg')
+		self.Card.set_image('Defensive/Sabotage.jpg')
+
+		return self.Card
 
 	# help cards
 	def Backup(self):
 		self.set_card_help()
 		self.Card.set_velocity(2)
+		self.Card.set_image('Help/Backup.jpg')
+
+		return self.Card
 
 	def Extra_fuel_II(self):
 		self.set_card_help()
 		self.Card.set_velocity(4)
+		self.Card.set_image('Help/Extra_fuel_II.jpg')
+
+		return self.Card
 
 	def Extra_fuel(self):
 		self.set_card_help()
 		self.Card.set_velocity(6)
+		self.Card.set_image('Help/Extra_fuel.jpg')
+
+		return self.Card
 
 	def Rally(self):
 		self.set_card_help()
 		self.Card.set_velocity(1)
+		self.Card.set_image('Help/Rally.jpg')
 
-	def Adreline_rush(self):
+		return self.Card
+
+	def Adrenaline_rush(self):
 		self.set_card_help()
 		self.Card.set_velocity(4)
+		self.Card.set_image('Help/Adrenaline_rush.jpg')
+
+		return self.Card
 
 
 class special_card:
