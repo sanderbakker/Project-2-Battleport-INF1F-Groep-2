@@ -19,7 +19,7 @@ class Show:
 
 	def draw_cards(self, i, offset):
 		for card in self.normal_cards:
-			self.Game.draw_text(card,(offset, ( (self.display_height - self.card_height) - 10)))
+			self.Game.blit(card.get_image(), (offset, ( (self.display_height - self.card_height) - 10)))
 
 			offset = offset + self.card_width + self.card_spacing
 			i = i - 1
