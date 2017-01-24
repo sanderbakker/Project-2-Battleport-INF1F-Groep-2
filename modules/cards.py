@@ -6,9 +6,6 @@ class card:
 		self.card_type 	= ''
 		self.velocity	= 0
 		self.image 		= ''
-		
-		#haal dit weg kil wat doe je
-		self.set_wiki('huh')
 
 	def set_stack(self, stack):
 		self.stack = stack
@@ -35,7 +32,7 @@ class card:
 		return self.image
 
 	def set_wiki(self, wiki):
-		self.wiki = pygame.image.load(os.path.dirname(os.path.abspath(__file__)) + '/../assets/wiki/Reinforced_hull_wiki.jpg')
+		self.wiki = pygame.image.load(os.path.dirname(os.path.abspath(__file__)) + '/../assets/wiki/' + wiki)
 
 	def get_wiki(self):
 		return self.wiki
@@ -91,6 +88,7 @@ class normal_card:
 		self.set_card_offensive()
 		self.Card.set_velocity(2)
 		self.Card.set_image('Offensive/FMJ_upgrade.jpg')
+		self.Card.set_wiki('FMJ_upgrade_wiki.jpg')
 
 		return self.Card
 
@@ -98,6 +96,7 @@ class normal_card:
 		self.set_card_offensive()
 		self.Card.set_velocity(2)
 		self.Card.set_image('Offensive/Rifling.jpg')
+		self.Card.set_wiki('Rifling_wiki.jpg')
 
 		return self.Card
 
@@ -105,6 +104,7 @@ class normal_card:
 		self.set_card_offensive()
 		self.Card.set_velocity(2)
 		self.Card.set_image('Offensive/Adv_rifling.png')
+		self.Card.set_wiki('Adv_rifling_wiki.png')
 
 		return self.Card
 
@@ -112,6 +112,7 @@ class normal_card:
 		self.set_card_offensive()
 		self.Card.set_velocity(6)
 		self.Card.set_image('Offensive/Naval_mine.jpg')
+		self.Card.set_wiki('Naval_mine_wiki.jpg')
 
 		return self.Card
 
@@ -119,6 +120,7 @@ class normal_card:
 		self.set_card_offensive()
 		self.Card.set_velocity(4)
 		self.Card.set_image('Offensive/EMP_upgrade.jpg')
+		self.Card.set_wiki('EMP_upgrade_wiki.jpg')
 
 		return self.Card
 
@@ -127,6 +129,7 @@ class normal_card:
 		self.set_card_defensive()
 		self.Card.set_velocity(2)
 		self.Card.set_image('Defensive/Reinforced_hull.jpg')
+		self.Card.set_wiki('Reinforced_hull_wiki.jpg')
 
 		return self.Card
 
@@ -134,6 +137,7 @@ class normal_card:
 		self.set_card_defensive()
 		self.Card.set_velocity(4)
 		self.Card.set_image('Defensive/Sonar.jpg')
+		self.Card.set_wiki('Sonar_wiki.jpg')
 
 		return self.Card
 
@@ -141,6 +145,7 @@ class normal_card:
 		self.set_card_defensive()
 		self.Card.set_velocity(2)
 		self.Card.set_image('Defensive/Smokescreen.jpg')
+		self.Card.set_wiki('Smokescreen_wiki.jpg')
 
 		return self.Card
 
@@ -148,6 +153,7 @@ class normal_card:
 		self.set_card_defensive()
 		self.Card.set_velocity(2)
 		self.Card.set_image('Defensive/Sabotage.jpg')
+		self.Card.set_wiki('Sabotage_wiki.jpg')
 
 		return self.Card
 
@@ -156,6 +162,7 @@ class normal_card:
 		self.set_card_help()
 		self.Card.set_velocity(2)
 		self.Card.set_image('Help/Backup.jpg')
+		self.Card.set_wiki('Backup_wiki.jpg')
 
 		return self.Card
 
@@ -163,6 +170,7 @@ class normal_card:
 		self.set_card_help()
 		self.Card.set_velocity(4)
 		self.Card.set_image('Help/Extra_fuel_II.jpg')
+		self.Card.set_wiki('Extra_fuel_II_wiki.jpg')
 
 		return self.Card
 
@@ -170,6 +178,7 @@ class normal_card:
 		self.set_card_help()
 		self.Card.set_velocity(6)
 		self.Card.set_image('Help/Extra_fuel.jpg')
+		self.Card.set_wiki('Extra_fuel_wiki.jpg')
 
 		return self.Card
 
@@ -177,6 +186,7 @@ class normal_card:
 		self.set_card_help()
 		self.Card.set_velocity(1)
 		self.Card.set_image('Help/Rally.jpg')
+		self.Card.set_wiki('Rally_wiki.jpg')
 
 		return self.Card
 
@@ -184,6 +194,7 @@ class normal_card:
 		self.set_card_help()
 		self.Card.set_velocity(4)
 		self.Card.set_image('Help/Adrenaline_rush.jpg')
+		self.Card.set_wiki('Adrenaline_rush_wiki.jpg')
 
 		return self.Card
 
