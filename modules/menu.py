@@ -93,7 +93,7 @@ class Menu:
         mouse = pygame.mouse.get_pos()
         if mouse[1] >= 20 and mouse[1] <= 60:
             if mouse[0] >= 740 and mouse[0] <= 780:
-                image = pygame.image.load("assets/game2.png")
+                image = pygame.image.load("assets/help.jpg")
                 self.screen.blit(image, (0, 0))
 
 
