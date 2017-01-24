@@ -23,6 +23,7 @@ Player2 = player.Player('Henk')
 """ display menu screen """
 menu_screen = menu.Menu(20, 800, 575)
 menu_screen.show()
+sidebar_screen = ''
 
 Turn = player.Turn(Player2)
 Turn.add_normal_card(cards.normal_card().get_random())
@@ -30,6 +31,7 @@ Turn.add_normal_card(cards.normal_card().get_random())
 
 Game = game.Game(800, 575)
 Game.set_menu(menu_screen)
+
 field_size = 400
 
 """Start save logic for ship movement"""
@@ -52,17 +54,19 @@ Amadea = ships.Amadea("Amadea", 0, 0)
 ship_list_player2.extend([Santa, Sea, Intensity, Amadea])
 
 while not Game.events():
-
     # get the current player
-    Player = Turn.player
+    Player = Turn.player   
 
     Game.get_screen().fill((235, 235, 235))
 
     # show the current player stats ( name and score )
     player_turn.Show(Game, Player)
 
+    # show sidebar
+    sidebar_screen = sidebar.Show(Game, Player, menu_screen) 
+
     # show deck of current player
-    deck.Show(Game, Player, Turn)
+    deck.Show(Game, Player, Turn, sidebar_screen)
 
     main_grid = grid.Grid({
         'screen': Game.get_screen(),
@@ -107,8 +111,8 @@ while not Game.events():
         ship_list_player1[0].y -= 1
         main_grid.Place_Square(ship_list_player1[0].x, ship_list_player1[0].y)
 
-    # show sidebar
-    sidebar.Show(Game, Player, menu_screen)
+
+    sidebar_screen.show_instructions()
     Game.update()
 
 # Turn = player.Turn(Player1)
