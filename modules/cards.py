@@ -104,7 +104,7 @@ class normal_card:
 		self.set_card_offensive()
 		self.Card.set_velocity(2)
 		self.Card.set_image('Offensive/Adv_rifling.png')
-		self.Card.set_wiki('Adv_rifling_wiki.png')
+		self.Card.set_wiki('Adv_rifling_wiki.jpg')
 
 		return self.Card
 
@@ -170,7 +170,7 @@ class normal_card:
 		self.set_card_help()
 		self.Card.set_velocity(4)
 		self.Card.set_image('Help/Extra_fuel_II.jpg')
-		self.Card.set_wiki('Extra_fuel_II_wiki.jpg')
+		self.Card.set_wiki('Extra_fuel_2_wiki.jpg')
 
 		return self.Card
 

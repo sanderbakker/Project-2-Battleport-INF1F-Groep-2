@@ -79,7 +79,7 @@ class Show:
 		pygame.draw.rect(self.Game.get_screen(), (255,255,255), [ self.start_width_card, 380, self.card_width, self.card_height])
 
 	def set_wiki(self, wiki):
-		self.Game.get_screen().blit(wiki, (self.start + 50, (100 + 50)))
+		self.Game.get_screen().blit(wiki, (self.start + 65, (220)))
 		 
 			
 
