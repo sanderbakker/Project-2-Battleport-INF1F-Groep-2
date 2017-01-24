@@ -103,41 +103,43 @@ while not Game.events():
     if click:
         count += 1
         if count == 1:
+            Turn = player.Turn(Player1)
             ship_list_player1[0].x = click[0]
             ship_list_player1[0].y = click[1]
-            player.Turn(Player2)
         elif count == 2:
+            Turn = player.Turn(Player2)
             ship_list_player2[0].x = click[0]
             ship_list_player2[0].y = click[1]
-            player.Turn(Player1)
         elif count == 3:
+            Turn = player.Turn(Player1)
             ship_list_player1[1].x = click[0]
             ship_list_player1[1].y = click[1]
-            player.Turn(Player1)
         elif count == 4:
+            Turn = player.Turn(Player2)
             ship_list_player2[1].x = click[0]
             ship_list_player2[1].y = click[1]
-            player.Turn(Player1)
         elif count == 5:
+            Turn = player.Turn(Player1)
             ship_list_player1[2].x = click[0]
             ship_list_player1[2].y = click[1]
-            player.Turn(Player1)
         elif count == 6:
+            Turn = player.Turn(Player2)
             ship_list_player2[2].x = click[0]
             ship_list_player2[2].y = click[1]
-            player.Turn(Player1)
         elif count == 7:
+            Turn = player.Turn(Player1)
             ship_list_player1[3].x = click[0]
             ship_list_player1[3].y = click[1]
-            player.Turn(Player1)
         elif count == 8:
+            Turn = player.Turn(Player2)
             ship_list_player2[3].x = click[0]
             ship_list_player2[3].y = click[1]
-            player.Turn(Player1)
         elif count == 9:
+            Turn = player.Turn(Player1)
             ship_list_player1[4].x = click[0]
             ship_list_player1[4].y = click[1]
         elif count == 8:
+            Turn = player.Turn(Player2)
             ship_list_player2[4].x = click[0]
             ship_list_player2[4].y = click[1]
 
