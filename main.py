@@ -25,7 +25,9 @@ menu_screen = menu.Menu(20, 800, 575)
 menu_screen.show()
 
 Turn = player.Turn(Player2)
-Turn.add_normal_card(cards.normal_card().Reinforced_hull())
+Turn.add_normal_card(cards.normal_card().get_random())
+Turn.add_normal_card(cards.normal_card().get_random())
+
 Game = game.Game(800, 575)
 
 field_size = 400
@@ -50,6 +52,7 @@ Amadea = ships.Amadea("Amadea", 0, 0)
 ship_list_player2.extend([Santa, Sea, Intensity, Amadea])
 
 while not Game.events():
+
     # get the current player
     Player = Turn.player
 
@@ -57,8 +60,6 @@ while not Game.events():
 
     # show the current player stats ( name and score )
     player_turn.Show(Game, Player)
-
-
 
     # show deck of current player
     deck.Show(Game, Player, Turn)
