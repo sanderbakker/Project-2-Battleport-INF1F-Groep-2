@@ -6,6 +6,9 @@ class card:
 		self.card_type 	= ''
 		self.velocity	= 0
 		self.image 		= ''
+		
+		#haal dit weg kil wat doe je
+		self.set_wiki('huh')
 
 	def set_stack(self, stack):
 		self.stack = stack
@@ -31,6 +34,12 @@ class card:
 	def get_image(self):
 		return self.image
 
+	def set_wiki(self, wiki):
+		self.wiki = pygame.image.load(os.path.dirname(os.path.abspath(__file__)) + '/../assets/wiki/Reinforced_hull_wiki.jpg')
+
+	def get_wiki(self):
+		return self.wiki
+
 class normal_card:
 	def __init__(self):
 		self.Card = card()
@@ -50,7 +59,7 @@ class normal_card:
 	def __card_list(self):
 		card_list = {
 			'FMJ_upgrade': 2,
-			'Rilfing': 2,
+			'Rifling': 2,
 			'Advanced_rifling': 2,
 			'Naval_mine': 6,
 			'EMP_upgrade': 4,

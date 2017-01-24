@@ -19,21 +19,25 @@ class Show:
 		""" toolbar """
 		self.toolbar_height = 60
 		self.toolbar_color  = (42,129,44)
+		self.toolbar_width_block = 75
+		self.toolbar_height_block = 30
 
 		self.card_width = 100
 		self.card_height = 150
 		self.start_width_card = self.start + ( (self.width - self.card_width) / 2)
 
-
 		self.draw_sidebar()
-		self.draw_toolbar(75, 30)
+		self.draw_toolbar()
 		self.show_instructions()
 		#self.draw_normal_deck()
 
 	def draw_sidebar(self):
 		pygame.draw.rect(self.Game.get_screen(), (self.sidebar_color), [self.start, 0, self.width, self.display_height])
 
-	def draw_toolbar(self, width_block, heigth_block):
+	def draw_toolbar(self):
+		width_block = self.toolbar_width_block
+		heigth_block = self.toolbar_height_block
+
 		pygame.draw.rect(self.Game.get_screen(), (self.toolbar_color), [self.start, 0, self.width, self.toolbar_height])
 
 		y_coordinate = heigth_block/2
@@ -73,5 +77,14 @@ class Show:
 	def draw_normal_deck(self):
 		self.Game.draw_text('Normal cards', ( (self.start_width_card - 15), 350))
 		pygame.draw.rect(self.Game.get_screen(), (255,255,255), [ self.start_width_card, 380, self.card_width, self.card_height])
+
+	def set_wiki(self, wiki):
+		self.Game.get_screen().blit(wiki, (500, 100))
+		 
+
+	def show_wiki(self):
+		self.wiki
+		if(self.wiki):
+			self.wiki
 			
 
