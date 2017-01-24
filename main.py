@@ -25,6 +25,7 @@ menu_screen = menu.Menu(20, 800, 575)
 menu_screen.show()
 
 Turn = player.Turn(Player2)
+Turn.add_normal_card(cards.normal_card().Reinforced_hull())
 Game = game.Game(800, 575)
 
 field_size = 400
