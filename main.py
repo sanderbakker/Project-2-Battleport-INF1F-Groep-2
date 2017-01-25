@@ -29,6 +29,7 @@ Game = game.Game(800, 575)
 Game.set_menu(menu_screen)
 
 Turn = player.Turn(Player1)
+press = pygame.key.get_pressed()
 
 field_size = 400
 
@@ -79,81 +80,68 @@ while not Game.events():
     click = Game.get_grid_click()
 
     """"Loads ships from array (WIP)"""
-    for i in range(0, ship_list_player1[0].size):
-        main_grid.Place_Square(ship_list_player1[0].x, 19 + i)
-    for i in range(0, ship_list_player1[1].size):
-        main_grid.Place_Square(ship_list_player1[1].x, 18 + i)
-    for i in range(0, ship_list_player1[2].size):
-        main_grid.Place_Square(ship_list_player1[2].x, 18 + i)
-    for i in range(0, ship_list_player1[3].size):
-        main_grid.Place_Square(ship_list_player1[3].x, 17 + i)
+    for i in range(0, len(ship_list_player1)):
+        for x in range(0, ship_list_player1[i].size):
+            main_grid.Place_Square(ship_list_player1[i].x, ship_list_player1[i].y + x)
 
-    for i in range(0, ship_list_player2[0].size):
-        main_grid.Place_Square(ship_list_player2[0].x, 2 - i)
-    for i in range(0, ship_list_player2[1].size):
-        main_grid.Place_Square(ship_list_player2[1].x, 3 - i)
-    for i in range(0, ship_list_player2[2].size):
-        main_grid.Place_Square(ship_list_player2[2].x, 3 - i)
-    for i in range(0, ship_list_player2[3].size):
-        main_grid.Place_Square(ship_list_player2[3].x, 4 - i)
+    for i in range(0, len(ship_list_player2)):
+        for x in range(0, ship_list_player2[i].size):
+            main_grid.Place_Square(ship_list_player2[i].x, ship_list_player2[i].y - x)
 
-    """Start ship placement logic (WIP)"""
+    """Start ship placement/game logic (WIP)"""
     if click:
         count += 1
         if count == 1:            
             Turn = player.Turn(Player1)
-            # add the two starting cards 
+            # add the two starting cards
             Turn.add_normal_card(cards.normal_card().get_random())
             Turn.add_normal_card(cards.normal_card().get_random())
 
             ship_list_player1[0].x = click[0]
-            ship_list_player1[0].y = click[1]
+            ship_list_player1[0].y = 19
         elif count == 2:
             Turn = player.Turn(Player2)
             # add the two starting cards
             Turn.add_normal_card(cards.normal_card().get_random())
-            Turn.add_normal_card(cards.normal_card().get_random())           
+            Turn.add_normal_card(cards.normal_card().get_random())
 
             ship_list_player2[0].x = click[0]
-            ship_list_player2[0].y = click[1]
+            ship_list_player2[0].y = 2
         elif count == 3:
             Turn = player.Turn(Player1)
             ship_list_player1[1].x = click[0]
-            ship_list_player1[1].y = click[1]
+            ship_list_player1[1].y = 18
         elif count == 4:
             Turn = player.Turn(Player2)
             ship_list_player2[1].x = click[0]
-            ship_list_player2[1].y = click[1]
+            ship_list_player2[1].y = 3
         elif count == 5:
             Turn = player.Turn(Player1)
             ship_list_player1[2].x = click[0]
-            ship_list_player1[2].y = click[1]
+            ship_list_player1[2].y = 18
         elif count == 6:
             Turn = player.Turn(Player2)
             ship_list_player2[2].x = click[0]
-            ship_list_player2[2].y = click[1]
+            ship_list_player2[2].y = 3
         elif count == 7:
             Turn = player.Turn(Player1)
             ship_list_player1[3].x = click[0]
-            ship_list_player1[3].y = click[1]
+            ship_list_player1[3].y = 17
         elif count == 8:
             Turn = player.Turn(Player2)
             ship_list_player2[3].x = click[0]
-            ship_list_player2[3].y = click[1]
-        elif count == 9:
-            Turn = player.Turn(Player1)
-            ship_list_player1[4].x = click[0]
-            ship_list_player1[4].y = click[1]
-        elif count == 8:
-            Turn = player.Turn(Player2)
-            ship_list_player2[4].x = click[0]
-            ship_list_player2[4].y = click[1]
-
-    """Start ship movement logic (WIP)"""
-    press = pygame.key.get_pressed()
-    if press[pygame.K_w]:
-        ship_list_player1[0].y -= 1
-        main_grid.Place_Square(ship_list_player1[0].x, ship_list_player1[0].y)
+            ship_list_player2[3].y = 4
+        elif count >= 9:
+            for i in range(0, len(ship_list_player1)):
+                if click[0] == ship_list_player1[i].x:
+                    if click[1] == ship_list_player1[i].y:
+                        ship_list_player1[i].y -= 1
+                        print(ship_list_player1[i].name + " moved forward!")
+            for i in range(0, len(ship_list_player2)):
+                if click[0] == ship_list_player2[i].x:
+                    if click[1] == ship_list_player2[i].y:
+                        ship_list_player2[i].y += 1
+                        print(ship_list_player2[i].name + " moved forward!")
 
 
     sidebar_screen.show_instructions()
