@@ -29,6 +29,7 @@ class Show:
 		self.draw_sidebar()
 		self.draw_toolbar()
 		self.show_instructions()
+		self.show_menu()
 		#self.draw_normal_deck()
 
 	def draw_sidebar(self):
@@ -80,6 +81,14 @@ class Show:
 
 	def set_wiki(self, wiki):
 		self.Game.get_screen().blit(wiki, (self.start + 65, (220)))
+
+	def show_menu(self):
+		event = self.Game.get_event()
+		mouse = pygame.mouse.get_pos()
+		if mouse[1] >= 15 and mouse[1] <= 45:
+			if mouse[0] >= 575 and mouse[0] <= 650:
+				if event.type == pygame.MOUSEBUTTONDOWN:
+					self.Menu.show()		
 		 
 			
 
