@@ -25,12 +25,10 @@ menu_screen = menu.Menu(20, 800, 575)
 menu_screen.show()
 sidebar_screen = ''
 
-Turn = player.Turn(Player2)
-Turn.add_normal_card(cards.normal_card().get_random())
-Turn.add_normal_card(cards.normal_card().get_random())
-
 Game = game.Game(800, 575)
 Game.set_menu(menu_screen)
+
+Turn = player.Turn(Player1)
 
 field_size = 400
 
@@ -54,7 +52,7 @@ Amadea = ships.Amadea("Amadea", 0, 0)
 ship_list_player2.extend([Santa, Sea, Intensity, Amadea])
 
 while not Game.events():
-    # get the current player
+    # get the current player    
     Player = Turn.player   
 
     Game.get_screen().fill((235, 235, 235))
@@ -102,12 +100,20 @@ while not Game.events():
     """Start ship placement logic (WIP)"""
     if click:
         count += 1
-        if count == 1:
+        if count == 1:            
             Turn = player.Turn(Player1)
+            # add the two starting cards 
+            Turn.add_normal_card(cards.normal_card().get_random())
+            Turn.add_normal_card(cards.normal_card().get_random())
+
             ship_list_player1[0].x = click[0]
             ship_list_player1[0].y = click[1]
         elif count == 2:
             Turn = player.Turn(Player2)
+            # add the two starting cards
+            Turn.add_normal_card(cards.normal_card().get_random())
+            Turn.add_normal_card(cards.normal_card().get_random())           
+
             ship_list_player2[0].x = click[0]
             ship_list_player2[0].y = click[1]
         elif count == 3:
