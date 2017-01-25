@@ -26,6 +26,8 @@ class Game:
     #handle events
     def events(self):
         for event in pygame.event.get():
+            self.set_event(event)
+
             if event.type == pygame.QUIT:
                 # Give the signal to quit
                 return True
@@ -36,13 +38,17 @@ class Game:
                 if(pos):
                     self.grid_pos = pos
                     return
-            mouse = pygame.mouse.get_pos()
-            if mouse[1] >= 15 and mouse[1] <= 45:
-                if mouse[0] >= 575 and mouse[0] <= 650:
-                    if event.type == pygame.MOUSEBUTTONDOWN:
-                        self.get_menu().show()
+
         self.grid_pos = 0
         return False
+
+    # 
+    def set_event(self, event):
+        self.event = event
+
+    #
+    def get_event(self):
+        return self.event
 
     # updates the current screen
     def update(self):
@@ -55,11 +61,19 @@ class Game:
     # set grid object
     def set_grid(self, grid):
         self.grid = grid 
+
+    # set menu object
     def set_menu(self, menu):
         self.Menu = menu
 
+    def set_deck(self, deck):
+        self.deck = deck
+
     def get_menu(self):
         return self.Menu
+
+    def get_deck(self):
+        return self.deck
 
     # get position of the grid if it's clicked
     def get_grid_click(self):

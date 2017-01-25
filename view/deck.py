@@ -24,6 +24,7 @@ class Show:
 		for card in self.normal_cards:
 			self.Game.blit(card.get_image(), (offset, self.margin_top))
 			self.card_hover(offset, card)
+			self.card_click(offset, card)
 
 			offset = offset + self.card_width + self.card_spacing
 			i = i - 1
@@ -45,3 +46,12 @@ class Show:
 		if mouse[0] >= offset and mouse[0] <= (offset + self.card_width):
 			if mouse[1] >= self.margin_top and mouse[1] <= (self.margin_top + self.card_height):
 				self.Sidebar.set_wiki(card.get_wiki())
+
+	def card_click(self, offset, card):
+		mouse = pygame.mouse.get_pos()
+		event = self.Game.get_event()
+		if event.type == pygame.MOUSEBUTTONDOWN:
+			if mouse[0] >= offset and mouse[0] <= (offset + self.card_width):
+				if mouse[1] >= self.margin_top and mouse[1] <= (self.margin_top + self.card_height):
+					self.Sidebar.set_wiki(card.get_wiki())
+					print('clicked')
