@@ -1,4 +1,10 @@
 CREATE DATABASE battleport;
+
+CREATE USER 'battleport_user'@'localhost' IDENTIFIED BY 'AOx6g6ohHS';
+GRANT ALL PRIVILEGES on battleport.* TO 'battleport_user'@'localhost';
+
+FLUSH PRIVILEGES;
+
 USE battleport;
 
 CREATE TABLE players (
