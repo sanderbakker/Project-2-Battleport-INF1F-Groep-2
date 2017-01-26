@@ -15,7 +15,14 @@ import game
 
 """Sets window title"""
 pygame.display.set_caption("Battleport")
-
+ship_1_0 = 0
+ship_1_1 = 0
+ship_1_2 = 0
+ship_1_3 = 0
+ship_2_0 = 0
+ship_2_1 = 0
+ship_2_2 = 0
+ship_2_3 = 0
 Player1 = player.Player(login.PlayerName().get_name())
 Player2 = player.Player(login.PlayerName2().get_name())
 
@@ -139,11 +146,24 @@ while not Game.events():
                 p2_count += 1
 
         elif count >= 9:
-            for i in range(0, len(ship_list_player1)):
-                if click[0] == ship_list_player1[i].x:
-                    if click[1] == ship_list_player1[i].y:
-                        ship_list_player1[i].y -= 1
-                        print(ship_list_player1[i].name + " moved forward!")
+            if ship_1_0 < 3:
+                if click[0] == ship_list_player1[0].x:
+                    if click[1] == ship_list_player1[0].y:
+                        ship_list_player1[0].y -= 1
+                        ship_1_0 = ship_1_0 + 1
+                        print(ship_list_player1[0].name + " moved forward!")
+            elif ship_1_1 < 2:
+                if click[0] == ship_list_player1[1].x:
+                    if click[1] == ship_list_player1[1].y:
+                        ship_list_player1[1].y -= 1
+                        ship_1_1 = ship_1_1 + 1
+                        print(ship_list_player1[1].name + " moved forward!")
+            elif ship_1_2 < 2:
+                if click[0] == ship_list_player1[2].x:
+                    if click[1] == ship_list_player1[2].y:
+                        ship_list_player1[2].y -= 1
+                        ship_1_2 = ship_1_2 + 1
+                        print(ship_list_player1[0].name + " moved forward!")
             for i in range(0, len(ship_list_player2)):
                 if click[0] == ship_list_player2[i].x:
                     if click[1] == ship_list_player2[i].y:
