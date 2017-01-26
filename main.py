@@ -54,6 +54,7 @@ Intensity = ships.Windsurf("Intensity", 0, 0)
 Amadea = ships.Amadea("Amadea", 0, 0)
 ship_list_player2.extend([Santa, Sea, Intensity, Amadea])
 ship_list_player2[0].y, ship_list_player2[1].y, ship_list_player2[2].y, ship_list_player2[3].y = 2, 3, 3, 4
+
 while not Game.events():
     # get the current player    
     Player = Turn.player   
@@ -93,6 +94,14 @@ while not Game.events():
     """Start ship placement/game logic (WIP)"""
     if click:
         count += 1
+        if count == 1:
+            Turn = player.Turn(Player1)
+            Turn.add_normal_card(cards.normal_card().get_random())
+            Turn.add_normal_card(cards.normal_card().get_random())
+        if count == 2:
+            Turn = player.Turn(Player2)
+            Turn.add_normal_card(cards.normal_card().get_random())
+            Turn.add_normal_card(cards.normal_card().get_random())
         if count % 2 != 0 and count < 9:
             Turn = player.Turn(Player1)
             if click[0] == ship_list_player1[0].x:
