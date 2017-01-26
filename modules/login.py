@@ -47,7 +47,7 @@ class PlayerName():
 
             ask = font.render("Player 1, enter your username", 1 , (255,255,255))
             ask_position = ask.get_rect()
-            pygame.draw.rect(self.screen, (100, 100, 100), pygame.Rect(self.width/2 - (x/2), self.height/2 - (y/2), 400, 50))
+            pygame.draw.rect(self.screen, (233, 80, 80), pygame.Rect(self.width/2 - (x/2), self.height/2 - (y/2), 400, 50))
             self.screen.blit(ask, (self.width /2 -  (ask_position[2]/2), self.height/2 - (ask_position[3]/2) - 45))
             if username_1_position[2] <= (x - 15):
                 self.screen.blit(username_1, (self.width / 2 - (username_1_position[2] / 2), self.height / 2 - (ask_position[3] / 2)))
@@ -72,7 +72,7 @@ class PlayerName2():
         self.name(400, 50)
 
     def draw_frame(self):
-        pygame.draw.rect(self.screen, (0, 0, 255),
+        pygame.draw.rect(self.screen, (51, 102, 204),
                          pygame.Rect((self.distance_border, self.distance_border),
                                      ((self.width - self.distance_border * 2),
                                       (self.height - self.distance_border * 2))))
@@ -98,10 +98,10 @@ class PlayerName2():
 
             username_2 = font.render(self.name2, 1, (255, 255, 255))
             username_2_positon = username_2.get_rect()
-            print(username_2_positon)
+
             ask = font.render("Player 2, enter your username", 1, (255, 255, 255))
             ask_position = ask.get_rect()
-            pygame.draw.rect(self.screen, (100, 100, 100),
+            pygame.draw.rect(self.screen, (51, 153, 255),
                              pygame.Rect(self.width / 2 - (x / 2), self.height / 2 - (y / 2), 400, 50))
             self.screen.blit(ask,
                              (self.width / 2 - (ask_position[2] / 2), self.height / 2 - (ask_position[3] / 2) - 45))
