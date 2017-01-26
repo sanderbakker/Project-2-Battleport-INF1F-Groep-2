@@ -1,5 +1,6 @@
 import pygame, sys
 import math
+from modules import highscores
 WHITE = (255 ,255 ,255)
 pygame.init()
 width_screen = 800
@@ -104,6 +105,7 @@ class Menu:
                 # Give the signal to quit
                 sys.exit()
             mouse = pygame.mouse.get_pos()
+
             if (mouse[1] >= (math.ceil(((7/8) * self.height) - 35)) and mouse[1] <= math.ceil(7/8 * self.height)):
                 if (mouse[0] >= coordinates and mouse[0] <= coordinates + self.width_blocks):
                     if event.type == pygame.MOUSEBUTTONDOWN:
@@ -111,8 +113,8 @@ class Menu:
                 elif (mouse[0] >= (coordinates + self.width_blocks +  self.distance_between) and mouse[0] <= (coordinates + self.width_blocks + self.distance_between + self.width_blocks)):
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         return True
-                elif (mouse[0] >= (coordinates + (self.distance_between *2)) and mouse[0] <= (coordinates + (self.distance_between * 2) + self.width_blocks)):
-                    pass
-
-
+                elif (mouse[0] >= 565 and mouse[0] <= 665):
+                    if event.type == pygame.MOUSEBUTTONDOWN:
+                        highscores.Highscores(800, 575).show()
         return False
+

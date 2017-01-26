@@ -1,28 +1,32 @@
-import mysql
+from modules import mysql
 import pygame
 import math
 import sys
 pygame.init()
 
 class Highscores:
-    def __init__(self):
-        self.width = 800
-        self.height = 575
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
         self.screen = pygame.display.set_mode((self.width, self.height))
         self.distance_border = 20
         #self.image = pygame.image.load("highscores.png")
         #self.add_background()
-        self.draw_frame()
-        self.draw_box()
-        self.add_text("Highscores")
-        self.get_highscores()
     def process_events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 # Give the signal to quit
                 return True
-
         return False
+
+    def show(self):
+        while not self.process_events():
+            self.draw_frame()
+            self.draw_box()
+            self.add_text("Highscores")
+            self.get_highscores()
+            pygame.display.flip()
+
     def draw_frame(self):
         pygame.draw.rect(self.screen, (212, 212, 212),
                          pygame.Rect((self.distance_border, self.distance_border),
@@ -55,9 +59,4 @@ class Highscores:
             x = x + 25
         return result
 
-    def display_highscores(self):
-        pass
-#print(highscores().get_highscores())
-while not Highscores().process_events():
-    Highscores()
-    pygame.display.flip()
+
