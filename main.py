@@ -37,6 +37,7 @@ field_size = 400
 ship_list_player1 = []
 ship_list_player2 = []
 count = 0
+p1_count, p2_count, count = 0, 0, 0
 
 """Instantiate ships player 1"""
 Furgo = ships.Saltire("Furgo Saltire", 0, 0)
@@ -44,6 +45,7 @@ Silver = ships.Windsurf("Silver Whisper", 0, 0)
 Windsurf = ships.Windsurf("Windsurf", 0, 0)
 Merapi = ships.Amadea("Merapi", 0, 0)
 ship_list_player1.extend([Furgo, Silver, Windsurf, Merapi])
+ship_list_player1[0].y, ship_list_player1[1].y, ship_list_player1[2].y, ship_list_player1[3].y = 19, 18, 18, 17
 
 """Instantiate ships player 2"""
 Santa = ships.Saltire("Santa Betiina", 0, 0)
@@ -51,7 +53,7 @@ Sea = ships.Windsurf("Sea Spirit", 0, 0)
 Intensity = ships.Windsurf("Intensity", 0, 0)
 Amadea = ships.Amadea("Amadea", 0, 0)
 ship_list_player2.extend([Santa, Sea, Intensity, Amadea])
-
+ship_list_player2[0].y, ship_list_player2[1].y, ship_list_player2[2].y, ship_list_player2[3].y = 2, 3, 3, 4
 while not Game.events():
     # get the current player    
     Player = Turn.player   
@@ -91,46 +93,42 @@ while not Game.events():
     """Start ship placement/game logic (WIP)"""
     if click:
         count += 1
-        if count == 1:            
+        if count % 2 != 0 and count < 9:
             Turn = player.Turn(Player1)
-            # add the two starting cards
-            Turn.add_normal_card(cards.normal_card().get_random())
-            Turn.add_normal_card(cards.normal_card().get_random())
+            if click[0] == ship_list_player1[0].x:
+                print("Invalid placement, try again.")
+                count -= 1
+            elif click[0] == ship_list_player1[1].x:
+                print("Invalid placement, try again.")
+                count -= 1
+            elif click[0] == ship_list_player1[2].x:
+                print("Invalid placement, try again.")
+                count -= 1
+            elif click[0] == ship_list_player1[3].x:
+                print("Invalid placement, try again.")
+                count -= 1
+            else:
+                ship_list_player1[p1_count].x = click[0]
+                p1_count += 1
 
-            ship_list_player1[0].x = click[0]
-            ship_list_player1[0].y = 19
-        elif count == 2:
+        elif count % 2 == 0 and count < 9:
             Turn = player.Turn(Player2)
-            # add the two starting cards
-            Turn.add_normal_card(cards.normal_card().get_random())
-            Turn.add_normal_card(cards.normal_card().get_random())
+            if click[0] == ship_list_player2[0].x:
+                print("Invalid placement, try again.")
+                count -= 1
+            elif click[0] == ship_list_player2[1].x:
+                print("Invalid placement, try again.")
+                count -= 1
+            elif click[0] == ship_list_player2[2].x:
+                print("Invalid placement, try again.")
+                count -= 1
+            elif click[0] == ship_list_player2[3].x:
+                print("Invalid placement, try again.")
+                count -= 1
+            else:
+                ship_list_player2[p2_count].x = click[0]
+                p2_count += 1
 
-            ship_list_player2[0].x = click[0]
-            ship_list_player2[0].y = 2
-        elif count == 3:
-            Turn = player.Turn(Player1)
-            ship_list_player1[1].x = click[0]
-            ship_list_player1[1].y = 18
-        elif count == 4:
-            Turn = player.Turn(Player2)
-            ship_list_player2[1].x = click[0]
-            ship_list_player2[1].y = 3
-        elif count == 5:
-            Turn = player.Turn(Player1)
-            ship_list_player1[2].x = click[0]
-            ship_list_player1[2].y = 18
-        elif count == 6:
-            Turn = player.Turn(Player2)
-            ship_list_player2[2].x = click[0]
-            ship_list_player2[2].y = 3
-        elif count == 7:
-            Turn = player.Turn(Player1)
-            ship_list_player1[3].x = click[0]
-            ship_list_player1[3].y = 17
-        elif count == 8:
-            Turn = player.Turn(Player2)
-            ship_list_player2[3].x = click[0]
-            ship_list_player2[3].y = 4
         elif count >= 9:
             for i in range(0, len(ship_list_player1)):
                 if click[0] == ship_list_player1[i].x:
@@ -142,7 +140,6 @@ while not Game.events():
                     if click[1] == ship_list_player2[i].y:
                         ship_list_player2[i].y += 1
                         print(ship_list_player2[i].name + " moved forward!")
-
 
     sidebar_screen.show_instructions()
     Game.update()
