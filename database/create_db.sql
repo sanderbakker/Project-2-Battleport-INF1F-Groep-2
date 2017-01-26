@@ -1,7 +1,13 @@
 CREATE DATABASE battleport;
+
+CREATE USER 'battleport_user'@'localhost' IDENTIFIED BY 'AOx6g6ohHS';
+GRANT ALL PRIVILEGES on battleport.* TO 'battleport_user'@'localhost';
+
+FLUSH PRIVILEGES;
+
 USE battleport;
 
-CREATE TABLE player (
+CREATE TABLE players (
   player_id int NOT NULL AUTO_INCREMENT,
   player_name varchar(30),
   password varchar(64),
@@ -20,7 +26,7 @@ CREATE TABLE saved_players (
   saved_player_id int NOT NULL AUTO_INCREMENT,
   save_id int,
   player_id int NOT NULL,
-  FOREIGN KEY (player_id) REFERENCES player(player_id),
+  FOREIGN KEY (player_id) REFERENCES players(player_id),
   FOREIGN KEY (save_id) REFERENCES saves(save_id),
   PRIMARY KEY (saved_player_id)
 );
