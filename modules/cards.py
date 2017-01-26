@@ -6,6 +6,7 @@ class card:
 		self.card_type 	= ''
 		self.velocity	= 0
 		self.image 		= ''
+		self.clicked = False 
 
 	def set_stack(self, stack):
 		self.stack = stack
@@ -36,6 +37,12 @@ class card:
 
 	def get_wiki(self):
 		return self.wiki
+
+	def set_clicked(self):
+		self.clicked = True
+
+	def get_clicked(self):
+		return self.clicked 		
 
 class normal_card:
 	def __init__(self):
