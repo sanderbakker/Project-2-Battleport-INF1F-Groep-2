@@ -48,10 +48,10 @@ class Show:
 		mouse = pygame.mouse.get_pos()
 		if mouse[0] >= offset and mouse[0] <= (offset + self.card_width):
 			if mouse[1] >= self.margin_top and mouse[1] <= (self.margin_top + self.card_height):
-				self.Sidebar.set_wiki(card.get_wiki())			
+				self.Sidebar.set_wiki(card)
 
 	def show_card_info(self, card):
-		self.Sidebar.set_wiki(card.get_wiki())
+		self.Sidebar.set_wiki(card)
 
 	def card_click(self, offset, card):
 		mouse = pygame.mouse.get_pos()

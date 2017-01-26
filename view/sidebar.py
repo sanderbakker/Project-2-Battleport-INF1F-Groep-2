@@ -86,13 +86,13 @@ class Show:
 		self.Game.draw_text('Normal cards', ( (self.start_width_card - 15), 350))
 		pygame.draw.rect(self.Game.get_screen(), (255,255,255), [ self.start_width_card, 380, self.card_width, self.card_height])
 
-	def set_wiki(self, wiki):
-		self.Game.get_screen().blit(wiki, (self.start + 65, (220)))
+	def set_wiki(self, card):
+		self.Game.get_screen().blit(card.get_wiki(), (self.start + 65, (220)))
 
 		button = self.Game.button({'color': (211,211,211), 'start_x': self.start + 65, 'start_y': 220 + 220, 'width': 127, 'height': 40})
 
 		if(button):
-			pass
+			print(self.Turn.use_normal_card(card))
 
 
 	def show_menu(self):
