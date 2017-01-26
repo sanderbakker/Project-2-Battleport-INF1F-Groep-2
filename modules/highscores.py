@@ -1,15 +1,63 @@
 import mysql
+import pygame
+import math
+import sys
+pygame.init()
 
-class highscores:
-	def __init__(self):
-		#self.get_highscores
-		pass
+class Highscores:
+    def __init__(self):
+        self.width = 800
+        self.height = 575
+        self.screen = pygame.display.set_mode((self.width, self.height))
+        self.distance_border = 20
+        #self.image = pygame.image.load("highscores.png")
+        #self.add_background()
+        self.draw_frame()
+        self.draw_box()
+        self.add_text("Highscores")
+        self.get_highscores()
+    def process_events(self):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                # Give the signal to quit
+                return True
 
-	def get_highscores(self):
-		mysql_con = mysql.mysql()
-		result = mysql_con.select("SELECT * FROM players ORDER BY score DESC")
-		return result
+        return False
+    def draw_frame(self):
+        pygame.draw.rect(self.screen, (212, 212, 212),
+                         pygame.Rect((self.distance_border, self.distance_border),
+                                     ((self.width - self.distance_border * 2), (self.height - self.distance_border * 2))))
+    def draw_box(self):
+        pygame.draw.rect(self.screen, (0,0,0), pygame.Rect((300, 126), (200, 250)))
+    def add_background(self):
+        self.screen.blit(self.image, (0,0))
 
+    def add_text(self, text):
+        font = pygame.font.SysFont("arial", (math.ceil(self.width/16)))
+        caption = font.render(text, 1, (255, 255, 255))
+        caption_position= caption.get_rect()
+        self.screen.blit(caption, ((self.width/2 - math.ceil(caption_position[2]/2)), 50))
 
+    def get_highscores(self):
+        mysql_con = mysql.mysql()
+        result = mysql_con.select("SELECT * FROM players ORDER BY score DESC LIMIT 10")
+        font = pygame.font.SysFont("arial", 25)
+        x = 125
+        for i in range(10):
+            score = str((result[i]['score']))
+            score_result= font.render(score, 1 ,(255,255,255))
+            score_position = score_result.get_rect()
+            name = str((result[i]['player_name']))
+            name_result = font.render(name, 1, (255, 255, 255))
+            name_position = name_result.get_rect()
+            self.screen.blit(name_result, ((self.width/2 - 100), x))
+            self.screen.blit(score_result, ((self.width/2 + 65), x))
+            x = x + 25
+        return result
 
-print(highscores().get_highscores())
+    def display_highscores(self):
+        pass
+#print(highscores().get_highscores())
+while not Highscores().process_events():
+    Highscores()
+    pygame.display.flip()
