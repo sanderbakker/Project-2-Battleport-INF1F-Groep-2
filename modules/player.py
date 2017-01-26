@@ -84,6 +84,9 @@ class Turn:
 	# set turn
 	# Turn = bool
 	def set_turn(player):
-		self.Turn = Turn		
+		self.Turn = Turn
+
+	def get_steps(self):
+		return 0
 
 
