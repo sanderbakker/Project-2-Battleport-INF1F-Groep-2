@@ -1,7 +1,7 @@
 CREATE DATABASE battleport;
 USE battleport;
 
-CREATE TABLE player (
+CREATE TABLE players (
   player_id int NOT NULL AUTO_INCREMENT,
   player_name varchar(30),
   password varchar(64),
