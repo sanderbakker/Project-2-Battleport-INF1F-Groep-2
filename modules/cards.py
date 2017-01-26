@@ -38,6 +38,9 @@ class card:
 	def get_wiki(self):
 		return self.wiki
 
+	def unset_clicked(self):
+		self.clicked = False
+
 	def set_clicked(self):
 		self.clicked = True
 
