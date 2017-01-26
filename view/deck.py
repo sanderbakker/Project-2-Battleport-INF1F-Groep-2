@@ -59,6 +59,9 @@ class Show:
 		if event.type == pygame.MOUSEBUTTONDOWN:
 			if mouse[0] >= offset and mouse[0] <= (offset + self.card_width):
 				if mouse[1] >= self.margin_top and mouse[1] <= (self.margin_top + self.card_height):
+					for cards in self.normal_cards:
+						cards.unset_clicked()
+
 					card.set_clicked()
 
 

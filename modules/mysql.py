@@ -24,4 +24,27 @@ class mysql:
 				self.connection.close()
 				return result
 
+	def insert(self, query):
+		self.__alter_table(query)
+
+	def update(self, query):
+		self.__alter_table(query)
+
+	def delete(self, query):
+		self.__alter_table(query)
+
+	def __alter_table(self, query):
+		with self.connection.cursor() as cursor:
+			try:
+				with self.connection.cursor as cursor:
+					cursor.execute(query)
+
+				self.connection.commit()
+			except:
+				self.connection.rollback()
+			finally:
+				self.connection.close()
+				return True
+
+
 
