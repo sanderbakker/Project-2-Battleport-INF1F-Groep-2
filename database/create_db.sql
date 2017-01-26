@@ -20,7 +20,7 @@ CREATE TABLE saved_players (
   saved_player_id int NOT NULL AUTO_INCREMENT,
   save_id int,
   player_id int NOT NULL,
-  FOREIGN KEY (player_id) REFERENCES player(player_id),
+  FOREIGN KEY (player_id) REFERENCES players(player_id),
   FOREIGN KEY (save_id) REFERENCES saves(save_id),
   PRIMARY KEY (saved_player_id)
 );
