@@ -16,8 +16,8 @@ import game
 """Sets window title"""
 pygame.display.set_caption("Battleport")
 
-Player1 = player.Player('Frits')
-Player2 = player.Player('Henk')
+Player1 = player.Player(login.PlayerName().get_name())
+Player2 = player.Player(login.PlayerName2().get_name())
 
 
 """ display menu screen """
