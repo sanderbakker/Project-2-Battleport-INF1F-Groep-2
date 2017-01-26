@@ -87,6 +87,32 @@ class Game:
     def get_display_width(self):
         return self.width
 
+    """ 
+    button generator 
+    """
+    def button(self, array):
+        start_x = array['start_x']
+        start_y = array['start_y']
+
+        width   = array['width']
+        height  = array['height']
+
+        color  = array['color']
+        try:
+            text   = array['text']
+        except KeyError:
+            text = ''
+
+        pygame.draw.rect(self.get_screen(), color, [start_x, start_y, width, height])
+        event = self.get_event()
+        mouse = pygame.mouse.get_pos()
+        if mouse[0] >= start_x and mouse[0] <= start_x + width:
+            if mouse[1] >= start_y and mouse[1] <= start_y + height:
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    return True
+
+        return False
+
 
     """
      set the font parameters

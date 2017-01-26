@@ -3,13 +3,14 @@ import math
 
 pygame.init()
 class Show:
-	def __init__(self, Game, Player, Menu):
+	def __init__(self, Game, Player, Turn, Menu):
 		self.display_width = Game.get_display_width()
 		self.display_height = Game.get_display_height()
 
 		self.Game 	= Game
 		self.Player = Player
 		self.Menu 	= Menu
+		self.Turn 	= Turn
 
 		""" sidebar """
 		self.width = 250 #pixels
@@ -22,12 +23,14 @@ class Show:
 		self.toolbar_width_block = 75
 		self.toolbar_height_block = 30
 
+		""" card """
 		self.card_width = 100
 		self.card_height = 150
 		self.start_width_card = self.start + ( (self.width - self.card_width) / 2)
 
 		self.draw_sidebar()
 		self.draw_toolbar()
+		self.draw_steps_left()
 		self.show_instructions()
 		self.show_menu()
 		#self.draw_normal_deck()
@@ -67,6 +70,10 @@ class Show:
 			position_items = position_items + 1
 			text_items = text_items + 1
 
+	def draw_steps_left(self):
+		self.Game.set_font(25, (0,0,0))
+		self.Game.draw_text('Moves left: ' + str(self.Turn.get_steps()), (self.start, 100))
+
 	def show_instructions(self):
 
 		mouse = pygame.mouse.get_pos()
@@ -81,6 +88,12 @@ class Show:
 
 	def set_wiki(self, wiki):
 		self.Game.get_screen().blit(wiki, (self.start + 65, (220)))
+
+		button = self.Game.button({'color': (211,211,211), 'start_x': self.start + 65, 'start_y': 220 + 220, 'width': 127, 'height': 40})
+
+		if(button):
+			pass
+
 
 	def show_menu(self):
 		event = self.Game.get_event()
