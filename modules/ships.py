@@ -25,8 +25,8 @@ class MainShip:
     def movement(self, select):
         """Allows for movement on the grid"""
         if select:
-            #print("You selected: " + self.name)
-            #print(str(self.move_ship) + " move(s) left for this ship.")
+            print("You selected: " + self.name)
+            print(str(self.move_ship) + " move(s) left for this ship.")
 
             """Loops through until select is false"""
             while select:
@@ -55,7 +55,7 @@ class MainShip:
                             select = False
 
                 self.select = select
-                #print("You selected: " + self.name)
+                print("You selected: " + self.name)
 
         #if pygame.event.get().key == pygame.K_UP:
         #    self.x += 1
