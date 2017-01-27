@@ -12,6 +12,7 @@ class MainShip:
         self.size = 0
         self.health = 0
         self.move_ship = 0
+        self.select = False
 
     def damage(self):
         """Lowers health by 1"""
@@ -34,8 +35,9 @@ class MainShip:
                             self.y += 1
                         elif event.key == pygame.K_q:
                             select = False
+
+                self.select = select
                 print("You selected: " + self.name)
-                print(select)
 
         #if pygame.event.get().key == pygame.K_UP:
         #    self.x += 1
@@ -45,6 +47,12 @@ class MainShip:
         """Turns ship 180 degrees, allowing for offensive and defensive positioning"""
         self.x = self.x - 1
         self.y = self.y
+
+    def get_select(self):
+        return self.select
+
+    def get_health(self):
+        return self.health
 
 
 class Saltire(MainShip):
