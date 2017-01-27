@@ -11,6 +11,7 @@ class MainShip:
         self.y = y
         self.size = 0
         self.health = 0
+        self.move_ship = 0
 
     def damage(self):
         """Lowers health by 1"""
