@@ -110,7 +110,7 @@ class normal_card:
 		self.Card.set_velocity(2)
 		self.Card.set_image('Offensive/FMJ_upgrade.jpg')
 		self.Card.set_wiki('FMJ_upgrade_wiki.jpg')
-		self.Card.set_name('FMJ_upgrade_wiki')
+		self.Card.set_name('FMJ_upgrade')
 
 		return self.Card
 
@@ -270,12 +270,22 @@ class action:
 	def __init__(self, Card, Turn):
 		self.Card = Card
 		self.Turn = Turn
-		self.print_test() 
+		
+		method_name = 'use_' + Card.get_name()
+		method = getattr(self, method_name)
+		return method()
 
-	def print_test(self):
-		self.Turn.add_steps(2)
+	def use_Extra_fuel(self):
+		self.Turn.add_steps(1)
 
 	def use_Extra_fuel_II(self):
+		self.Turn.add_steps(2)
+
+	def use_Backup(self):
+		self.Turn.add_normal_card(normal_card().get_random())
+		self.Turn.add_normal_card(normal_card().get_random())
+
+	def use_Naval_mine(self):
 		pass
 
 

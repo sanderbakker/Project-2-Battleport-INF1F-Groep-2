@@ -38,7 +38,7 @@ class Show:
 		self.draw_toolbar()
 		self.draw_skip_turn()
 		self.set_ship()
-		self.draw_steps_left()
+		#self.draw_steps_left()
 		self.show_instructions()
 		self.show_menu()
 		#self.draw_normal_deck()
@@ -112,13 +112,12 @@ class Show:
 
 
 	def set_ship(self):
-		ships = self.Turn.get_ships()
-		print(ships)
-		if(ships):
-			for ship in ships:
-			 	if ship.get_select():
-			 		print('hMOOMOOS')
-
+		ship = self.Turn.get_selected_ship()
+		if(ship):
+			self.Game.set_font('inherit', (0,0,0), 'inherit')
+			self.Game.draw_text('Health: ' + str(ship.get_health()), (self.start, 120))
+			self.Game.draw_text('Moves left: ' + str(2), (self.start, 140))
+			 									
 	def show_menu(self):
 		event = self.Game.get_event()
 		mouse = pygame.mouse.get_pos()
