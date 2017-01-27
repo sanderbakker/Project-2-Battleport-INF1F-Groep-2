@@ -12,12 +12,13 @@ from modules import *
 
 from view import *
 import game
-
+import random
 """Sets window title"""
 pygame.display.set_caption("Battleport")
 Player1 = player.Player(1, login.PlayerName().get_name())
 Player2 = player.Player(2, login.PlayerName2().get_name())
 Players = {1: Player1, 2: Player2}
+
 
 
 """ display menu screen """
@@ -57,7 +58,8 @@ ship_list_player2[0].y, ship_list_player2[1].y, ship_list_player2[2].y, ship_lis
 
 Player1.set_ships(ship_list_player1)
 Player2.set_ships(ship_list_player2)
-
+x_random = random.randint(1, 20)
+y_random = random.randint(1, 20)
 while not Game.events():
     # get the current player    
     Player = Turn.player
@@ -85,6 +87,10 @@ while not Game.events():
 
     Game.set_grid(main_grid)
     click = Game.get_grid_click()
+
+
+    main_grid.Place_Mine(x_random, y_random)
+
 
     """"Loads ships from array (WIP)"""
     for i in range(0, len(ship_list_player1)):
