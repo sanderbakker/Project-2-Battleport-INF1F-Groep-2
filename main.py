@@ -149,8 +149,7 @@ while not Game.events():
         elif count >= 9:
             for i in range(0, len(ship_list_player1)):
                 if click[0] == ship_list_player1[i].x:
-                    select = True
-                    ship_list_player1[i].movement(select)
+                    ship_list_player1[i].movement(True)
     sidebar_screen.show_instructions()
     Game.update()
 

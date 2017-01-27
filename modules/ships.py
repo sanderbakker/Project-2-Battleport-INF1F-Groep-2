@@ -25,21 +25,36 @@ class MainShip:
         """Allows for movement on the grid"""
         if select:
             print("You selected: " + self.name)
+            print(str(self.move_ship) + " move(s) left for this ship.")
+
+            """Loops through until select is false"""
             while select:
                 for event in pygame.event.get():
-                    if event.type == pygame.KEYDOWN:
-                        if event.key == pygame.K_UP:
-                            self.y -= 1
-                        elif event.key == pygame.K_DOWN:
-                            self.y += 1
-                        elif event.key == pygame.K_q:
+                    if self.move_ship >= 0:
+                        if event.type == pygame.KEYDOWN:
+                            if event.key == pygame.K_UP:
+                                self.y -= 1
+                                self.move_ship -= 1
+                                select = False
+                            elif event.key == pygame.K_LEFT:
+                                self.x -= 1
+                                self.move_ship -= 1
+                                select = False
+                            elif event.key == pygame.K_RIGHT:
+                                self.x += 1
+                                self.move_ship -= 1
+                                select = False
+                            elif event.key == pygame.K_DOWN:
+                                self.y += 1
+                                self.move_ship -= 1
+                                select = False
+                            elif event.key == pygame.K_q:
+                                select = False
+                        elif self.move_ship == 0:
                             select = False
-                print("You selected: " + self.name)
-                print(select)
-
-        #if pygame.event.get().key == pygame.K_UP:
-        #    self.x += 1
-        #print("Hello World!")
+                            print("No moves left.")
+            if not select:
+                print("You deselected: " + self.name)
 
     def position(self):
         """Turns ship 180 degrees, allowing for offensive and defensive positioning"""
