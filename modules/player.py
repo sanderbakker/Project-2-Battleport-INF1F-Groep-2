@@ -52,6 +52,8 @@ class Turn:
 		self.special_cards = []
 		self.player = player
 
+		self.steps  = 2 
+
 	def get_player(self):
 		return self.player
 
@@ -66,6 +68,11 @@ class Turn:
 		self.player.save_normal_cards(self.normal_cards)				
 		return self.normal_cards
 
+	def remove_normal_card(self, card):
+		self.normal_cards.remove(card)
+		self.player.save_normal_cards(self.normal_cards)
+		return self.normal_cards
+
 	# retrieve the special cards of the player deck 
 	def get_special_cards(self):
 		self.special_cards = self.player.get_special_cards()
@@ -77,6 +84,11 @@ class Turn:
 		self.player.save_special_cards(self.special_cards)				
 		return self.special_cards
 
+
+	def use_normal_card(self, card):
+		card.action(self)
+		self.remove_normal_card(card)
+
 	# get turn
 	def get_turn(self):
 		return self.Turn
@@ -86,7 +98,14 @@ class Turn:
 	def set_turn(player):
 		self.Turn = Turn
 
+	def take_step(self):
+		self.steps = self.steps - 1
+
+	def add_steps(self, steps):
+		self.steps =  self.steps + steps
+
 	def get_steps(self):
-		return 0
+		return self.steps 
+
 
 

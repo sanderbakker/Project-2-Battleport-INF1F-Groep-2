@@ -92,7 +92,7 @@ class Show:
 		button = self.Game.button({'color': (211,211,211), 'start_x': self.start + 65, 'start_y': 220 + 220, 'width': 127, 'height': 40})
 
 		if(button):
-			print(self.Turn.use_normal_card(card))
+			self.Turn.use_normal_card(card)
 
 
 	def show_menu(self):

@@ -7,6 +7,11 @@ class card:
 		self.velocity	= 0
 		self.image 		= ''
 		self.clicked = False 
+		self.name 		= ''
+
+
+	def action(self, Turn):
+		return action(self, Turn)
 
 	def set_stack(self, stack):
 		self.stack = stack
@@ -37,6 +42,12 @@ class card:
 
 	def get_wiki(self):
 		return self.wiki
+
+	def set_name(self, name):
+		self.name = name
+
+	def get_name(self):
+		return self.name
 
 	def unset_clicked(self):
 		self.clicked = False
@@ -99,6 +110,7 @@ class normal_card:
 		self.Card.set_velocity(2)
 		self.Card.set_image('Offensive/FMJ_upgrade.jpg')
 		self.Card.set_wiki('FMJ_upgrade_wiki.jpg')
+		self.Card.set_name('FMJ_upgrade_wiki')
 
 		return self.Card
 
@@ -107,6 +119,7 @@ class normal_card:
 		self.Card.set_velocity(2)
 		self.Card.set_image('Offensive/Rifling.jpg')
 		self.Card.set_wiki('Rifling_wiki.jpg')
+		self.Card.set_name('Rifling')
 
 		return self.Card
 
@@ -115,6 +128,7 @@ class normal_card:
 		self.Card.set_velocity(2)
 		self.Card.set_image('Offensive/Adv_rifling.png')
 		self.Card.set_wiki('Adv_rifling_wiki.jpg')
+		self.Card.set_name('Adv_rifling')
 
 		return self.Card
 
@@ -123,6 +137,7 @@ class normal_card:
 		self.Card.set_velocity(6)
 		self.Card.set_image('Offensive/Naval_mine.jpg')
 		self.Card.set_wiki('Naval_mine_wiki.jpg')
+		self.Card.set_name('Naval_mine')
 
 		return self.Card
 
@@ -131,6 +146,7 @@ class normal_card:
 		self.Card.set_velocity(4)
 		self.Card.set_image('Offensive/EMP_upgrade.jpg')
 		self.Card.set_wiki('EMP_upgrade_wiki.jpg')
+		self.Card.set_name('EMP_upgrade')
 
 		return self.Card
 
@@ -140,6 +156,7 @@ class normal_card:
 		self.Card.set_velocity(2)
 		self.Card.set_image('Defensive/Reinforced_hull.jpg')
 		self.Card.set_wiki('Reinforced_hull_wiki.jpg')
+		self.Card.set_name('Reinforced_hull')
 
 		return self.Card
 
@@ -148,6 +165,7 @@ class normal_card:
 		self.Card.set_velocity(4)
 		self.Card.set_image('Defensive/Sonar.jpg')
 		self.Card.set_wiki('Sonar_wiki.jpg')
+		self.Card.set_name('Sonar_wiki')
 
 		return self.Card
 
@@ -156,6 +174,7 @@ class normal_card:
 		self.Card.set_velocity(2)
 		self.Card.set_image('Defensive/Smokescreen.jpg')
 		self.Card.set_wiki('Smokescreen_wiki.jpg')
+		self.Card.set_name('Smokescreen_wiki')
 
 		return self.Card
 
@@ -164,6 +183,7 @@ class normal_card:
 		self.Card.set_velocity(2)
 		self.Card.set_image('Defensive/Sabotage.jpg')
 		self.Card.set_wiki('Sabotage_wiki.jpg')
+		self.Card.set_name('Sabotage_wiki')
 
 		return self.Card
 
@@ -173,6 +193,7 @@ class normal_card:
 		self.Card.set_velocity(2)
 		self.Card.set_image('Help/Backup.jpg')
 		self.Card.set_wiki('Backup_wiki.jpg')
+		self.Card.set_name('Backup')
 
 		return self.Card
 
@@ -181,6 +202,7 @@ class normal_card:
 		self.Card.set_velocity(4)
 		self.Card.set_image('Help/Extra_fuel_II.jpg')
 		self.Card.set_wiki('Extra_fuel_2_wiki.jpg')
+		self.Card.set_name('Extra_fuel_II')
 
 		return self.Card
 
@@ -189,6 +211,7 @@ class normal_card:
 		self.Card.set_velocity(6)
 		self.Card.set_image('Help/Extra_fuel.jpg')
 		self.Card.set_wiki('Extra_fuel_wiki.jpg')
+		self.Card.set_name('Extra_fuel')
 
 		return self.Card
 
@@ -197,6 +220,7 @@ class normal_card:
 		self.Card.set_velocity(1)
 		self.Card.set_image('Help/Rally.jpg')
 		self.Card.set_wiki('Rally_wiki.jpg')
+		self.Card.set_name('Rally')
 
 		return self.Card
 
@@ -205,6 +229,7 @@ class normal_card:
 		self.Card.set_velocity(4)
 		self.Card.set_image('Help/Adrenaline_rush.jpg')
 		self.Card.set_wiki('Adrenaline_rush_wiki.jpg')
+		self.Card.set_name('Adrenaline_rush')
 
 		return self.Card
 
@@ -240,6 +265,22 @@ class special_card:
 	def Jack_sparrow(self):
 		set_card_special()
 		self.Card.set_velocity(1)
+
+class action:
+	def __init__(self, Card, Turn):
+		self.Card = Card
+		self.Turn = Turn
+		self.print_test() 
+
+	def print_test(self):
+		self.Turn.add_steps(2)
+
+	def use_Extra_fuel_II(self):
+		pass
+
+
+
+
 
 
 
