@@ -5,6 +5,7 @@ class Player:
 		self.Score = 0
 		self.saved_normal_cards = []
 		self.saved_special_cards = []
+		self.saved_ships = []
 
 	def get_id(self):
 		return self.id
@@ -52,6 +53,12 @@ class Player:
 	def get_special_cards(self):
 		return self.saved_special_cards
 
+	def set_ships(self, ships):
+		self.saved_ships = ships
+
+	def get_saved_ships(self):
+		return self.saved_ships
+
 
 class Turn:
 	def __init__(self, player):
@@ -94,6 +101,14 @@ class Turn:
 		self.player.save_special_cards(self.special_cards)				
 		return self.special_cards
 
+	def set_ships(self, ships_1, ships_2):
+		if(self.player.get_id() == 1):
+			return self.player.set_ships(ships_1)
+		else:
+			return self.player.set_ships(ships_2)
+
+	def get_ships(self):
+		return self.player.get_saved_ships()
 
 	def use_normal_card(self, card):
 		card.action(self)

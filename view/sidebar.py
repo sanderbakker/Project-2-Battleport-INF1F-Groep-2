@@ -37,6 +37,7 @@ class Show:
 		self.draw_sidebar()
 		self.draw_toolbar()
 		self.draw_skip_turn()
+		self.set_ship()
 		self.draw_steps_left()
 		self.show_instructions()
 		self.show_menu()
@@ -77,14 +78,13 @@ class Show:
 			position_items = position_items + 1
 			text_items = text_items + 1
 
+
 	def draw_skip_turn(self):
 		button = self.Game.button({'color': (211,211,211), 'start_x': self.start + 5, 'start_y': 65, 'width': self.width - 10, 'height': 40}, 'End turn')
 		if(button):
 			print(self.Other_player.get_name())
 			self.Turn.set_player(self.Other_player)
 			time.sleep(0.25)
-
-
 
 	def draw_steps_left(self):
 		self.Game.set_font(25, (0,0,0))
@@ -103,13 +103,21 @@ class Show:
 		pygame.draw.rect(self.Game.get_screen(), (255,255,255), [ self.start_width_card, 380, self.card_width, self.card_height])
 
 	def set_wiki(self, card):
-		self.Game.get_screen().blit(card.get_wiki(), (self.start + 65, (220)))
+		self.Game.get_screen().blit(card.get_wiki(), (self.start + 65, (280)))
 
-		button = self.Game.button({'color': (211,211,211), 'start_x': self.start + 65, 'start_y': 220 + 220, 'width': 127, 'height': 40})
+		button = self.Game.button({'color': (211,211,211), 'start_x': self.start + 65, 'start_y': 280 + 220, 'width': 127, 'height': 40})
 
 		if(button):
 			self.Turn.use_normal_card(card)
 
+
+	def set_ship(self):
+		ships = self.Turn.get_ships()
+		print(ships)
+		if(ships):
+			for ship in ships:
+			 	if ship.get_select():
+			 		print('hMOOMOOS')
 
 	def show_menu(self):
 		event = self.Game.get_event()
@@ -118,6 +126,5 @@ class Show:
 			if mouse[0] >= 575 and mouse[0] <= 650:
 				if event.type == pygame.MOUSEBUTTONDOWN:
 					self.Menu.show()		
-		 
 			
 

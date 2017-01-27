@@ -55,9 +55,13 @@ Amadea = ships.Amadea("Amadea", 0, 0)
 ship_list_player2.extend([Santa, Sea, Intensity, Amadea])
 ship_list_player2[0].y, ship_list_player2[1].y, ship_list_player2[2].y, ship_list_player2[3].y = 2, 3, 3, 4
 
+Player1.set_ships(ship_list_player1)
+Player2.set_ships(ship_list_player2)
+
 while not Game.events():
     # get the current player    
     Player = Turn.player
+    Turn.set_ships(ship_list_player1, ship_list_player2)
 
     Game.get_screen().fill((235, 235, 235))
 
