@@ -21,10 +21,25 @@ class MainShip:
         """Allows for placement on the grid"""
         pass
 
-    def movement(self, x, y):
+    def movement(self, select):
         """Allows for movement on the grid"""
-        if pygame.event.get().key == pygame.K_w:
-            self.x += 1
+        if select:
+            print("You selected: " + self.name)
+            while select:
+                for event in pygame.event.get():
+                    if event.type == pygame.KEYDOWN:
+                        if event.key == pygame.K_UP:
+                            self.y -= 1
+                        elif event.key == pygame.K_DOWN:
+                            self.y += 1
+                        elif event.key == pygame.K_q:
+                            select = False
+                print("You selected: " + self.name)
+                print(select)
+
+        #if pygame.event.get().key == pygame.K_UP:
+        #    self.x += 1
+        #print("Hello World!")
 
     def position(self):
         """Turns ship 180 degrees, allowing for offensive and defensive positioning"""

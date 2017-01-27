@@ -149,16 +149,8 @@ while not Game.events():
         elif count >= 9:
             for i in range(0, len(ship_list_player1)):
                 if click[0] == ship_list_player1[i].x:
-                    if click[1] == ship_list_player1[i].y:
-                        ship_list_player1[i].y -= 1
-                        print(ship_list_player1[i].name + " moved forward!")
-
-            for i in range(0, len(ship_list_player2)):
-                if click[0] == ship_list_player2[i].x:
-                    if click[1] == ship_list_player2[i].y:
-                        ship_list_player2[i].y += 1
-                        print(ship_list_player2[i].name + " moved forward!")
-
+                    select = True
+                    ship_list_player1[i].movement(select)
     sidebar_screen.show_instructions()
     Game.update()
 
