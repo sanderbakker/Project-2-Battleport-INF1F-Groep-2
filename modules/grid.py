@@ -97,6 +97,15 @@ class Grid:
         rect_y = ((rect_y * (middle_box)) + middle_box * (rect_y - 2)) + self.move_grid
         pygame.draw.rect(screen, (204, 0, 0), pygame.Rect((int(rect_x), int(rect_y)), (self.number_of_blocks, self.number_of_blocks)))
 
+    def Place_Mine(self, rect_x, rect_y):
+        screen = self.screen
+
+        middle_box = ((self.opacity_grid / self.number_of_blocks) / 2)
+        rect_x = ((rect_x * (middle_box)) + middle_box * (rect_x - 2)) + self.move_grid
+        rect_y = ((rect_y * (middle_box)) + middle_box * (rect_y - 2)) + self.move_grid
+        pygame.draw.rect(screen, (128, 128, 128),
+                         pygame.Rect((int(rect_x), int(rect_y)), (self.number_of_blocks, self.number_of_blocks)))
+
     def Place_Player_2(self, rect_x, rect_y):
         screen = self.screen
 
