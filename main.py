@@ -69,7 +69,7 @@ while not Game.events():
     player_turn.Show(Game, Player)
 
     # show sidebar
-    sidebar_screen = sidebar.Show(Game, Players, Turn, menu_screen) 
+    sidebar_screen = sidebar.Show(Game, Players, Turn, menu_screen)
 
     # show deck of current player
     deck.Show(Game, Player, Turn, sidebar_screen)
@@ -141,11 +141,28 @@ while not Game.events():
             else:
                 ship_list_player2[p2_count].x = click[0]
                 p2_count += 1
-
         elif count >= 9:
+            """Ship movement logic"""
             for i in range(0, len(ship_list_player1)):
                 if click[0] == ship_list_player1[i].x:
                     ship_list_player1[i].movement(True)
+
+                    """Collision testing (WIP)"""
+                    for x in range(0, len(ship_list_player1)):
+                        if ship_list_player1[i].x == ship_list_player1[0].x:
+                            if ship_list_player1[i].direction == 2:
+                                ship_list_player1[i].x += 1
+                            if ship_list_player1[i].direction == 3:
+                                ship_list_player1[i].x -= 1
+
+            """Card logic"""
+            """
+            for i in range(0, len(ship_list_player1)):
+                if click[0] == ship_list_player1[i].x:
+                    ship_list_player1[i].health -= 1
+                    print(str(ship_list_player1[i].health) + " lost 1HP!")
+            """
+
     sidebar_screen.show_instructions()
     Game.update()
 
