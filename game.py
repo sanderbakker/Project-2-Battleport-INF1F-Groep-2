@@ -90,7 +90,7 @@ class Game:
     """ 
     button generator 
     """
-    def button(self, array):
+    def button(self, array, text = ''):
         start_x = array['start_x']
         start_y = array['start_y']
 
@@ -98,12 +98,10 @@ class Game:
         height  = array['height']
 
         color  = array['color']
-        try:
-            text   = array['text']
-        except KeyError:
-            text = ''
 
         pygame.draw.rect(self.get_screen(), color, [start_x, start_y, width, height])
+        self.reset_font()
+        self.draw_text(text, (start_x + 5, start_y + 5))
         event = self.get_event()
         mouse = pygame.mouse.get_pos()
         if mouse[0] >= start_x and mouse[0] <= start_x + width:

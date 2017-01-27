@@ -23,8 +23,9 @@ ship_2_0 = 0
 ship_2_1 = 0
 ship_2_2 = 0
 ship_2_3 = 0
-Player1 = player.Player(login.PlayerName().get_name())
-Player2 = player.Player(login.PlayerName2().get_name())
+Player1 = player.Player(1, login.PlayerName().get_name())
+Player2 = player.Player(2, login.PlayerName2().get_name())
+Players = {1: Player1, 2: Player2}
 
 
 """ display menu screen """
@@ -64,7 +65,7 @@ ship_list_player2[0].y, ship_list_player2[1].y, ship_list_player2[2].y, ship_lis
 
 while not Game.events():
     # get the current player    
-    Player = Turn.player   
+    Player = Turn.player
 
     Game.get_screen().fill((235, 235, 235))
 
@@ -72,7 +73,7 @@ while not Game.events():
     player_turn.Show(Game, Player)
 
     # show sidebar
-    sidebar_screen = sidebar.Show(Game, Player, Turn, menu_screen) 
+    sidebar_screen = sidebar.Show(Game, Players, Turn, menu_screen) 
 
     # show deck of current player
     deck.Show(Game, Player, Turn, sidebar_screen)

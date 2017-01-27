@@ -1,9 +1,16 @@
 class Player:
-	def __init__(self, name):
+	def __init__(self, id, name):
+		self.id   = id
 		self.Name = name
 		self.Score = 0
 		self.saved_normal_cards = []
 		self.saved_special_cards = []
+
+	def get_id(self):
+		return self.id
+
+	def set_id(self, id):
+		self.id = id
 
 	# retrieves the players username.
 	def get_name(self):
@@ -56,6 +63,9 @@ class Turn:
 
 	def get_player(self):
 		return self.player
+
+	def set_player(self, player):
+		self.player = player
 
 	# retrieve the normal cards of the player
 	def get_normal_cards(self):

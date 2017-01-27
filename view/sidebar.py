@@ -1,14 +1,20 @@
 import pygame
 import math
+import time
 
 pygame.init()
 class Show:
-	def __init__(self, Game, Player, Turn, Menu):
+	def __init__(self, Game, Players, Turn, Menu):
 		self.display_width = Game.get_display_width()
 		self.display_height = Game.get_display_height()
 
 		self.Game 	= Game
-		self.Player = Player
+		self.Player = Turn.get_player()
+		if(self.Player.get_id() == 1):
+			self.Other_player = Players[2]
+		else:
+			self.Other_player = Players[1]
+
 		self.Menu 	= Menu
 		self.Turn 	= Turn
 
@@ -30,6 +36,7 @@ class Show:
 
 		self.draw_sidebar()
 		self.draw_toolbar()
+		self.draw_skip_turn()
 		self.draw_steps_left()
 		self.show_instructions()
 		self.show_menu()
@@ -69,6 +76,15 @@ class Show:
 			x = (x + width_block + ((self.width - (width_block * 2)) /2))
 			position_items = position_items + 1
 			text_items = text_items + 1
+
+	def draw_skip_turn(self):
+		button = self.Game.button({'color': (211,211,211), 'start_x': self.start + 5, 'start_y': 65, 'width': self.width - 10, 'height': 40}, 'End turn')
+		if(button):
+			print(self.Other_player.get_name())
+			self.Turn.set_player(self.Other_player)
+			time.sleep(0.25)
+
+
 
 	def draw_steps_left(self):
 		self.Game.set_font(25, (0,0,0))
