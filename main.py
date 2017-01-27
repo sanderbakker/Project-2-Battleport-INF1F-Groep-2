@@ -145,7 +145,7 @@ while not Game.events():
             """Ship movement logic"""
             for i in range(0, len(ship_list_player1)):
                 if click[0] == ship_list_player1[i].x:
-                    ship_list_player1[i].movement(True)
+                    ship_list_player1[i].set_select()
 
                     """Collision testing (WIP)"""
                     for x in range(0, len(ship_list_player1)):
@@ -155,13 +155,17 @@ while not Game.events():
                             if ship_list_player1[i].direction == 3:
                                 ship_list_player1[i].x -= 1
 
-            """Card logic"""
-            """
-            for i in range(0, len(ship_list_player1)):
-                if click[0] == ship_list_player1[i].x:
-                    ship_list_player1[i].health -= 1
-                    print(str(ship_list_player1[i].health) + " lost 1HP!")
-            """
+    for ship_player1 in ship_list_player1:
+        if ship_player1.get_select():
+            ship_player1.movement(Game.get_event())
+
+    """Card logic"""
+    """
+    for i in range(0, len(ship_list_player1)):
+        if click[0] == ship_list_player1[i].x:
+            ship_list_player1[i].health -= 1
+            print(str(ship_list_player1[i].health) + " lost 1HP!")
+    """
 
     sidebar_screen.show_instructions()
     Game.update()

@@ -116,7 +116,7 @@ class Show:
 		if(ship):
 			self.Game.set_font('inherit', (0,0,0), 'inherit')
 			self.Game.draw_text('Health: ' + str(ship.get_health()), (self.start, 120))
-			self.Game.draw_text('Moves left: ' + str(2), (self.start, 140))
+			self.Game.draw_text('Moves left: ' + str(ship.get_moves()), (self.start, 140))
 			 									
 	def show_menu(self):
 		event = self.Game.get_event()

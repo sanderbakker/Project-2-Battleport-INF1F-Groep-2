@@ -1,5 +1,5 @@
 """Module containing ship classes"""
-import pygame
+import pygame, time
 pygame.init()
 
 
@@ -19,47 +19,56 @@ class MainShip:
         """Lowers health by 1"""
         self.health -= 1
 
-    def movement(self, select):
+    def set_select(self):
+        if(self.select):
+            self.select = False
+        else:
+            self.select = True
+
+    def get_select(self): 
+        return self.select
+
+    def movement(self, event):
         """Allows for movement on the grid"""
-        if select:
+        # if select:
+        #     print("You selected: " + self.name)
+        #     print(str(self.move_ship) + " move(s) left for this ship.")
+
+        """Loops through until select returns false"""
+
+        if self.move_ship >= 0:
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_UP:
+                    self.y -= 1
+                    self.move_ship -= 1
+                    self.direction = 1
+                elif event.key == pygame.K_LEFT:
+                    self.x -= 1
+                    self.move_ship -= 1
+                    self.direction = 2
+                    #self.select = False
+                elif event.key == pygame.K_RIGHT:
+                    self.x += 1
+                    self.move_ship -= 1
+                    self.direction = 3
+                    #self.select = False
+                elif event.key == pygame.K_DOWN:
+                    self.y += 1
+                    self.move_ship -= 1
+                    self.direction = 4
+                    #select = False
+                elif event.key == pygame.K_q:
+                    pass
+                    #self.select = False
+
+                time.sleep(0.15)
+
+
+            #self.select = select
             print("You selected: " + self.name)
-            print(str(self.move_ship) + " move(s) left for this ship.")
-
-            """Loops through until select returns false"""
-            while select:
-                for event in pygame.event.get():
-                    if self.move_ship >= 0:
-                        if event.type == pygame.KEYDOWN:
-                            if event.key == pygame.K_UP:
-                                self.y -= 1
-                                self.move_ship -= 1
-                                self.direction = 1
-                                select = False
-                            elif event.key == pygame.K_LEFT:
-                                self.x -= 1
-                                self.move_ship -= 1
-                                self.direction = 2
-                                select = False
-                            elif event.key == pygame.K_RIGHT:
-                                self.x += 1
-                                self.move_ship -= 1
-                                self.direction = 3
-                                select = False
-                            elif event.key == pygame.K_DOWN:
-                                self.y += 1
-                                self.move_ship -= 1
-                                self.direction = 4
-                                select = False
-                            elif event.key == pygame.K_q:
-                                select = False
-                        elif self.move_ship == 0:
-                            select = False
-
-                #self.select = select
-                print("You selected: " + self.name)
 
             print("No moves left.")
-            if not select:
+            if not self.select:
                 #self.select = select
                 print("You deselected: " + self.name)
 
@@ -73,6 +82,9 @@ class MainShip:
 
     def get_health(self):
         return self.health
+
+    def get_moves(self):
+        return self.move_ship
 
 
 class Saltire(MainShip):

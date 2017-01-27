@@ -110,6 +110,15 @@ class Turn:
 	def get_ships(self):
 		return self.player.get_saved_ships()
 
+	def get_selected_ship(self):
+		ships = self.player.get_saved_ships()
+		return ships[0]
+		for ship in ships:
+			if(ship.get_select()):
+				return ship
+
+		return False 
+
 	def use_normal_card(self, card):
 		card.action(self)
 		self.remove_normal_card(card)
