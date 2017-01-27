@@ -47,16 +47,16 @@ class Highscores:
         result = mysql_con.select("SELECT * FROM players ORDER BY score DESC LIMIT 10")
         font = pygame.font.SysFont("arial", 25)
         x = 125
-        for i in range(10):
-            score = str((result[i]['score']))
+        for player in result:
+            score = str((player['score']))
             score_result= font.render(score, 1 ,(255,255,255))
             score_position = score_result.get_rect()
-            name = str((result[i]['player_name']))
+            name = str((player['player_name']))
             name_result = font.render(name, 1, (255, 255, 255))
             name_position = name_result.get_rect()
             self.screen.blit(name_result, ((self.width/2 - 100), x))
             self.screen.blit(score_result, ((self.width/2 + 65), x))
             x = x + 25
-        return result
+        return player
 
 
