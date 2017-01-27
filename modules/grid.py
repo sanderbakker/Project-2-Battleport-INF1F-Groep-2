@@ -89,14 +89,23 @@ class Grid:
                                     pygame.Rect((int(x_ship), int(y_ship)), (20,20)))
 
          
-    def Place_Square(self, rect_x, rect_y):
+    def Place_Player_1(self, rect_x, rect_y):
         screen = self.screen
         
         middle_box = ((self.opacity_grid/self.number_of_blocks) / 2)  
         rect_x = ((rect_x * (middle_box)) + middle_box * (rect_x - 2)) + self.move_grid
         rect_y = ((rect_y * (middle_box)) + middle_box * (rect_y - 2)) + self.move_grid
-        pygame.draw.rect(screen, (100,200,250), pygame.Rect((int(rect_x), int(rect_y)), (self.number_of_blocks, self.number_of_blocks)))
-      
+        pygame.draw.rect(screen, (204, 0, 0), pygame.Rect((int(rect_x), int(rect_y)), (self.number_of_blocks, self.number_of_blocks)))
+
+    def Place_Player_2(self, rect_x, rect_y):
+        screen = self.screen
+
+        middle_box = ((self.opacity_grid / self.number_of_blocks) / 2)
+        rect_x = ((rect_x * (middle_box)) + middle_box * (rect_x - 2)) + self.move_grid
+        rect_y = ((rect_y * (middle_box)) + middle_box * (rect_y - 2)) + self.move_grid
+        pygame.draw.rect(screen, (51, 102, 204),
+                         pygame.Rect((int(rect_x), int(rect_y)), (self.number_of_blocks, self.number_of_blocks)))
+
     def set_grid_color(self, color):
         screen = self.screen
         pygame.draw.rect(screen, (color), pygame.Rect((self.move_grid, (self.move_grid)), (self.opacity_grid, self.opacity_grid)))

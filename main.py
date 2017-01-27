@@ -15,14 +15,6 @@ import game
 
 """Sets window title"""
 pygame.display.set_caption("Battleport")
-ship_1_0 = 0
-ship_1_1 = 0
-ship_1_2 = 0
-ship_1_3 = 0
-ship_2_0 = 0
-ship_2_1 = 0
-ship_2_2 = 0
-ship_2_3 = 0
 Player1 = player.Player(1, login.PlayerName().get_name())
 Player2 = player.Player(2, login.PlayerName2().get_name())
 Players = {1: Player1, 2: Player2}
@@ -93,11 +85,11 @@ while not Game.events():
     """"Loads ships from array (WIP)"""
     for i in range(0, len(ship_list_player1)):
         for x in range(0, ship_list_player1[i].size):
-            main_grid.Place_Square(ship_list_player1[i].x, ship_list_player1[i].y + x)
+            main_grid.Place_Player_1(ship_list_player1[i].x, ship_list_player1[i].y + x)
 
     for i in range(0, len(ship_list_player2)):
         for x in range(0, ship_list_player2[i].size):
-            main_grid.Place_Square(ship_list_player2[i].x, ship_list_player2[i].y - x)
+            main_grid.Place_Player_2(ship_list_player2[i].x, ship_list_player2[i].y - x)
 
     """Start ship placement/game logic (WIP)"""
     if click:
