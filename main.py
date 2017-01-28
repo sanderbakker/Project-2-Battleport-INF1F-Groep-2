@@ -24,8 +24,6 @@ Players = {1: Player1, 2: Player2}
 menu_screen = menu.Menu(20, 800, 575)
 menu_screen.show()
 sidebar_screen = ''
-Mine_x = mine.Mine().get_random_x()
-Mine_y = mine.Mine().get_random_y()
 Game = game.Game(800, 575)
 Game.set_menu(menu_screen)
 
@@ -53,11 +51,20 @@ Santa = ships.Saltire("Santa Betiina", 0, 0)
 Sea = ships.Windsurf("Sea Spirit", 0, 0)
 Intensity = ships.Windsurf("Intensity", 0, 0)
 Amadea = ships.Amadea("Amadea", 0, 0)
+
 ship_list_player2.extend([Santa, Sea, Intensity, Amadea])
 ship_list_player2[0].y, ship_list_player2[1].y, ship_list_player2[2].y, ship_list_player2[3].y = 2, 3, 3, 4
 
+
+""" Mines """
+mine_list_player1 = []
+mine_list_player2 = []
+
 Player1.set_ships(ship_list_player1)
 Player2.set_ships(ship_list_player2)
+
+Player1.set_mines(mine_list_player1)
+Player1.set_mines(mine_list_player2)
 
 while not Game.events():
     # get the current player    
@@ -83,7 +90,9 @@ while not Game.events():
         'move_grid': 50,
         #'background_color': (0, 255, 0)
     })
-    main_grid.Place_Mine(Mine_x, Mine_y)
+    for mine in Turn.get_mines():
+        main_grid.Place_Mine(mine[0], mine[1])
+
     Game.set_grid(main_grid)
     click = Game.get_grid_click()
 

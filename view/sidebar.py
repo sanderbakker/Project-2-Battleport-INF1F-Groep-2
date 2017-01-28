@@ -105,7 +105,7 @@ class Show:
 	def set_wiki(self, card):
 		self.Game.get_screen().blit(card.get_wiki(), (self.start + 65, (280)))
 
-		button = self.Game.button({'color': (211,211,211), 'start_x': self.start + 65, 'start_y': 280 + 220, 'width': 127, 'height': 40})
+		button = self.Game.button({'color': (211,211,211), 'start_x': self.start + 65, 'start_y': 280 + 220, 'width': 127, 'height': 40}, 'Use Card')
 
 		if(button):
 			self.Turn.use_normal_card(card)

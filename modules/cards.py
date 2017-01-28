@@ -1,4 +1,5 @@
 import os, pygame, random
+from modules import mine
 
 class card:
 	def __init__(self):
@@ -276,7 +277,7 @@ class action:
 		return method()
 
 	def use_Extra_fuel(self):
-		self.Turn.get_selected_ship.add_moves(1)
+		self.Turn.get_selected_ship().add_moves(1)
 
 	def use_Extra_fuel_II(self):
 		self.Turn.get_selected_ship().add_moves(2)
@@ -289,7 +290,10 @@ class action:
 		self.Turn.add_normal_card(normal_card().get_random())
 
 	def use_Naval_mine(self):
-		pass
+		x = mine.Mine().get_random_x()
+		y = mine.Mine().get_random_y()
+
+		self.Turn.add_mine((x,y))
 
 
 

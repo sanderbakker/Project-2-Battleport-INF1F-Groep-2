@@ -6,6 +6,7 @@ class Player:
 		self.saved_normal_cards = []
 		self.saved_special_cards = []
 		self.saved_ships = []
+		self.saved_mines = []
 
 	def get_id(self):
 		return self.id
@@ -59,6 +60,14 @@ class Player:
 	def get_saved_ships(self):
 		return self.saved_ships
 
+	def set_mines(self, mines):
+		self.saved_mines = mines
+
+	def add_mine(self, mine):
+		self.saved_mines.append(mine)
+
+	def get_saved_mines(self):
+		return self.saved_mines
 
 class Turn:
 	def __init__(self, player):
@@ -117,6 +126,12 @@ class Turn:
 				return ship
 
 		return None 
+
+	def get_mines(self):
+		return self.player.get_saved_mines()
+
+	def add_mine(self, mine):
+		self.player.add_mine(mine)
 
 	def use_normal_card(self, card):
 		card.action(self)
