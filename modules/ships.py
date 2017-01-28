@@ -15,6 +15,9 @@ class MainShip:
         self.select = False
         self.direction = 0
 
+        self.offensive_range = 0
+        self.defensive_range = 0
+
     def damage(self):
         """Lowers health by 1"""
         self.health -= 1
@@ -84,6 +87,18 @@ class MainShip:
     def get_name(self):
         return self.name
 
+    def get_offensive_range(self):
+        return self.offensive_range
+
+    def add_offensive_range(self, number):
+        self.add_offensive_range += number
+
+    def get_defensive_range(self):
+        return self.defensive_range
+
+    def add_offensive_range(self, number):
+        self.add_offensive_range += number 
+
 class Saltire(MainShip):
     """Furgo Saltire & Santa Bettina class."""
     def __init__(self, name, x, y):
@@ -94,6 +109,8 @@ class Saltire(MainShip):
         self.health = 2
         self.size = 2
         self.move_ship = 3
+        self.offensive_range = 2
+        self.defensive_range = 3
 
 class Windsurf(MainShip):
     """Silver Whisper, Windsurf, Sea Spirit & Intensity class"""
@@ -105,6 +122,8 @@ class Windsurf(MainShip):
         self.health = 3
         self.size = 3
         self.move_ship = 2
+        self.offensive_range = 2
+        self.defensive_range = 3
 
 class Amadea(MainShip):
     """Amadea & Merapi class"""
@@ -116,3 +135,5 @@ class Amadea(MainShip):
         self.health = 4
         self.size = 4
         self.move_ship = 1
+        self.offensive_range = 4
+        self.defensive_range = 5

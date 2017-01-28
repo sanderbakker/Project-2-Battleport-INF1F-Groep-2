@@ -117,8 +117,8 @@ class Show:
 		#ship = self.Turn.get_selected_ship()
 		self.Game.set_font('inherit', (0,0,0), 'inherit')
 		self.Game.draw_text(str(ship.get_name()), (self.start, 120))
-		self.Game.draw_text('Health: ' + str(ship.get_health()), (self.start, 140))
-		self.Game.draw_text('Moves left: ' + str(ship.get_moves()), (self.start, 160))
+		self.Game.draw_text('Health: ' + str(ship.get_health()) + ' | Moves left: ' + str(ship.get_moves()), (self.start, 140))
+		self.Game.draw_text('Offensive: ' + str(ship.get_offensive_range()) + ' | Defensive: ' + str(ship.get_defensive_range()), (self.start, 160))
 			 									
 	def show_menu(self):
 		event = self.Game.get_event()
