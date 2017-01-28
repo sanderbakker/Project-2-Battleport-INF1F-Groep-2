@@ -165,13 +165,6 @@ while not Game.events():
             sidebar_screen.set_ship(ship_player1)
             ship_player1.movement(Game.get_event())
 
-    """Card logic"""
-    """
-    for i in range(0, len(ship_list_player1)):
-        if click[0] == ship_list_player1[i].x:
-            ship_list_player1[i].health -= 1
-            print(str(ship_list_player1[i].health) + " lost 1HP!")
-    """
     sidebar_screen.show_instructions()
     Game.update()
 
