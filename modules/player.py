@@ -102,7 +102,7 @@ class Turn:
 		return self.special_cards
 
 	def set_ships(self, ships_1, ships_2):
-		if(self.player.get_id() == 1):
+		if(self.player.get_id() == 2):
 			return self.player.set_ships(ships_1)
 		else:
 			return self.player.set_ships(ships_2)
@@ -116,7 +116,7 @@ class Turn:
 			if(ship.get_select()):
 				return ship
 
-		return False 
+		return None 
 
 	def use_normal_card(self, card):
 		card.action(self)
