@@ -96,7 +96,7 @@ class Saltire(MainShip):
         self.y = y
         self.health = 2
         self.size = 2
-        self.move_ship = 3
+        self.move_ship = 2
 
 class Windsurf(MainShip):
     """Silver Whisper, Windsurf, Sea Spirit & Intensity class"""
@@ -107,7 +107,7 @@ class Windsurf(MainShip):
         self.y = y
         self.health = 3
         self.size = 3
-        self.move_ship = 2
+        self.move_ship = 1
 
 class Amadea(MainShip):
     """Amadea & Merapi class"""
@@ -118,4 +118,4 @@ class Amadea(MainShip):
         self.y = y
         self.health = 4
         self.size = 4
-        self.move_ship = 1
+        self.move_ship = 0
