@@ -39,7 +39,7 @@ class MainShip:
 
         """Loops through until select returns false"""
 
-        if self.move_ship >= 0:
+        if self.move_ship > 0:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_UP:
                     self.y -= 1
@@ -60,19 +60,9 @@ class MainShip:
                     self.move_ship -= 1
                     self.direction = 4
                     #select = False
-                elif event.key == pygame.K_q:
-                    pass
-                    #self.select = False
+
 
                 time.sleep(0.15)
-
-
-            #self.select = select
-            print("You selected: " + self.name)
-
-            if not self.select:
-                #self.select = select
-                print("You deselected: " + self.name)
 
     def position(self):
         """Turns ship 180 degrees, allowing for offensive and defensive positioning"""
@@ -100,7 +90,7 @@ class Saltire(MainShip):
         self.y = y
         self.health = 2
         self.size = 2
-        self.move_ship = 2
+        self.move_ship = 3
 
 class Windsurf(MainShip):
     """Silver Whisper, Windsurf, Sea Spirit & Intensity class"""
@@ -111,7 +101,7 @@ class Windsurf(MainShip):
         self.y = y
         self.health = 3
         self.size = 3
-        self.move_ship = 1
+        self.move_ship = 2
 
 class Amadea(MainShip):
     """Amadea & Merapi class"""
@@ -122,4 +112,4 @@ class Amadea(MainShip):
         self.y = y
         self.health = 4
         self.size = 4
-        self.move_ship = 0
+        self.move_ship = 1
