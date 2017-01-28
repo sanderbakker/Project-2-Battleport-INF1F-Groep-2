@@ -1,6 +1,7 @@
 import pygame
 import math
 import time
+from modules import cards
 
 pygame.init()
 class Show:
@@ -82,7 +83,7 @@ class Show:
 	def draw_skip_turn(self):
 		button = self.Game.button({'color': (211,211,211), 'start_x': self.start + 5, 'start_y': 65, 'width': self.width - 10, 'height': 40}, 'End turn')
 		if(button):
-			print(self.Other_player.get_name())
+			self.Turn.add_normal_card(cards.normal_card().get_random())						
 			self.Turn.set_player(self.Other_player)
 			time.sleep(0.25)
 
