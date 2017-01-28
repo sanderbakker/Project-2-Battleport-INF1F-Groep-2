@@ -298,6 +298,10 @@ class action:
 	def use_Sonar(self):
 		self.Turn.get_other_player().delete_mine()
 
+	def use_Rally(self):
+		for ship in self.Turn.get_ships():
+			ship.add_moves(1)
+
 
 
 
