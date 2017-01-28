@@ -1,5 +1,5 @@
 import pygame, math
- 
+import random
 WHITE = (124, 124, 124)
 # adds some colors 
 pygame.init()
@@ -16,6 +16,8 @@ class Grid:
         self.y_blocks = options['y_blocks']
         self.opacity_grid = options['opacity_grid']
         self.move_grid = options['move_grid']
+        #self.random_x = random.randint(1 ,20)
+        #self.random_y = random.randint(1, 20)
 
         try:
             background_color = options['background_color']
@@ -129,6 +131,10 @@ class Grid:
 
         return False
     
+    def get_random_x(self):
+        return random.randint(1, 20)
 
+    def get_random_y(self):
+        return random.randint(1, 20)
     
                                             

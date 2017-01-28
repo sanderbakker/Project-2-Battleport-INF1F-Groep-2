@@ -24,7 +24,8 @@ Players = {1: Player1, 2: Player2}
 menu_screen = menu.Menu(20, 800, 575)
 menu_screen.show()
 sidebar_screen = ''
-
+Mine_x = mine.Mine().get_random_x()
+Mine_y = mine.Mine().get_random_y()
 Game = game.Game(800, 575)
 Game.set_menu(menu_screen)
 
@@ -82,7 +83,7 @@ while not Game.events():
         'move_grid': 50,
         #'background_color': (0, 255, 0)
     })
-
+    main_grid.Place_Mine(Mine_x, Mine_y)
     Game.set_grid(main_grid)
     click = Game.get_grid_click()
 
@@ -166,7 +167,6 @@ while not Game.events():
             ship_list_player1[i].health -= 1
             print(str(ship_list_player1[i].health) + " lost 1HP!")
     """
-
     sidebar_screen.show_instructions()
     Game.update()
 
