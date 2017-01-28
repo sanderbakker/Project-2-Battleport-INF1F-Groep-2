@@ -88,6 +88,8 @@ class MainShip:
     def get_moves(self):
         return self.move_ship
 
+    def get_name(self):
+        return self.name
 
 class Saltire(MainShip):
     """Furgo Saltire & Santa Bettina class."""
