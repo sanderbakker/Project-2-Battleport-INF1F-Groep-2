@@ -17,6 +17,7 @@ class MainShip:
 
         self.offensive_range = 0
         self.defensive_range = 0
+        self.damage = 1
 
     def damage(self):
         """Lowers health by 1"""
@@ -101,7 +102,13 @@ class MainShip:
 
     def add_range(self, number):
         self.add_offensive_range(number)
-        self.add_defensive_range(number) 
+        self.add_defensive_range(number)
+
+    def get_damage(self):
+        return self.damage
+
+    def add_damage(self, number):
+        self.damage += number
 
 class Saltire(MainShip):
     """Furgo Saltire & Santa Bettina class."""

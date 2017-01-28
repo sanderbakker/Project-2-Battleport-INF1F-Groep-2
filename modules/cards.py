@@ -308,6 +308,9 @@ class action:
 	def use_Advanced_rifling(self):
 		self.Turn.get_selected_ship().add_range(2)
 
+	def use_FMJ_upgrade(self):
+		self.Turn.get_selected_ship().add_damage(1)
+
 
 
 
