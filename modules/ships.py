@@ -25,6 +25,9 @@ class MainShip:
         else:
             self.select = True
 
+    def unset_select(self):
+        self.select = False
+
     def get_select(self): 
         return self.select
 
@@ -67,7 +70,6 @@ class MainShip:
             #self.select = select
             print("You selected: " + self.name)
 
-            print("No moves left.")
             if not self.select:
                 #self.select = select
                 print("You deselected: " + self.name)

@@ -5,7 +5,7 @@ Play the game by running this file.
 """
 
 # Import the required modules 
-import pygame, sys, pymysql
+import pygame, sys, pymysql, time
 
 # Import all files stated in the __all__ variable in modules/__init__.py
 from modules import *
@@ -146,7 +146,11 @@ while not Game.events():
             """Ship movement logic"""
             for i in range(0, len(ship_list_player1)):
                 if click[0] == ship_list_player1[i].x:
+                    for ship_player1 in ship_list_player1:
+                        ship_player1.unset_select()
+
                     ship_list_player1[i].set_select()
+                    time.sleep(0.15)
 
                     """Collision testing (WIP)"""
                     for x in range(0, len(ship_list_player1)):
@@ -158,6 +162,7 @@ while not Game.events():
 
     for ship_player1 in ship_list_player1:
         if ship_player1.get_select():
+            sidebar_screen.set_ship(ship_player1)
             ship_player1.movement(Game.get_event())
 
     """Card logic"""

@@ -112,7 +112,6 @@ class Turn:
 
 	def get_selected_ship(self):
 		ships = self.player.get_saved_ships()
-		return ships[0]
 		for ship in ships:
 			if(ship.get_select()):
 				return ship

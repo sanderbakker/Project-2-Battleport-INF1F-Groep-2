@@ -37,7 +37,7 @@ class Show:
 		self.draw_sidebar()
 		self.draw_toolbar()
 		self.draw_skip_turn()
-		self.set_ship()
+		#self.set_ship()
 		#self.draw_steps_left()
 		self.show_instructions()
 		self.show_menu()
@@ -111,12 +111,11 @@ class Show:
 			self.Turn.use_normal_card(card)
 
 
-	def set_ship(self):
-		ship = self.Turn.get_selected_ship()
-		if(ship):
-			self.Game.set_font('inherit', (0,0,0), 'inherit')
-			self.Game.draw_text('Health: ' + str(ship.get_health()), (self.start, 120))
-			self.Game.draw_text('Moves left: ' + str(ship.get_moves()), (self.start, 140))
+	def set_ship(self, ship):
+		#ship = self.Turn.get_selected_ship()
+		self.Game.set_font('inherit', (0,0,0), 'inherit')
+		self.Game.draw_text('Health: ' + str(ship.get_health()), (self.start, 120))
+		self.Game.draw_text('Moves left: ' + str(ship.get_moves()), (self.start, 140))
 			 									
 	def show_menu(self):
 		event = self.Game.get_event()
