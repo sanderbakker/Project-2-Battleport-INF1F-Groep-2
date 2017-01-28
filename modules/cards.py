@@ -276,10 +276,13 @@ class action:
 		return method()
 
 	def use_Extra_fuel(self):
-		self.Turn.add_steps(1)
+		self.Turn.get_selected_ship.add_moves(1)
 
 	def use_Extra_fuel_II(self):
-		self.Turn.add_steps(2)
+		self.Turn.get_selected_ship().add_moves(2)
+
+	def use_Reinforced_hull(self):
+		self.Turn.get_selected_ship().add_health(1)
 
 	def use_Backup(self):
 		self.Turn.add_normal_card(normal_card().get_random())
