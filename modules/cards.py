@@ -166,7 +166,7 @@ class normal_card:
 		self.Card.set_velocity(4)
 		self.Card.set_image('Defensive/Sonar.jpg')
 		self.Card.set_wiki('Sonar_wiki.jpg')
-		self.Card.set_name('Sonar_wiki')
+		self.Card.set_name('Sonar')
 
 		return self.Card
 
@@ -294,8 +294,9 @@ class action:
 		y = mine.Mine().get_random_y()
 
 		self.Turn.add_mine((x,y))
-
-
+	
+	def use_Sonar(self):
+		self.Turn.get_other_player().delete_mine()
 
 
 

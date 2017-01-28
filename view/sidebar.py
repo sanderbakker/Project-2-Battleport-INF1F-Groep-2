@@ -11,6 +11,7 @@ class Show:
 
 		self.Game 	= Game
 		self.Player = Turn.get_player()
+		self.Players = Players
 		if(self.Player.get_id() == 1):
 			self.Other_player = Players[2]
 		else:
@@ -84,7 +85,7 @@ class Show:
 		button = self.Game.button({'color': (211,211,211), 'start_x': self.start + 5, 'start_y': 65, 'width': self.width - 10, 'height': 40}, 'End turn')
 		if(button):
 			self.Turn.add_normal_card(cards.normal_card().get_random())						
-			self.Turn.set_player(self.Other_player)
+			self.Turn.set_player(self.Other_player, self.Player)
 			time.sleep(0.25)
 
 	def draw_steps_left(self):

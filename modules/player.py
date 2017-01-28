@@ -66,22 +66,37 @@ class Player:
 	def add_mine(self, mine):
 		self.saved_mines.append(mine)
 
+	def delete_mine(self):
+		try:
+			self.saved_mines.pop(0)
+		except IndexError:
+			return False
+
 	def get_saved_mines(self):
 		return self.saved_mines
 
 class Turn:
-	def __init__(self, player):
+	def __init__(self, player, other_player = None):
 		self.normal_cards = []
 		self.special_cards = []
 		self.player = player
+		self.other_player = other_player
 
 		self.steps  = 2 
 
 	def get_player(self):
 		return self.player
 
-	def set_player(self, player):
+	def set_player(self, player, other_player = None):
 		self.player = player
+		
+		self.set_other_player(other_player)
+
+	def get_other_player(self):
+		return self.other_player
+
+	def set_other_player(self, other_player):
+		self.other_player = other_player
 
 	# retrieve the normal cards of the player
 	def get_normal_cards(self):
@@ -132,6 +147,9 @@ class Turn:
 
 	def add_mine(self, mine):
 		self.player.add_mine(mine)
+
+	def delete_mine(self):
+		self.player.delete_mine()
 
 	def use_normal_card(self, card):
 		card.action(self)

@@ -69,6 +69,11 @@ Player1.set_mines(mine_list_player2)
 while not Game.events():
     # get the current player    
     Player = Turn.player
+    if(Player.get_id() == 1):
+        Other_player = Player2
+    else:
+        Other_player = Player1
+
     Turn.set_ships(ship_list_player1, ship_list_player2)
 
     Game.get_screen().fill((235, 235, 235))
@@ -90,7 +95,8 @@ while not Game.events():
         'move_grid': 50,
         #'background_color': (0, 255, 0)
     })
-    for mine in Turn.get_mines():
+
+    for mine in player.Turn(Other_player).get_mines():
         main_grid.Place_Mine(mine[0], mine[1])
 
     Game.set_grid(main_grid)
@@ -151,7 +157,7 @@ while not Game.events():
             else:
                 ship_list_player2[p2_count].x = click[0]
                 p2_count += 1
-        elif count >= 9:
+        elif count >= 9:         
             """Ship movement logic"""
             for i in range(0, len(ship_list_player1)):
                 if click[0] == ship_list_player1[i].x:
