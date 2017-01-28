@@ -91,13 +91,17 @@ class MainShip:
         return self.offensive_range
 
     def add_offensive_range(self, number):
-        self.add_offensive_range += number
+        self.offensive_range += number
 
     def get_defensive_range(self):
         return self.defensive_range
 
-    def add_offensive_range(self, number):
-        self.add_offensive_range += number 
+    def add_defensive_range(self, number):
+        self.defensive_range += number
+
+    def add_range(self, number):
+        self.add_offensive_range(number)
+        self.add_defensive_range(number) 
 
 class Saltire(MainShip):
     """Furgo Saltire & Santa Bettina class."""

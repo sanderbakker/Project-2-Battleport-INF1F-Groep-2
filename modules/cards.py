@@ -129,7 +129,7 @@ class normal_card:
 		self.Card.set_velocity(2)
 		self.Card.set_image('Offensive/Adv_rifling.png')
 		self.Card.set_wiki('Adv_rifling_wiki.jpg')
-		self.Card.set_name('Adv_rifling')
+		self.Card.set_name('Advanced_rifling')
 
 		return self.Card
 
@@ -301,6 +301,12 @@ class action:
 	def use_Rally(self):
 		for ship in self.Turn.get_ships():
 			ship.add_moves(1)
+
+	def use_Rifling(self):
+		self.Turn.get_selected_ship().add_range(1)
+
+	def use_Advanced_rifling(self):
+		self.Turn.get_selected_ship().add_range(2)
 
 
 
