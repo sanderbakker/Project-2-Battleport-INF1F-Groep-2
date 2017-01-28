@@ -69,14 +69,17 @@ class MainShip:
         self.x = self.x - 1
         self.y = self.y
 
-    def get_select(self):
-        return self.select
-
     def get_health(self):
         return self.health
 
+    def add_health(self, health):
+        self.health += health
+
     def get_moves(self):
         return self.move_ship
+
+    def add_moves(self, moves):
+        self.move_ship += moves
 
     def get_name(self):
         return self.name
