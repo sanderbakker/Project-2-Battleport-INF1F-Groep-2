@@ -12,6 +12,7 @@ from modules import *
 
 from view import *
 import game
+from modules import ships
 
 """Sets window title"""
 pygame.display.set_caption("Battleport")
@@ -201,13 +202,13 @@ while not Game.events():
             ship.movement(Game.get_event())
 
 
-    def remove_ship():
-            for i in range(3):
-                if len(ship_list_player1) > 0:
-                    ship_list_player1.remove(ship_list_player1[i - 1])
+    #def remove_ship():
+    #        for i in range(3):
+    #            if len(ship_list_player1) > 0:
+    #                ship_list_player1.remove(ship_list_player1[i - 1])
 
 
-    remove_ship()
+    #remove_ship()
     sidebar_screen.show_instructions()
     Game.update()
 
