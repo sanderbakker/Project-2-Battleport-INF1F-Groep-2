@@ -50,12 +50,15 @@ class card:
 	def get_name(self):
 		return self.name
 
+	# used when the card is unclicked
 	def unset_clicked(self):
 		self.clicked = False
 
+	# used when the card is clicked
 	def set_clicked(self):
 		self.clicked = True
 
+	# retrieves if the card has been clicked and is still in its clicked state.
 	def get_clicked(self):
 		return self.clicked 		
 
@@ -95,6 +98,7 @@ class normal_card:
 
 		return card_list
 
+	# grabs a pseudo random card from the __card_list()
 	def get_random(self):
 		card_list = self.__card_list()
 		choice_list = []
