@@ -20,6 +20,8 @@ class MainShip:
         self.defensive_range = 0
         self.damage = 1
 
+        self.vertical = True
+
     def set_select(self):
         if(self.select):
             self.select = False
@@ -109,6 +111,15 @@ class MainShip:
 
     def get_image(self):
         return self.image
+
+    def check_if_vertical(self):
+        return self.vertical
+
+    def turn_ship(self):
+        if self.vertical:
+            self.vertical = False
+        else:
+            self.vertical = True
 
 class Saltire(MainShip):
     """Furgo Saltire & Santa Bettina class."""
