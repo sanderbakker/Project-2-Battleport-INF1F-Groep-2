@@ -111,7 +111,10 @@ class MainShip:
         return self.image
 
     def check_if_vertical(self):
-        return self.vertical
+        try:
+            return self.vertical
+        except AttributeError:
+            return True
 
     def turn_ship(self):
         try:
