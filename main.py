@@ -111,11 +111,11 @@ while not Game.events():
     """"Loads ships from array (WIP)"""
     for i in range(0, len(ship_list_player2)):
         for x in range(0, ship_list_player2[i].size):
-            main_grid.Place_Player_2(ship_list_player2[i].x, ship_list_player2[i].y + x, i)
+            main_grid.Place_Player_2(i, ship_list_player2[i])
     main_grid.reset_ship_counts()
     for i in range(0, len(ship_list_player1)):
         for x in range(0, ship_list_player1[i].size):
-            main_grid.Place_Player_1(ship_list_player1[i].x, ship_list_player1[i].y + x, i)
+            main_grid.Place_Player_1(i, ship_list_player1[i])
 
 
     """Start ship placement/game logic (WIP)"""
