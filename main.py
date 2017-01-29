@@ -158,15 +158,16 @@ while not Game.events():
                 count -= 1
             else:
                 ship_list_player2[p2_count].x = click[0]
+                ship_list_player2[p2_count].y = 1
                 p2_count += 1
         elif count >= 9:         
             """Ship movement logic"""
-            for i in range(0, len(ship_list_player1)):
-                if click[0] == ship_list_player1[i].x:
-                    for ship_player1 in ship_list_player1:
-                        ship_player1.unset_select()
+            for ship in Turn.get_ships():
+                if click[0] == ship.x:
+                    for ship_unselect in Turn.get_ships():
+                        ship_unselect.unset_select()
 
-                    ship_list_player1[i].set_select()
+                    ship.set_select()
                     time.sleep(0.15)
 
                     """Collision testing (WIP)"""
@@ -185,10 +186,10 @@ while not Game.events():
     except IndexError:
         sidebar_screen.set_placing_ship(None)
 
-    for ship_player1 in ship_list_player1:
-        if ship_player1.get_select():
-            sidebar_screen.set_ship(ship_player1)
-            ship_player1.movement(Game.get_event())
+    for ship in Turn.get_ships():
+        if ship.get_select():
+            sidebar_screen.set_ship(ship)
+            ship.movement(Game.get_event())
 
     sidebar_screen.show_instructions()
     Game.update()
