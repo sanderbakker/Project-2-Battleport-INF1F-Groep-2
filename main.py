@@ -109,7 +109,7 @@ while not Game.events():
     main_grid.reset_ship_counts()
     for i in range(0, len(ship_list_player1)):
         for x in range(0, ship_list_player1[i].size):
-            main_grid.Place_Player_1(ship_list_player1[i].x, ship_list_player1[i].y, i)
+            main_grid.Place_Player_1(ship_list_player1[i].x, ship_list_player1[i].y + x, i)
 
 
     """Start ship placement/game logic (WIP)"""

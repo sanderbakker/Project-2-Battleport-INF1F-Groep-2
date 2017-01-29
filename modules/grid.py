@@ -99,6 +99,8 @@ class Grid:
         middle_box = ((self.opacity_grid/self.number_of_blocks) / 2)
         rect_x = ((rect_x * (middle_box)) + middle_box * (rect_x - 2)) + self.move_grid
         rect_y = ((rect_y * (middle_box)) + middle_box * (rect_y - 2)) + self.move_grid
+        rect = pygame.draw.rect(screen, (51, 102, 204),
+                         pygame.Rect((int(rect_x), int(rect_y)), (self.number_of_blocks, self.number_of_blocks)))
         if ship_number == 0:
             while self.ship_count0 < 1:
                 image = pygame.image.load("assets/boats/BoatR_1.png")
@@ -127,22 +129,23 @@ class Grid:
         middle_box = ((self.opacity_grid / self.number_of_blocks) / 2)
         rect_x = ((rect_x * (middle_box)) + middle_box * (rect_x - 2)) + self.move_grid
         rect_y = ((rect_y * (middle_box)) + middle_box * (rect_y - 2)) + self.move_grid
-        pygame.draw.rect(screen, (128, 128, 128),
-                         pygame.Rect((int(rect_x), int(rect_y)), (self.number_of_blocks, self.number_of_blocks)))
+        #pygame.draw.rect(screen, (128, 128, 128),
+        #                 pygame.Rect((int(rect_x), int(rect_y)), (self.number_of_blocks, self.number_of_blocks)))
 
     def Place_Player_2(self, rect_x, rect_y, ship_number):
         screen = self.screen
-
+        transparant = (1, 1, 1, 0)
         middle_box = ((self.opacity_grid / self.number_of_blocks) / 2)
         rect_x = ((rect_x * (middle_box)) + middle_box * (rect_x - 2)) + self.move_grid
         rect_y = ((rect_y * (middle_box)) + middle_box * (rect_y - 2)) + self.move_grid
-        #pygame.draw.rect(screen, (51, 102, 204),
-        #                 pygame.Rect((int(rect_x), int(rect_y)), (self.number_of_blocks, self.number_of_blocks)))
+        #pygame.draw.rect(screen, transparant,
+        #    pygame.Rect((int(rect_x), int(rect_y)), (self.number_of_blocks, self.number_of_blocks)))
         if ship_number == 0:
             while self.ship_count0 < 1:
                 image = pygame.image.load("assets/boats/BoatB_1.png")
                 screen.blit(image, (rect_x, rect_y))
                 self.ship_count0 += 1
+
         elif ship_number == 1:
             while self.ship_count1 < 1:
                 image = pygame.image.load("assets/boats/BoatB_2.png")

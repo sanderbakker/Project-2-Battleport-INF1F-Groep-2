@@ -115,7 +115,7 @@ class Saltire(MainShip):
     def __init__(self, name, x, y, color = 'red'):
         super().__init__(name, x, y, color)
         self.name = name
-        self.x = y
+        self.x = x + 21
         self.y = y
         self.health = 2
         self.size = 2
@@ -139,7 +139,7 @@ class Windsurf(MainShip):
     def __init__(self, name, x, y, color = 'red'):
         super().__init__(name, x, y, color)
         self.name = name
-        self.x = x
+        self.x = x + 22
         self.y = y
         self.health = 3
         self.size = 3
@@ -163,7 +163,7 @@ class Amadea(MainShip):
     def __init__(self, name, x, y, color = 'red'):
         super().__init__(name, x, y, color)
         self.name = name
-        self.x = x
+        self.x = x + 23
         self.y = y
         self.health = 4
         self.size = 4
