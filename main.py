@@ -66,6 +66,11 @@ Player2.set_ships(ship_list_player2)
 Player1.set_mines(mine_list_player1)
 Player1.set_mines(mine_list_player2)
 
+
+
+
+#remove_ship()
+
 while not Game.events():
     # get the current player    
     Player = Turn.player
@@ -195,6 +200,14 @@ while not Game.events():
             sidebar_screen.set_ship(ship)
             ship.movement(Game.get_event())
 
+
+    def remove_ship():
+            for i in range(3):
+                if len(ship_list_player1) > 0:
+                    ship_list_player1.remove(ship_list_player1[i - 1])
+
+
+    remove_ship()
     sidebar_screen.show_instructions()
     Game.update()
 

@@ -131,6 +131,11 @@ class Grid:
         rect_y = ((rect_y * (middle_box)) + middle_box * (rect_y - 2)) + self.move_grid
         #pygame.draw.rect(screen, (128, 128, 128),
         #                 pygame.Rect((int(rect_x), int(rect_y)), (self.number_of_blocks, self.number_of_blocks)))
+    def Turn_Ship(self, rect_x, rect_y, ship_number):
+        middle_box = ((self.opacity_grid / self.number_of_blocks) / 2)
+        rect_x = ((rect_x * (middle_box)) + middle_box * (rect_x - 2)) + self.move_grid
+        rect_y = ((rect_y * (middle_box)) + middle_box * (rect_y - 2)) + self.move_grid
+        pygame.draw.rect(self.screen, (128, 128, 128),pygame.Rect( (rect_x, rect_y), (40, 20) ))
 
     def Place_Player_2(self, rect_x, rect_y, ship_number):
         screen = self.screen
@@ -154,7 +159,8 @@ class Grid:
         elif ship_number == 2:
             while self.ship_count2 < 1:
                 image = pygame.image.load("assets/boats/BoatB_2.png")
-                screen.blit(image, (rect_x, rect_y))
+                new_image = pygame.transform.rotate(image, 90)
+                screen.blit(new_image, (rect_x, rect_y))
                 self.ship_count2 += 1
         elif ship_number == 3:
             while self.ship_count3 < 1:
@@ -187,5 +193,8 @@ class Grid:
         self.ship_count1 = 0
         self.ship_count0 = 0
         self.ship_count3 = 0
-    
-                                            
+
+
+    def return_ship(self):
+        image = pygame.image.load("assets/boats/BoatB_3.png")
+        return image
