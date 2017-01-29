@@ -103,13 +103,14 @@ while not Game.events():
     click = Game.get_grid_click()
 
     """"Loads ships from array (WIP)"""
-    for i in range(0, len(ship_list_player1)):
-        for x in range(0, ship_list_player1[i].size):
-            main_grid.Place_Player_1(ship_list_player1[i].x, ship_list_player1[i].y + x)
-
     for i in range(0, len(ship_list_player2)):
         for x in range(0, ship_list_player2[i].size):
-            main_grid.Place_Player_2(ship_list_player2[i].x, ship_list_player2[i].y - x)
+            main_grid.Place_Player_2(ship_list_player2[i].x, ship_list_player2[i].y + x, i)
+    main_grid.reset_ship_counts()
+    for i in range(0, len(ship_list_player1)):
+        for x in range(0, ship_list_player1[i].size):
+            main_grid.Place_Player_1(ship_list_player1[i].x, ship_list_player1[i].y, i)
+
 
     """Start ship placement/game logic (WIP)"""
     if click:
