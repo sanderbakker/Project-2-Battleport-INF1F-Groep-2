@@ -5,7 +5,7 @@ pygame.init()
 
 class MainShip:
     """Main class containing the base values & methods"""
-    def __init__(self, name, x, y):
+    def __init__(self, name, x, y, color = 'red'):
         self.name = name
         self.x = x
         self.y = y
@@ -116,8 +116,8 @@ class MainShip:
 
 class Saltire(MainShip):
     """Furgo Saltire & Santa Bettina class."""
-    def __init__(self, name, x, y):
-        super().__init__(name, x, y)
+    def __init__(self, name, x, y, color = 'red'):
+        super().__init__(name, x, y, color)
         self.name = name
         self.x = y
         self.y = y
@@ -126,7 +126,10 @@ class Saltire(MainShip):
         self.move_ship = 3
         self.offensive_range = 2
         self.defensive_range = 3
-        self.image = "assets/boats/BoatR_1.png"        
+        if(color == 'red'):
+            self.image = "assets/boats/BoatR_1.png"
+        else:
+            self.image = "assets/boats/BoatB_1.png"        
 
     def reset(self):
         self.move_ship = 3
@@ -135,8 +138,8 @@ class Saltire(MainShip):
 
 class Windsurf(MainShip):
     """Silver Whisper, Windsurf, Sea Spirit & Intensity class"""
-    def __init__(self, name, x, y):
-        super().__init__(name, x, y)
+    def __init__(self, name, x, y, color = 'red'):
+        super().__init__(name, x, y, color)
         self.name = name
         self.x = x
         self.y = y
@@ -145,7 +148,10 @@ class Windsurf(MainShip):
         self.move_ship = 2
         self.offensive_range = 3
         self.defensive_range = 4
-        self.image = "assets/boats/BoatR_2.png"        
+        if(color == 'red'):
+            self.image = "assets/boats/BoatR_2.png"        
+        else:
+            self.image = "assets/boats/BoatB_2.png"
 
     def reset(self):
         self.move_ship = 2
@@ -154,8 +160,8 @@ class Windsurf(MainShip):
 
 class Amadea(MainShip):
     """Amadea & Merapi class"""
-    def __init__(self, name, x, y):
-        super().__init__(name, x, y)
+    def __init__(self, name, x, y, color = 'red'):
+        super().__init__(name, x, y, color)
         self.name = name
         self.x = x
         self.y = y
@@ -164,7 +170,10 @@ class Amadea(MainShip):
         self.move_ship = 1
         self.offensive_range = 4
         self.defensive_range = 5
-        self.image = "assets/boats/BoatR_3.png"
+        if(color == 'red'):
+            self.image = "assets/boats/BoatR_3.png"
+        else:
+            self.image = "assets/boats/BoatB_3.png"
 
     def reset(self):
         self.move_ship = 1

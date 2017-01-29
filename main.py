@@ -39,18 +39,18 @@ count = 0
 p1_count, p2_count, count = 0, 0, 0
 
 """Instantiate ships player 1"""
-Furgo = ships.Saltire("Furgo Saltire", 0, 0)
-Silver = ships.Windsurf("Silver Whisper", 0, 0)
-Windsurf = ships.Windsurf("Windsurf", 0, 0)
-Merapi = ships.Amadea("Merapi", 0, 0)
+Furgo = ships.Saltire("Furgo Saltire", 0, 0, 'red')
+Silver = ships.Windsurf("Silver Whisper", 0, 'red')
+Windsurf = ships.Windsurf("Windsurf", 0, 0, 'red')
+Merapi = ships.Amadea("Merapi", 0, 0, 'red')
 ship_list_player1.extend([Furgo, Silver, Windsurf, Merapi])
 ship_list_player1[0].y, ship_list_player1[1].y, ship_list_player1[2].y, ship_list_player1[3].y = 19, 18, 18, 17
 
 """Instantiate ships player 2"""
-Santa = ships.Saltire("Santa Betiina", 0, 0)
-Sea = ships.Windsurf("Sea Spirit", 0, 0)
-Intensity = ships.Windsurf("Intensity", 0, 0)
-Amadea = ships.Amadea("Amadea", 0, 0)
+Santa = ships.Saltire("Santa Betiina", 0, 0, 'blue')
+Sea = ships.Windsurf("Sea Spirit", 0, 0, 'blue')
+Intensity = ships.Windsurf("Intensity", 0, 0, 'blue')
+Amadea = ships.Amadea("Amadea", 0, 0, 'blue')
 
 ship_list_player2.extend([Santa, Sea, Intensity, Amadea])
 ship_list_player2[0].y, ship_list_player2[1].y, ship_list_player2[2].y, ship_list_player2[3].y = 2, 3, 3, 4
