@@ -20,6 +20,7 @@ class Show:
 
 		self.draw_cards(6, 25)
 
+	# draws every card the player has, fills in the empty ones with draw_empty_card
 	def draw_cards(self, i, offset):
 		for card in self.normal_cards:
 			self.Game.blit(card.get_image(), (offset, self.margin_top))
@@ -34,6 +35,7 @@ class Show:
 
 		self.draw_empty_card(i,offset)
 
+	# draws the empty card slots
 	def draw_empty_card(self, i, offset):
 		i = i - 1 
 
@@ -44,15 +46,18 @@ class Show:
 
 		return self.draw_empty_card(i, (offset + self.card_width + self.card_spacing))
 
+	# Shows the card wiki in the sidebar of the game on hover
 	def card_hover(self, offset, card):
 		mouse = pygame.mouse.get_pos()
 		if mouse[0] >= offset and mouse[0] <= (offset + self.card_width):
 			if mouse[1] >= self.margin_top and mouse[1] <= (self.margin_top + self.card_height):
 				self.Sidebar.set_wiki(card)
 
+	# shows the card wiki in the sidebar of the game
 	def show_card_info(self, card):
 		self.Sidebar.set_wiki(card)
 
+	# sets the card_clicked variable if the card is clicked, deslects the other cards
 	def card_click(self, offset, card):
 		mouse = pygame.mouse.get_pos()
 		event = self.Game.get_event()
