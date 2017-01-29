@@ -104,7 +104,7 @@ class Grid:
         #                 pygame.Rect((int(rect_x), int(rect_y)), (self.number_of_blocks, self.number_of_blocks)))
         if ship_number == 0:
             while self.ship_count0 < 1:
-                if ships.MainShip("Hi", 10, 20).check_if_vertical() == False:
+                if ships.MainShip("Hi", 10, 20).check_if_vertical() == True:
                     image = pygame.image.load("assets/boats/BoatR_1.png")
                     new_image = pygame.transform.rotate(image, 90)
                     screen.blit(new_image, (rect_x, rect_y))
@@ -113,7 +113,6 @@ class Grid:
                     image = pygame.image.load("assets/boats/BoatR_1.png")
                     screen.blit(image, (rect_x, rect_y))
                     self.ship_count0 += 1
-
         elif ship_number == 1:
             while self.ship_count1 < 1:
                 image = pygame.image.load("assets/boats/BoatR_2.png")

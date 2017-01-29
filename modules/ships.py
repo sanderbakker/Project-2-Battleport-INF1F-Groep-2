@@ -61,8 +61,10 @@ class MainShip:
                     self.move_ship -= 1
                     self.direction = 4
                     #select = False
+                elif event.key == pygame.K_l:
 
-
+                    self.turn_ship()
+                    print(self.vertical)
                 time.sleep(0.15)
 
     def position(self):
