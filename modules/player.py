@@ -105,6 +105,9 @@ class Turn:
 
 	# add a normal card to the player deck
 	def add_normal_card(self, card):
+		if len(self.get_normal_cards()) > 5:
+			return False
+
 		self.normal_cards.append(card)
 		self.player.save_normal_cards(self.normal_cards)				
 		return self.normal_cards
