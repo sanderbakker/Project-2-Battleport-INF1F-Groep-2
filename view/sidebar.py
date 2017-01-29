@@ -84,7 +84,12 @@ class Show:
 	def draw_skip_turn(self):
 		button = self.Game.button({'color': (211,211,211), 'start_x': self.start + 5, 'start_y': 65, 'width': self.width - 10, 'height': 40}, 'End turn')
 		if(button):
-			self.Turn.add_normal_card(cards.normal_card().get_random())						
+			self.Turn.add_normal_card(cards.normal_card().get_random())
+
+			# reset ship movement and powerups
+			for ship in self.Turn.get_ships():
+				ship.reset()
+
 			self.Turn.set_player(self.Other_player, self.Player)
 			time.sleep(0.25)
 

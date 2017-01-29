@@ -123,6 +123,11 @@ class Saltire(MainShip):
         self.offensive_range = 2
         self.defensive_range = 3
 
+    def reset(self):
+        self.move_ship = 3
+        self.offensive_range = 2
+        self.defensive_range = 3
+
 class Windsurf(MainShip):
     """Silver Whisper, Windsurf, Sea Spirit & Intensity class"""
     def __init__(self, name, x, y):
@@ -133,8 +138,13 @@ class Windsurf(MainShip):
         self.health = 3
         self.size = 3
         self.move_ship = 2
-        self.offensive_range = 2
-        self.defensive_range = 3
+        self.offensive_range = 3
+        self.defensive_range = 4
+
+    def reset(self):
+        self.move_ship = 2
+        self.offensive_range = 3
+        self.defensive_range = 4
 
 class Amadea(MainShip):
     """Amadea & Merapi class"""
@@ -145,6 +155,11 @@ class Amadea(MainShip):
         self.y = y
         self.health = 4
         self.size = 4
+        self.move_ship = 1
+        self.offensive_range = 4
+        self.defensive_range = 5
+
+    def reset(self):
         self.move_ship = 1
         self.offensive_range = 4
         self.defensive_range = 5
