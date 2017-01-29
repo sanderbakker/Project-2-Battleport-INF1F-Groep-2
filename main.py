@@ -113,6 +113,7 @@ while not Game.events():
 
 
     """Start ship placement/game logic (WIP)"""
+
     if click:
         count += 1
         if count == 1:
@@ -175,6 +176,14 @@ while not Game.events():
                                 ship_list_player1[i].x += 1
                             if ship_list_player1[i].direction == 3:
                                 ship_list_player1[i].x -= 1
+
+    try:
+        if count % 2 != 0 and count < 9:
+            sidebar_screen.set_placing_ship(ship_list_player2[p2_count])
+        elif count % 2 == 0 and count < 9:
+            sidebar_screen.set_placing_ship(ship_list_player1[p1_count])
+    except IndexError:
+        sidebar_screen.set_placing_ship(None)
 
     for ship_player1 in ship_list_player1:
         if ship_player1.get_select():

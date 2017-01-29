@@ -38,7 +38,7 @@ class Show:
 
 		self.draw_sidebar()
 		self.draw_toolbar()
-		self.draw_skip_turn()
+		self.draw_skip_turn()	
 		#self.set_ship()
 		#self.draw_steps_left()
 		self.show_instructions()
@@ -123,8 +123,18 @@ class Show:
 		self.Game.set_font('inherit', (0,0,0), 'inherit')
 		self.Game.draw_text(str(ship.get_name()), (self.start, 120))
 		self.Game.draw_text('Health: ' + str(ship.get_health()) + ' | Moves left: ' + str(ship.get_moves()), (self.start, 140))
-		self.Game.draw_text('Offensive: ' + str(ship.get_offensive_range()) + ' | Defensive: ' + str(ship.get_defensive_range()), (self.start, 160))
-		self.Game.draw_text('Attack: ' + str(ship.get_damage()), (self.start, 180))
+		self.Game.draw_text('O: ' + str(ship.get_offensive_range()) + ' | D: ' + str(ship.get_defensive_range()) + ' | A: ' + str(ship.get_defensive_range()), (self.start, 160))
+
+	def set_placing_ship(self, ship):
+		if not ship:
+			self.placing_ship = False
+			return 
+
+		self.Game.set_font('inherit', (0,0,0), 'inherit')
+		self.Game.draw_text(ship.get_name(), (self.start + 80, 180))
+		image = pygame.image.load(ship.get_image())
+		self.Game.get_screen().blit(image, (self.start + 100, 200))
+		self.placing_ship = True
 			 									
 	def show_menu(self):
 		event = self.Game.get_event()

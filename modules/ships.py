@@ -14,6 +14,7 @@ class MainShip:
         self.move_ship = 0
         self.select = False
         self.direction = 0
+        self.image = ''
 
         self.offensive_range = 0
         self.defensive_range = 0
@@ -110,6 +111,9 @@ class MainShip:
     def add_damage(self, number):
         self.damage += number
 
+    def get_image(self):
+        return self.image
+
 class Saltire(MainShip):
     """Furgo Saltire & Santa Bettina class."""
     def __init__(self, name, x, y):
@@ -122,6 +126,7 @@ class Saltire(MainShip):
         self.move_ship = 3
         self.offensive_range = 2
         self.defensive_range = 3
+        self.image = "assets/boats/BoatR_1.png"        
 
     def reset(self):
         self.move_ship = 3
@@ -140,6 +145,7 @@ class Windsurf(MainShip):
         self.move_ship = 2
         self.offensive_range = 3
         self.defensive_range = 4
+        self.image = "assets/boats/BoatR_2.png"        
 
     def reset(self):
         self.move_ship = 2
@@ -158,6 +164,7 @@ class Amadea(MainShip):
         self.move_ship = 1
         self.offensive_range = 4
         self.defensive_range = 5
+        self.image = "assets/boats/BoatR_3.png"
 
     def reset(self):
         self.move_ship = 1
