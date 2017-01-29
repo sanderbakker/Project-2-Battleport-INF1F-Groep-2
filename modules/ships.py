@@ -20,10 +20,6 @@ class MainShip:
         self.defensive_range = 0
         self.damage = 1
 
-    def damage(self):
-        """Lowers health by 1"""
-        self.health -= 1
-
     def set_select(self):
         if(self.select):
             self.select = False
@@ -126,6 +122,7 @@ class Saltire(MainShip):
         self.move_ship = 3
         self.offensive_range = 2
         self.defensive_range = 3
+        self.damage = 1
         if(color == 'red'):
             self.image = "assets/boats/BoatR_1.png"
         else:
@@ -135,6 +132,7 @@ class Saltire(MainShip):
         self.move_ship = 3
         self.offensive_range = 2
         self.defensive_range = 3
+        self.damage = 1
 
 class Windsurf(MainShip):
     """Silver Whisper, Windsurf, Sea Spirit & Intensity class"""
@@ -148,6 +146,7 @@ class Windsurf(MainShip):
         self.move_ship = 2
         self.offensive_range = 3
         self.defensive_range = 4
+        self.damage = 1
         if(color == 'red'):
             self.image = "assets/boats/BoatR_2.png"        
         else:
@@ -157,6 +156,7 @@ class Windsurf(MainShip):
         self.move_ship = 2
         self.offensive_range = 3
         self.defensive_range = 4
+        self.damage = 1
 
 class Amadea(MainShip):
     """Amadea & Merapi class"""
@@ -170,6 +170,7 @@ class Amadea(MainShip):
         self.move_ship = 1
         self.offensive_range = 4
         self.defensive_range = 5
+        self.damage = 1
         if(color == 'red'):
             self.image = "assets/boats/BoatR_3.png"
         else:
@@ -179,3 +180,4 @@ class Amadea(MainShip):
         self.move_ship = 1
         self.offensive_range = 4
         self.defensive_range = 5
+        self.damage = 1
