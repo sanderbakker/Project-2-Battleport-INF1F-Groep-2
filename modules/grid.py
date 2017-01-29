@@ -1,5 +1,6 @@
 import pygame, math
 import random
+from modules import ships
 WHITE = (124, 124, 124)
 # adds some colors 
 pygame.init()
@@ -99,13 +100,20 @@ class Grid:
         middle_box = ((self.opacity_grid/self.number_of_blocks) / 2)
         rect_x = ((rect_x * (middle_box)) + middle_box * (rect_x - 2)) + self.move_grid
         rect_y = ((rect_y * (middle_box)) + middle_box * (rect_y - 2)) + self.move_grid
-        rect = pygame.draw.rect(screen, (51, 102, 204),
-                         pygame.Rect((int(rect_x), int(rect_y)), (self.number_of_blocks, self.number_of_blocks)))
+        #rect = pygame.draw.rect(screen, (51, 102, 204),
+        #                 pygame.Rect((int(rect_x), int(rect_y)), (self.number_of_blocks, self.number_of_blocks)))
         if ship_number == 0:
             while self.ship_count0 < 1:
-                image = pygame.image.load("assets/boats/BoatR_1.png")
-                screen.blit(image, (rect_x, rect_y))
-                self.ship_count0 += 1
+                if ships.MainShip("Hi", 10, 20).check_if_vertical() == False:
+                    image = pygame.image.load("assets/boats/BoatR_1.png")
+                    new_image = pygame.transform.rotate(image, 90)
+                    screen.blit(new_image, (rect_x, rect_y))
+                    self.ship_count0 += 1
+                else:
+                    image = pygame.image.load("assets/boats/BoatR_1.png")
+                    screen.blit(image, (rect_x, rect_y))
+                    self.ship_count0 += 1
+
         elif ship_number == 1:
             while self.ship_count1 < 1:
                 image = pygame.image.load("assets/boats/BoatR_2.png")
