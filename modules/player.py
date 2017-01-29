@@ -1,5 +1,5 @@
 class Player:
-	def __init__(self, id, name):
+	def __init__(self, id, name, color = 'red'):
 		self.id   = id
 		self.Name = name
 		self.Score = 0
@@ -7,6 +7,7 @@ class Player:
 		self.saved_special_cards = []
 		self.saved_ships = []
 		self.saved_mines = []
+		self.color = color
 
 	def get_id(self):
 		return self.id
@@ -21,6 +22,9 @@ class Player:
 	# retrieves the players score
 	def get_score(self):
 		return self.Score
+
+	def get_color(self):
+		return self.color
 
 	"""
 	 number = int: value which will be added to the current score of the player
@@ -130,9 +134,9 @@ class Turn:
 
 	def set_ships(self, ships_1, ships_2):
 		if(self.player.get_id() == 2):
-			return self.player.set_ships(ships_1)
-		else:
 			return self.player.set_ships(ships_2)
+		else:
+			return self.player.set_ships(ships_1)
 
 	def get_ships(self):
 		return self.player.get_saved_ships()
