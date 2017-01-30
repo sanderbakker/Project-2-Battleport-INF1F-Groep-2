@@ -115,19 +115,37 @@ class Grid:
                     self.ship_count0 += 1
         elif ship_number == 1:
             while self.ship_count1 < 1:
-                image = pygame.image.load("assets/boats/BoatR_2.png")
-                screen.blit(image, (rect_x, rect_y))
-                self.ship_count1 += 1
+                if ship.check_if_vertical() == False:
+                    image = pygame.image.load("assets/boats/BoatR_2.png")
+                    new_image = pygame.transform.rotate(image, 90)
+                    screen.blit(new_image, (rect_x, rect_y))
+                    self.ship_count1 += 1
+                else:
+                    image = pygame.image.load("assets/boats/BoatR_2.png")
+                    screen.blit(image, (rect_x, rect_y))
+                    self.ship_count1 += 1
         elif ship_number == 2:
             while self.ship_count2 < 1:
-                image = pygame.image.load("assets/boats/BoatR_2.png")
-                screen.blit(image, (rect_x, rect_y))
-                self.ship_count2 += 1
+                if ship.check_if_vertical() == False:
+                    image = pygame.image.load("assets/boats/BoatR_2.png")
+                    new_image = pygame.transform.rotate(image, 90)
+                    screen.blit(new_image, (rect_x, rect_y))
+                    self.ship_count2 += 2
+                else:
+                    image = pygame.image.load("assets/boats/BoatR_2.png")
+                    screen.blit(image, (rect_x, rect_y))
+                    self.ship_count2 += 2
         elif ship_number == 3:
             while self.ship_count3 < 1:
-                image = pygame.image.load("assets/boats/BoatR_3.png")
-                screen.blit(image, (rect_x, rect_y))
-                self.ship_count3 += 1
+                if ship.check_if_vertical() == False:
+                    image = pygame.image.load("assets/boats/BoatR_3.png")
+                    new_image = pygame.transform.rotate(image, 90)
+                    screen.blit(new_image, (rect_x, rect_y))
+                    self.ship_count3 += 1
+                else:
+                    image = pygame.image.load("assets/boats/BoatR_3.png")
+                    screen.blit(image, (rect_x, rect_y))
+                    self.ship_count3 += 1
 
 
     def Place_Mine(self, rect_x, rect_y):
@@ -154,26 +172,48 @@ class Grid:
         #    pygame.Rect((int(rect_x), int(rect_y)), (self.number_of_blocks, self.number_of_blocks)))
         if ship_number == 0:
             while self.ship_count0 < 1:
-                image = pygame.image.load("assets/boats/BoatB_1.png")
-                screen.blit(image, (rect_x, rect_y))
-                self.ship_count0 += 1
-
+                if ship.check_if_vertical() == False:
+                    image = pygame.image.load("assets/boats/BoatB_1.png")
+                    new_image = pygame.transform.rotate(image, 90)
+                    screen.blit(new_image, (rect_x, rect_y))
+                    self.ship_count0 += 1
+                else:
+                    image = pygame.image.load("assets/boats/BoatB_1.png")
+                    screen.blit(image, (rect_x, rect_y))
+                    self.ship_count0 += 1
         elif ship_number == 1:
             while self.ship_count1 < 1:
-                image = pygame.image.load("assets/boats/BoatB_2.png")
-                screen.blit(image, (rect_x, rect_y))
-                self.ship_count1 += 1
+                if ship.check_if_vertical() == False:
+                    image = pygame.image.load("assets/boats/BoatB_2.png")
+                    new_image = pygame.transform.rotate(image, 90)
+                    screen.blit(new_image, (rect_x, rect_y))
+                    self.ship_count1 += 1
+                else:
+                    image = pygame.image.load("assets/boats/BoatB_2.png")
+                    screen.blit(image, (rect_x, rect_y))
+                    self.ship_count1 += 1
         elif ship_number == 2:
             while self.ship_count2 < 1:
-                image = pygame.image.load("assets/boats/BoatB_2.png")
-                new_image = pygame.transform.rotate(image, 90)
-                screen.blit(new_image, (rect_x, rect_y))
-                self.ship_count2 += 1
+                if ship.check_if_vertical() == False:
+                    image = pygame.image.load("assets/boats/BoatB_2.png")
+                    new_image = pygame.transform.rotate(image, 90)
+                    screen.blit(new_image, (rect_x, rect_y))
+                    self.ship_count2 += 1
+                else:
+                    image = pygame.image.load("assets/boats/BoatB_2.png")
+                    screen.blit(image, (rect_x, rect_y))
+                    self.ship_count2 += 1
         elif ship_number == 3:
             while self.ship_count3 < 1:
-                image = pygame.image.load("assets/boats/BoatB_3.png")
-                screen.blit(image, (rect_x, rect_y))
-                self.ship_count3 += 1
+                if ship.check_if_vertical() == False:
+                    image = pygame.image.load("assets/boats/BoatB_3.png")
+                    new_image = pygame.transform.rotate(image, 90)
+                    screen.blit(new_image, (rect_x, rect_y))
+                    self.ship_count3 += 1
+                else:
+                    image = pygame.image.load("assets/boats/BoatB_3.png")
+                    screen.blit(image, (rect_x, rect_y))
+                    self.ship_count3 += 1
 
     def set_grid_color(self, color):
         screen = self.screen

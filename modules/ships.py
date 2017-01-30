@@ -19,6 +19,7 @@ class MainShip:
         self.offensive_range = 0
         self.defensive_range = 0
         self.damage = 1
+        self.vertical = True
 
     def set_select(self):
         if(self.select):
@@ -113,17 +114,13 @@ class MainShip:
         return self.image
 
     def check_if_vertical(self):
-        try:
-            return self.vertical
-        except AttributeError:
-            return True
+        return self.vertical
 
     def turn_ship(self):
-        try:
-            if not self.vertical:
-                self.vertical = True
-        except AttributeError:
+        if self.vertical:
             self.vertical = False
+        else:
+            self.vertical = True
 
 class Saltire(MainShip):
     """Furgo Saltire & Santa Bettina class."""
