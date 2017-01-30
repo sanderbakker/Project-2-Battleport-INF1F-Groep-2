@@ -32,25 +32,42 @@ class MainShip:
     def get_select(self): 
         return self.select
 
-    def canGoHere(self, pos, player1, player2):
-        for x in player1:
+    def get_size(self):
+        return self.size
 
-            if not x == self:
-                if pos[0] == x.x:
-                    if pos[1] >= x.y and pos[1] <= x.y + x.size - 1:
-                        print("Could not move ship {} (pos {} {}) because its colliding with ship {} (pos {} {})".format(
-                            self.name, self.x, self.y, x.name, x.x, x.y))
-                        return False
+    def canGoHere(self, pos, list_player1, player2):
+
+        for ship in list_player1:
+            for size in range(3):
+                if not ship == self:
+                    if self.get_size() == 2:
+                        if pos[0] == ship.x:
+                            if pos[1] >= ship.y - 1 and pos[1] <= ship.y + ship.size - 1:
+                                print("Could not move ship {} (pos {} {}) because its colliding with ship {} (pos {} {})".format(
+                                self.name, self.x, self.y, ship.name, ship.x, ship.y))
+                                return False
+                    elif self.get_size() == 3:
+                        if pos[0] == ship.x:
+                            if pos[1] >= ship.y - 2 and pos[1] <= ship.y + ship.size - 1:
+                                print("Could not move ship {} (pos {} {}) because its colliding with ship {} (pos {} {})".format(
+                                self.name, self.x, self.y, ship.name, ship.x, ship.y))
+                                return False
+                    elif self.get_size() == 4:
+                        if pos[0] == ship.x:
+                            if pos[1] >= ship.y - 3 and pos[1] <= ship.y + ship.size - 1:
+                                print("Could not move ship {} (pos {} {}) because its colliding with ship {} (pos {} {})".format(
+                                self.name, self.x, self.y, ship.name, ship.x, ship.y))
+                                return False
 
         for x in player2:
             if not x == self:
                 if pos[0] == x.x:
-                    if pos[1] >= x.y and pos[1] <= x.y - x.size - 1:
+                    if pos[1] >= x.y - x.size + 1 and pos[1] <= x.y - 1:
                         print("Could not move ship {} (pos {} {}) because its colliding with ship {} (pos {} {})".format(
                             self.name, self.x, self.y, x.name, x.x, x.y))
                         return False
-                # elif pos[1] >= x.y - x.size and pos[1] <= x.y:
-                #    return False
+                        # elif pos[1] >= x.y - x.size and pos[1] <= x.y:
+                        #    return False
 
         return True
 
@@ -87,6 +104,7 @@ class MainShip:
                 elif event.key == pygame.K_l:
                     self.move_ship -= 1
                     self.turn_ship()
+                    print(self.get_size())
                 time.sleep(0.15)
 
     def position(self):
@@ -200,7 +218,7 @@ class Amadea(MainShip):
         self.y = y
         self.health = 4
         self.size = 4
-        self.move_ship = 1
+        self.move_ship = 100
         self.offensive_range = 4
         self.defensive_range = 5
         self.damage = 1
