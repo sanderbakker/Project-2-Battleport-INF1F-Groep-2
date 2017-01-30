@@ -17,6 +17,12 @@ class Highscores:
             if event.type == pygame.QUIT:
                 # Give the signal to quit
                 return True
+            mouse = pygame.mouse.get_pos()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if mouse[0] > 350 and mouse[0] < 450:
+                    if mouse[1] > math.ceil(7 / 8 * (self.height - self.distance_border * 2)) and mouse[1] < math.ceil(
+                                            7 / 8 * (self.height - self.distance_border * 2)) + 35:
+                        return True
         return False
 
     def show(self):
@@ -25,6 +31,7 @@ class Highscores:
             self.draw_box()
             self.add_text("Highscores")
             self.get_highscores()
+            self.add_return()
             pygame.display.flip()
 
     def draw_frame(self):
@@ -58,5 +65,6 @@ class Highscores:
             self.screen.blit(score_result, ((self.width/2 + 65), x))
             x = x + 25
         return player
-
+    def add_return(self):
+        pygame.draw.rect(self.screen, (48, 148, 51), pygame.Rect((self.width/2 - 50, math.ceil(7/8 * (self.height - self.distance_border * 2))), (100, 35)))
 

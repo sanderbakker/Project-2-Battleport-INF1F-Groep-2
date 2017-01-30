@@ -76,7 +76,7 @@ class Menu:
         x = self.start_point
         fonts = pygame.font.SysFont("arial", 20)
         start = fonts.render("Start", 1, (0, 0, 0))
-        stop = fonts.render("Stop", 1, (0, 0, 0))
+        stop = fonts.render("Quit", 1, (0, 0, 0))
         highscores = fonts.render("Highscores", 1, (0, 0, 0))
         stop_position = (stop.get_rect())
         start_position = (start.get_rect())
