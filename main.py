@@ -38,6 +38,8 @@ ship_list_player1 = []
 ship_list_player2 = []
 count = 0
 p1_count, p2_count, count = 0, 0, 0
+save = saveload.Save
+load = saveload.Load
 
 """Instantiate ships player 1"""
 Furgo = ships.Saltire("Furgo Saltire", 0, 0, 'red')
@@ -119,7 +121,6 @@ while not Game.events():
 
 
     """Start ship placement/game logic (WIP)"""
-
     if click:
         count += 1
 
@@ -204,14 +205,16 @@ while not Game.events():
         if ship.get_select():
             sidebar_screen.set_ship(ship)
             ship.movement(Game.get_event(), ship_list_player1, ship_list_player2)
-            ship.locate_enemy_ships(Turn, Other_player)            
-
+            ship.locate_enemy_ships(Turn, Other_player)
 
     #def remove_ship():
     #        for i in range(3):
     #            if len(ship_list_player1) > 0:
     #                ship_list_player1.remove(ship_list_player1[i - 1])
 
+    """Save and load hooks"""
+    save.sendsave("", Game.get_event())
+    load.getsave("", Game.get_event())
 
     #remove_ship()
     sidebar_screen.show_instructions()
