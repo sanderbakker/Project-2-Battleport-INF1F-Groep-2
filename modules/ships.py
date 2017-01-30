@@ -32,27 +32,88 @@ class MainShip:
     def get_select(self): 
         return self.select
 
-    def canGoHere(self, pos, player1, player2):
-        for x in player1:
+    def get_size(self):
+        return self.size
 
-            if not x == self:
-                if pos[0] == x.x:
-                    if pos[1] >= x.y and pos[1] <= x.y + x.size - 1:
-                        print("Could not move ship {} (pos {} {}) because its colliding with ship {} (pos {} {})".format(
-                            self.name, self.x, self.y, x.name, x.x, x.y))
-                        return False
+    def canGoHere(self, pos, list_player1, list_player2):
 
-        for x in player2:
-            if not x == self:
-                if pos[0] == x.x:
-                    if pos[1] >= x.y and pos[1] <= x.y - x.size - 1:
+        for ship in list_player1:
+
+            if not ship == self:
+                if self.get_size() == 2:
+                    if pos[0] == ship.x:
+                        if pos[1] >= ship.y - 1 and pos[1] <= ship.y + ship.size - 1:
+                            print("Could not move ship {} (pos {} {}) because its colliding with ship {} (pos {} {})".format(
+                            self.name, self.x, self.y, ship.name, ship.x, ship.y))
+                            return False
+                elif self.get_size() == 3:
+                    if pos[0] == ship.x:
+                        if pos[1] >= ship.y - 2 and pos[1] <= ship.y + ship.size - 1:
+                            print("Could not move ship {} (pos {} {}) because its colliding with ship {} (pos {} {})".format(
+                            self.name, self.x, self.y, ship.name, ship.x, ship.y))
+                            return False
+                elif self.get_size() == 4:
+                    if pos[0] == ship.x:
+                        if pos[1] >= ship.y - 3 and pos[1] <= ship.y + ship.size - 1:
+                            print("Could not move ship {} (pos {} {}) because its colliding with ship {} (pos {} {})".format(
+                            self.name, self.x, self.y, ship.name, ship.x, ship.y))
+                            return False
+
+        for ship in list_player2:
+            if not ship == self:
+                if pos[0] == ship.x:
+                    if pos[1] >= ship.y - 1 and pos[1] <= ship.y + ship.size - 1:
                         print("Could not move ship {} (pos {} {}) because its colliding with ship {} (pos {} {})".format(
-                            self.name, self.x, self.y, x.name, x.x, x.y))
+                            self.name, self.x, self.y, ship.name, ship.x, ship.y))
                         return False
-                # elif pos[1] >= x.y - x.size and pos[1] <= x.y:
-                #    return False
 
         return True
+        
+    def get_ship_list_cords(self, Player, p):
+        ship_list = []
+        for ship in Player.get_saved_ships():
+
+            full_ship = []
+            for i in range(ship.get_size()):
+                full_ship.append((ship.x, p(ship.y, i)))
+
+            ship_list.append(full_ship)
+
+        return ship_list
+
+    def get_ship(self, ship, p):
+        full_ship = []
+        for i in range(ship.get_size()):
+            full_ship.append((ship.x, p(ship.y, i)))
+
+        return full_ship
+
+    def locate_enemy_ships(self, Turn, Enemy):
+        Player = Turn.get_player()
+        if self.check_if_vertical():
+            ship_range = self.offensive_range
+        else:
+            ship_range = self.defensive_range
+
+        enemy_ship_list     = self.get_ship_list_cords(Enemy, lambda x, y: x + y)
+        player_ship_list    = self.get_ship_list_cords(Player, lambda x, y: x + y)
+        player_list         = self.get_ship(Turn.get_selected_ship(), lambda x, y: x + y)
+
+        top = []
+        bottom = []
+        left = []
+        right = []
+        for i in range(ship_range + 2):
+            top.append((self.x, self.y - i))
+            bottom.append((self.x, self.y - i))
+
+            for a in range(self.size):
+                left.append((self.x - a, self.y))
+                right.append((self.x + a, self.y))
+
+        for enemy_ship in enemy_ship_list:
+           if(set(enemy_ship).intersection(set(top))):
+                print('biem')
 
 
     def movement(self, event, player1, player2):
@@ -87,6 +148,7 @@ class MainShip:
                 elif event.key == pygame.K_l:
                     self.move_ship -= 1
                     self.turn_ship()
+
                 time.sleep(0.15)
 
     def position(self):
@@ -152,7 +214,7 @@ class Saltire(MainShip):
         self.y = y
         self.health = 2
         self.size = 2
-        self.move_ship = 100
+        self.move_ship = 3
         self.offensive_range = 2
         self.defensive_range = 3
         self.damage = 1
@@ -172,11 +234,11 @@ class Windsurf(MainShip):
     def __init__(self, name, x, y, color = 'red'):
         super().__init__(name, x, y, color)
         self.name = name
-        self.x = x -100
+        self.x = x - 100
         self.y = y
         self.health = 3
         self.size = 3
-        self.move_ship = 100
+        self.move_ship = 2
         self.offensive_range = 3
         self.defensive_range = 4
         self.damage = 1

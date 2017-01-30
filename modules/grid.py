@@ -97,7 +97,7 @@ class Grid:
          
     def Place_Player_1(self, ship_number, ship):
         screen = self.screen
-        transparant = (1, 1, 1, 0)
+        transparant = (212, 212, 212, 0)
         middle_box = ((self.opacity_grid/self.number_of_blocks) / 2)
         rect_x = ((ship.x * (middle_box)) + middle_box * (ship.x - 2)) + self.move_grid
         rect_y = ((ship.y * (middle_box)) + middle_box * (ship.y - 2)) + self.move_grid
@@ -189,7 +189,7 @@ class Grid:
 
     def Place_Player_2(self, ship_number, ship):
         screen = self.screen
-        transparant = (1, 1, 1, 0)
+        transparant = (212, 212, 212, 0)
         middle_box = ((self.opacity_grid / self.number_of_blocks) / 2)
         rect_x = ((ship.x * (middle_box)) + middle_box * (ship.x - 2)) + self.move_grid
         rect_y = ((ship.y * (middle_box)) + middle_box * (ship.y - 2)) + self.move_grid
