@@ -68,6 +68,52 @@ class MainShip:
                         return False
 
         return True
+        
+    def get_ship_list_cords(self, Player, p):
+        ship_list = []
+        for ship in Player.get_saved_ships():
+
+            full_ship = []
+            for i in range(ship.get_size()):
+                full_ship.append((ship.x, p(ship.y, i)))
+
+            ship_list.append(full_ship)
+
+        return ship_list
+
+    def get_ship(self, ship, p):
+        full_ship = []
+        for i in range(ship.get_size()):
+            full_ship.append((ship.x, p(ship.y, i)))
+
+        return full_ship
+
+    def locate_enemy_ships(self, Turn, Enemy):
+        Player = Turn.get_player()
+        if self.check_if_vertical():
+            ship_range = self.offensive_range
+        else:
+            ship_range = self.defensive_range
+
+        enemy_ship_list     = self.get_ship_list_cords(Enemy, lambda x, y: x + y)
+        player_ship_list    = self.get_ship_list_cords(Player, lambda x, y: x + y)
+        player_list         = self.get_ship(Turn.get_selected_ship(), lambda x, y: x + y)
+
+        top = []
+        bottom = []
+        left = []
+        right = []
+        for i in range(ship_range + 2):
+            top.append((self.x, self.y - i))
+            bottom.append((self.x, self.y - i))
+
+            for a in range(self.size):
+                left.append((self.x - a, self.y))
+                right.append((self.x + a, self.y))
+
+        for enemy_ship in enemy_ship_list:
+           if(set(enemy_ship).intersection(set(top))):
+                print('biem')
 
 
     def movement(self, event, player1, player2):
