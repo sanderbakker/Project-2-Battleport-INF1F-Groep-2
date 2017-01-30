@@ -192,14 +192,6 @@ while not Game.events():
                     ship.set_select()
                     time.sleep(0.15)
 
-                    """Collision testing (WIP)"""
-                    for x in range(0, len(ship_list_player1)):
-                        if ship_list_player1[i].x == ship_list_player1[0].x:
-                            if ship_list_player1[i].direction == 2:
-                                ship_list_player1[i].x += 1
-                            if ship_list_player1[i].direction == 3:
-                                ship_list_player1[i].x -= 1
-
     try:
         if count % 2 != 0 and count < 9:
             sidebar_screen.set_placing_ship(ship_list_player2[p2_count])
