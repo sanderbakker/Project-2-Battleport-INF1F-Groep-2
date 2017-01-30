@@ -1,5 +1,6 @@
 """Module containing ship classes"""
 import pygame, time
+from random import randint
 pygame.init()
 
 class MainShip:
@@ -68,7 +69,7 @@ class MainShip:
                         return False
 
         return True
-        
+
     def get_ship_list_cords(self, Player, p):
         ship_list = []
         for ship in Player.get_saved_ships():
@@ -99,21 +100,18 @@ class MainShip:
         player_ship_list    = self.get_ship_list_cords(Player, lambda x, y: x + y)
         player_list         = self.get_ship(Turn.get_selected_ship(), lambda x, y: x + y)
 
-        top = []
-        bottom = []
-        left = []
-        right = []
+        ship_range_cords = []
         for i in range(ship_range + 2):
-            top.append((self.x, self.y - i))
-            bottom.append((self.x, self.y - i))
+            ship_range_cords.append((self.x, self.y - i))
+            ship_range_cords.append((self.x, (self.y + self.size) + i))
 
             for a in range(self.size):
-                left.append((self.x - a, self.y))
-                right.append((self.x + a, self.y))
+                ship_range_cords.append((self.x - i, self.y))
+                ship_range_cords.append((self.x + i, self.y))
 
         for enemy_ship in enemy_ship_list:
-           if(set(enemy_ship).intersection(set(top))):
-                print('biem')
+           if(set(enemy_ship).intersection(set(ship_range_cords))):
+                print(randint(0,9))
 
 
     def movement(self, event, player1, player2):
@@ -248,7 +246,7 @@ class Windsurf(MainShip):
             self.image = "assets/boats/BoatB_2.png"
 
     def reset(self):
-        self.move_ship = 100
+        self.move_ship = 2
         self.offensive_range = 3
         self.defensive_range = 4
         self.damage = 1
@@ -262,7 +260,7 @@ class Amadea(MainShip):
         self.y = y
         self.health = 4
         self.size = 4
-        self.move_ship = 1
+        self.move_ship = 100
         self.offensive_range = 4
         self.defensive_range = 5
         self.damage = 1

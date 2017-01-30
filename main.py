@@ -204,6 +204,7 @@ while not Game.events():
         if ship.get_select():
             sidebar_screen.set_ship(ship)
             ship.movement(Game.get_event(), ship_list_player1, ship_list_player2)
+            ship.locate_enemy_ships(Turn, Other_player)            
 
 
     #def remove_ship():
