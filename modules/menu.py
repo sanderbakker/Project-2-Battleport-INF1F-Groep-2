@@ -3,6 +3,7 @@ import math
 import random
 import time
 from modules import highscores
+from modules import settings
 WHITE = (255 ,255 ,255)
 pygame.init()
 width_screen = 800
@@ -53,6 +54,14 @@ class Menu:
                          pygame.Rect((help_positon_x, self.distance_border),(position, position)))
         self.screen.blit(help_img, (help_positon_x, self.distance_border))
 
+    def add_settings(self, position):
+        help_img = pygame.image.load("assets/settings.png")
+        add_square_x = self.distance_border
+        settings_x = self.distance_border  + 5
+        pygame.draw.rect(self.screen, (212, 212, 212),
+                         pygame.Rect((add_square_x, self.distance_border),(position, position)))
+        self.screen.blit(help_img, (settings_x, self.distance_border + 5))
+
 
     def draw_button(self):
         # calculates the remaining space after the blocks are added
@@ -87,6 +96,7 @@ class Menu:
             menu.draw_frame()
             menu.add_logo()
             menu.add_help(40)
+            menu.add_settings(40)
             menu.draw_button()
             menu.show_instructions()
             pygame.display.flip()
@@ -107,7 +117,10 @@ class Menu:
                 # Give the signal to quit
                 sys.exit()
             mouse = pygame.mouse.get_pos()
-
+            if mouse[0] > 20 and mouse[0] < 60:
+                if mouse[1] > 20 and mouse[1] < 60:
+                    if event.type == pygame.MOUSEBUTTONDOWN:
+                        settings.Settings(800, 575).show()
             if (mouse[1] >= (math.ceil(((7/8) * self.height) - 35)) and mouse[1] <= math.ceil(7/8 * self.height)):
                 if (mouse[0] >= coordinates and mouse[0] <= coordinates + self.width_blocks):
                     if event.type == pygame.MOUSEBUTTONDOWN:

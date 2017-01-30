@@ -9,28 +9,29 @@ height = 575
 sound = 0
 # Set height and width of the screen
 
-
 class Settings:
-    def __init__(self, width_screen, height):
-        self.width_screen = width_screen
+    def __init__(self, width, height):
+        self.width = width
         self.height = height
-        self.display = ((width_screen, height))
-        self.screen = pygame.display.set_mode(self.display)
-
-    def background(self):
-        settback = pygame.image.load("assets/window.png")
-        self.screen.blit(settback, (0, 0))
-
-    def sound_button(self, position):
-        sound_on = pygame.image.load("assets/sound_on.png")
-        sound_off = pygame.image.load("assets/sound_off.png")
-        sound_onresize = pygame.transform.scale(sound_on, (50, 50))
-        sound_offresize = pygame.transform.scale(sound_off, (50, 50))
-        self.screen.blit(sound_onresize, (0,0))
+        self.screen = pygame.display.set_mode((self.width, self.height))
+        self.distance_border = 20
+        #self.image = pygame.image.load("highscores.png")
+        #self.add_background()
+    def process_events(self):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                # Give the signal to quit
+                return True
+        return False
 
     def show(self):
-            self.background()
-            self.sound_button()
+        while not self.process_events():
+            self.draw_frame()
             pygame.display.flip()
 
-Settings(width_screen, height)
+    def draw_frame(self):
+        pygame.draw.rect(self.screen, (212, 212, 212),
+                         pygame.Rect((self.distance_border, self.distance_border),
+                                     ((self.width - self.distance_border * 2), (self.height - self.distance_border * 2))))
+
+#Settings(width_screen, height).show()
