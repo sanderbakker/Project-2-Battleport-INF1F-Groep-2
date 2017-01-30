@@ -2,7 +2,6 @@
 import pygame, time
 pygame.init()
 
-
 class MainShip:
     """Main class containing the base values & methods"""
     def __init__(self, name, x, y, color = 'red'):
@@ -33,7 +32,29 @@ class MainShip:
     def get_select(self): 
         return self.select
 
-    def movement(self, event):
+    def canGoHere(self, pos, player1, player2):
+        for x in player1:
+            if not x == self:
+                if pos[0] == x.x:
+                    if pos[1] >= x.y - x.size and pos[1] <= x.y:
+                        print("Could not move ship {} (pos {} {}) because its colliding with ship {} (pos {} {})".format(
+                            self.name, self.x, self.y, x.name, x.x, x.y))
+                        return False
+
+        for x in player2:
+            if not x == self:
+                if pos[0] == x.x:
+                    if pos[1] >= x.y - x.size + 1 and pos[1] <= x.y:
+                        print("Could not move ship {} (pos {} {}) because its colliding with ship {} (pos {} {})".format(
+                            self.name, self.x, self.y, x.name, x.x, x.y))
+                        return False
+                # elif pos[1] >= x.y - x.size and pos[1] <= x.y:
+                #    return False
+
+        return True
+
+
+    def movement(self, event, player1, player2):
         """Allows for movement on the grid"""
         # if select:
         #     print("You selected: " + self.name)
@@ -43,21 +64,21 @@ class MainShip:
 
         if self.move_ship > 0:
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_UP:
+                if event.key == pygame.K_UP and self.canGoHere((self.x, self.y - 1), player1, player2):
                     self.y -= 1
                     self.move_ship -= 1
                     self.direction = 1
-                elif event.key == pygame.K_LEFT:
+                elif event.key == pygame.K_LEFT and self.canGoHere((self.x - 1, self.y), player1, player2):
                     self.x -= 1
                     self.move_ship -= 1
                     self.direction = 2
                     #self.select = False
-                elif event.key == pygame.K_RIGHT:
+                elif event.key == pygame.K_RIGHT and self.canGoHere((self.x + 1, self.y), player1, player2):
                     self.x += 1
                     self.move_ship -= 1
                     self.direction = 3
                     #self.select = False
-                elif event.key == pygame.K_DOWN:
+                elif event.key == pygame.K_DOWN and self.canGoHere((self.x, self.y + 1), player1, player2):
                     self.y += 1
                     self.move_ship -= 1
                     self.direction = 4
