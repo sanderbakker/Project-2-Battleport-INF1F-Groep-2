@@ -48,7 +48,7 @@ ship_list_player1.extend([Furgo, Silver, Windsurf, Merapi])
 ship_list_player1[0].y, ship_list_player1[1].y, ship_list_player1[2].y, ship_list_player1[3].y = 19, 18, 18, 17
 
 """Instantiate ships player 2"""
-Santa = ships.Saltire("Santa Betiina", 0, 0, 'blue')
+Santa = ships.Saltire("Santa Bettina", 0, 0, 'blue')
 Sea = ships.Windsurf("Sea Spirit", 0, 0, 'blue')
 Intensity = ships.Windsurf("Intensity", 0, 0, 'blue')
 Amadea = ships.Amadea("Amadea", 0, 0, 'blue')
