@@ -302,6 +302,9 @@ class action:
 	def use_Sonar(self):
 		self.Turn.get_other_player().delete_mine()
 
+	def use_Adrenaline_rush(self):
+		self.Turn.get_selected_ship().add_moves(1)
+
 	def use_Rally(self):
 		for ship in self.Turn.get_ships():
 			ship.add_moves(1)
