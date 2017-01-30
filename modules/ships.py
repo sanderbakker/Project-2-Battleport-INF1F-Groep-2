@@ -34,18 +34,18 @@ class MainShip:
 
     def canGoHere(self, pos, player1, player2):
         for x in player1:
-            for l in range(self.size):
-                if not x == self:
-                    if pos[0] == x.x:
-                        if pos[1] >= x.y - x.size and pos[1] <= x.y:
-                            print("Could not move ship {} (pos {} {}) because its colliding with ship {} (pos {} {})".format(
-                                self.name, self.x, self.y, x.name, x.x, x.y))
-                            return False
+
+            if not x == self:
+                if pos[0] == x.x:
+                    if pos[1] >= x.y and pos[1] <= x.y + x.size - 1:
+                        print("Could not move ship {} (pos {} {}) because its colliding with ship {} (pos {} {})".format(
+                            self.name, self.x, self.y, x.name, x.x, x.y))
+                        return False
 
         for x in player2:
             if not x == self:
                 if pos[0] == x.x:
-                    if pos[1] >= x.y - x.size + 1 and pos[1] <= x.y:
+                    if pos[1] >= x.y and pos[1] <= x.y - x.size - 1:
                         print("Could not move ship {} (pos {} {}) because its colliding with ship {} (pos {} {})".format(
                             self.name, self.x, self.y, x.name, x.x, x.y))
                         return False
