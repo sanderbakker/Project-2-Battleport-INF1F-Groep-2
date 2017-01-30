@@ -211,7 +211,7 @@ while not Game.events():
     for ship in Turn.get_ships():
         if ship.get_select():
             sidebar_screen.set_ship(ship)
-            ship.movement(Game.get_event())
+            ship.movement(Game.get_event(), ship_list_player1, ship_list_player2)
 
 
     #def remove_ship():
