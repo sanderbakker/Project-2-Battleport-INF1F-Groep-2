@@ -34,12 +34,13 @@ class MainShip:
 
     def canGoHere(self, pos, player1, player2):
         for x in player1:
-            if not x == self:
-                if pos[0] == x.x:
-                    if pos[1] >= x.y - x.size and pos[1] <= x.y:
-                        print("Could not move ship {} (pos {} {}) because its colliding with ship {} (pos {} {})".format(
-                            self.name, self.x, self.y, x.name, x.x, x.y))
-                        return False
+            for l in range(self.size):
+                if not x == self:
+                    if pos[0] == x.x:
+                        if pos[1] >= x.y - x.size and pos[1] <= x.y:
+                            print("Could not move ship {} (pos {} {}) because its colliding with ship {} (pos {} {})".format(
+                                self.name, self.x, self.y, x.name, x.x, x.y))
+                            return False
 
         for x in player2:
             if not x == self:
@@ -147,11 +148,11 @@ class Saltire(MainShip):
     def __init__(self, name, x, y, color = 'red'):
         super().__init__(name, x, y, color)
         self.name = name
-        self.x = x + 21
+        self.x = x -100
         self.y = y
         self.health = 2
         self.size = 2
-        self.move_ship = 3
+        self.move_ship = 100
         self.offensive_range = 2
         self.defensive_range = 3
         self.damage = 1
@@ -171,11 +172,11 @@ class Windsurf(MainShip):
     def __init__(self, name, x, y, color = 'red'):
         super().__init__(name, x, y, color)
         self.name = name
-        self.x = x + 22
+        self.x = x -100
         self.y = y
         self.health = 3
         self.size = 3
-        self.move_ship = 2
+        self.move_ship = 100
         self.offensive_range = 3
         self.defensive_range = 4
         self.damage = 1
@@ -185,7 +186,7 @@ class Windsurf(MainShip):
             self.image = "assets/boats/BoatB_2.png"
 
     def reset(self):
-        self.move_ship = 2
+        self.move_ship = 100
         self.offensive_range = 3
         self.defensive_range = 4
         self.damage = 1
@@ -195,7 +196,7 @@ class Amadea(MainShip):
     def __init__(self, name, x, y, color = 'red'):
         super().__init__(name, x, y, color)
         self.name = name
-        self.x = x + 23
+        self.x = x -100
         self.y = y
         self.health = 4
         self.size = 4
