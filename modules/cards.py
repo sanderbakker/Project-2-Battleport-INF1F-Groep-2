@@ -1,4 +1,5 @@
 import os, pygame, random
+from modules import mine
 
 class card:
 	def __init__(self):
@@ -49,12 +50,15 @@ class card:
 	def get_name(self):
 		return self.name
 
+	# used when the card is unclicked
 	def unset_clicked(self):
 		self.clicked = False
 
+	# used when the card is clicked
 	def set_clicked(self):
 		self.clicked = True
 
+	# retrieves if the card has been clicked and is still in its clicked state.
 	def get_clicked(self):
 		return self.clicked 		
 
@@ -83,8 +87,8 @@ class normal_card:
 			'EMP_upgrade': 4,
 			'Reinforced_hull': 2,
 			'Sonar': 4,
-			'Smokescreen': 2,
-			'Sabotage': 2,
+			#'Smokescreen': 2,
+			#'Sabotage': 2,
 			'Backup': 2,
 			'Extra_fuel_II': 4,
 			'Extra_fuel': 2,
@@ -94,6 +98,7 @@ class normal_card:
 
 		return card_list
 
+	# grabs a pseudo random card from the __card_list()
 	def get_random(self):
 		card_list = self.__card_list()
 		choice_list = []
@@ -128,7 +133,7 @@ class normal_card:
 		self.Card.set_velocity(2)
 		self.Card.set_image('Offensive/Adv_rifling.png')
 		self.Card.set_wiki('Adv_rifling_wiki.jpg')
-		self.Card.set_name('Adv_rifling')
+		self.Card.set_name('Advanced_rifling')
 
 		return self.Card
 
@@ -165,7 +170,7 @@ class normal_card:
 		self.Card.set_velocity(4)
 		self.Card.set_image('Defensive/Sonar.jpg')
 		self.Card.set_wiki('Sonar_wiki.jpg')
-		self.Card.set_name('Sonar_wiki')
+		self.Card.set_name('Sonar')
 
 		return self.Card
 
@@ -276,19 +281,42 @@ class action:
 		return method()
 
 	def use_Extra_fuel(self):
-		self.Turn.add_steps(1)
+		self.Turn.get_selected_ship().add_moves(1)
 
 	def use_Extra_fuel_II(self):
-		self.Turn.add_steps(2)
+		self.Turn.get_selected_ship().add_moves(2)
+
+	def use_Reinforced_hull(self):
+		self.Turn.get_selected_ship().add_health(1)
 
 	def use_Backup(self):
 		self.Turn.add_normal_card(normal_card().get_random())
 		self.Turn.add_normal_card(normal_card().get_random())
 
 	def use_Naval_mine(self):
-		pass
+		x = mine.Mine().get_random_x()
+		y = mine.Mine().get_random_y()
 
+		self.Turn.add_mine((x,y))
+	
+	def use_Sonar(self):
+		self.Turn.get_other_player().delete_mine()
 
+	def use_Adrenaline_rush(self):
+		self.Turn.get_selected_ship().add_moves(1)
+
+	def use_Rally(self):
+		for ship in self.Turn.get_ships():
+			ship.add_moves(1)
+
+	def use_Rifling(self):
+		self.Turn.get_selected_ship().add_range(1)
+
+	def use_Advanced_rifling(self):
+		self.Turn.get_selected_ship().add_range(2)
+
+	def use_FMJ_upgrade(self):
+		self.Turn.get_selected_ship().add_damage(1)
 
 
 

@@ -1,5 +1,6 @@
 import pygame, math
 import random
+from modules import ships
 WHITE = (124, 124, 124)
 # adds some colors 
 pygame.init()
@@ -18,7 +19,10 @@ class Grid:
         self.move_grid = options['move_grid']
         #self.random_x = random.randint(1 ,20)
         #self.random_y = random.randint(1, 20)
-
+        self.ship_count0 = 0
+        self.ship_count2 = 0
+        self.ship_count3 = 0
+        self.ship_count1 = 0
         try:
             background_color = options['background_color']
             self.set_grid_color(options['background_color'])
@@ -91,13 +95,83 @@ class Grid:
                                     pygame.Rect((int(x_ship), int(y_ship)), (20,20)))
 
          
-    def Place_Player_1(self, rect_x, rect_y):
+    def Place_Player_1(self, ship_number, ship):
         screen = self.screen
-        
-        middle_box = ((self.opacity_grid/self.number_of_blocks) / 2)  
-        rect_x = ((rect_x * (middle_box)) + middle_box * (rect_x - 2)) + self.move_grid
-        rect_y = ((rect_y * (middle_box)) + middle_box * (rect_y - 2)) + self.move_grid
-        pygame.draw.rect(screen, (204, 0, 0), pygame.Rect((int(rect_x), int(rect_y)), (self.number_of_blocks, self.number_of_blocks)))
+        transparant = (1, 1, 1, 0)
+        middle_box = ((self.opacity_grid/self.number_of_blocks) / 2)
+        rect_x = ((ship.x * (middle_box)) + middle_box * (ship.x - 2)) + self.move_grid
+        rect_y = ((ship.y * (middle_box)) + middle_box * (ship.y - 2)) + self.move_grid
+        #rect = pygame.draw.rect(screen, (51, 102, 204),
+        #                 pygame.Rect((int(rect_x), int(rect_y)), (self.number_of_blocks, self.number_of_blocks)))
+        if ship_number == 0:
+            while self.ship_count0 < 1:
+                if ship.check_if_vertical() == False:
+                    pygame.draw.rect(screen, transparant,
+                                     pygame.Rect((int(rect_x), int(rect_y)),
+                                                 (ship.size * self.number_of_blocks, self.number_of_blocks)))
+                    image = pygame.image.load("assets/boats/BoatR_1.png")
+                    new_image = pygame.transform.rotate(image, 90)
+                    screen.blit(new_image, (rect_x, rect_y))
+                    self.ship_count0 += 1
+                else:
+                    pygame.draw.rect(screen, transparant,
+                                     pygame.Rect((int(rect_x), int(rect_y)),
+                                                 (self.number_of_blocks, ship.size * self.number_of_blocks)))
+                    image = pygame.image.load("assets/boats/BoatR_1.png")
+                    screen.blit(image, (rect_x, rect_y))
+                    self.ship_count0 += 1
+        elif ship_number == 1:
+            while self.ship_count1 < 1:
+                if ship.check_if_vertical() == False:
+                    pygame.draw.rect(screen, transparant,
+                                     pygame.Rect((int(rect_x), int(rect_y)),
+                                                 (ship.size * self.number_of_blocks, self.number_of_blocks)))
+                    image = pygame.image.load("assets/boats/BoatR_2.png")
+                    new_image = pygame.transform.rotate(image, 90)
+                    screen.blit(new_image, (rect_x, rect_y))
+                    self.ship_count1 += 1
+                else:
+                    pygame.draw.rect(screen, transparant,
+                                     pygame.Rect((int(rect_x), int(rect_y)),
+                                                 (self.number_of_blocks, ship.size *self.number_of_blocks)))
+                    image = pygame.image.load("assets/boats/BoatR_2.png")
+                    screen.blit(image, (rect_x, rect_y))
+                    self.ship_count1 += 1
+        elif ship_number == 2:
+            while self.ship_count2 < 1:
+                if ship.check_if_vertical() == False:
+                    pygame.draw.rect(screen, transparant,
+                                     pygame.Rect((int(rect_x), int(rect_y)),
+                                                 (ship.size * self.number_of_blocks, self.number_of_blocks)))
+                    image = pygame.image.load("assets/boats/BoatR_2.png")
+                    new_image = pygame.transform.rotate(image, 90)
+                    screen.blit(new_image, (rect_x, rect_y))
+                    self.ship_count2 += 2
+                else:
+                    pygame.draw.rect(screen, transparant,
+                                     pygame.Rect((int(rect_x), int(rect_y)),
+                                                 (self.number_of_blocks, ship.size *self.number_of_blocks)))
+                    image = pygame.image.load("assets/boats/BoatR_2.png")
+                    screen.blit(image, (rect_x, rect_y))
+                    self.ship_count2 += 2
+        elif ship_number == 3:
+            while self.ship_count3 < 1:
+                if ship.check_if_vertical() == False:
+                    pygame.draw.rect(screen, transparant,
+                                     pygame.Rect((int(rect_x), int(rect_y)),
+                                                 (ship.size * self.number_of_blocks, self.number_of_blocks)))
+                    image = pygame.image.load("assets/boats/BoatR_3.png")
+                    new_image = pygame.transform.rotate(image, 90)
+                    screen.blit(new_image, (rect_x, rect_y))
+                    self.ship_count3 += 1
+                else:
+                    pygame.draw.rect(screen, transparant,
+                                     pygame.Rect((int(rect_x), int(rect_y)),
+                                                 (self.number_of_blocks, ship.size * self.number_of_blocks)))
+                    image = pygame.image.load("assets/boats/BoatR_3.png")
+                    screen.blit(image, (rect_x, rect_y))
+                    self.ship_count3 += 1
+
 
     def Place_Mine(self, rect_x, rect_y):
         screen = self.screen
@@ -105,17 +179,89 @@ class Grid:
         middle_box = ((self.opacity_grid / self.number_of_blocks) / 2)
         rect_x = ((rect_x * (middle_box)) + middle_box * (rect_x - 2)) + self.move_grid
         rect_y = ((rect_y * (middle_box)) + middle_box * (rect_y - 2)) + self.move_grid
-        pygame.draw.rect(screen, (128, 128, 128),
-                         pygame.Rect((int(rect_x), int(rect_y)), (self.number_of_blocks, self.number_of_blocks)))
-
-    def Place_Player_2(self, rect_x, rect_y):
-        screen = self.screen
-
+        #pygame.draw.rect(screen, (128, 128, 128),
+        #                 pygame.Rect((int(rect_x), int(rect_y)), (self.number_of_blocks, self.number_of_blocks)))
+    def Turn_Ship(self, rect_x, rect_y, ship_number):
         middle_box = ((self.opacity_grid / self.number_of_blocks) / 2)
         rect_x = ((rect_x * (middle_box)) + middle_box * (rect_x - 2)) + self.move_grid
         rect_y = ((rect_y * (middle_box)) + middle_box * (rect_y - 2)) + self.move_grid
-        pygame.draw.rect(screen, (51, 102, 204),
-                         pygame.Rect((int(rect_x), int(rect_y)), (self.number_of_blocks, self.number_of_blocks)))
+        pygame.draw.rect(self.screen, (128, 128, 128),pygame.Rect( (rect_x, rect_y), (40, 20) ))
+
+    def Place_Player_2(self, ship_number, ship):
+        screen = self.screen
+        transparant = (1, 1, 1, 0)
+        middle_box = ((self.opacity_grid / self.number_of_blocks) / 2)
+        rect_x = ((ship.x * (middle_box)) + middle_box * (ship.x - 2)) + self.move_grid
+        rect_y = ((ship.y * (middle_box)) + middle_box * (ship.y - 2)) + self.move_grid
+
+        if ship_number == 0:
+            while self.ship_count0 < 1:
+                if ship.check_if_vertical() == False:
+                    pygame.draw.rect(screen, transparant,
+                                     pygame.Rect((int(rect_x), int(rect_y)),
+                                                 (2*self.number_of_blocks, self.number_of_blocks)))
+                    image = pygame.image.load("assets/boats/BoatB_1.png")
+                    new_image = pygame.transform.rotate(image, 90)
+                    screen.blit(new_image, (rect_x, rect_y))
+                    self.ship_count0 += 1
+                else:
+                    pygame.draw.rect(screen, transparant,
+                                     pygame.Rect((int(rect_x), int(rect_y)),
+                                                 (self.number_of_blocks, 2*self.number_of_blocks)))
+                    image = pygame.image.load("assets/boats/BoatB_1.png")
+                    screen.blit(image, (rect_x, rect_y))
+                    self.ship_count0 += 1
+        elif ship_number == 1:
+            while self.ship_count1 < 1:
+                if ship.check_if_vertical() == False:
+                    pygame.draw.rect(screen, transparant,
+                                     pygame.Rect((int(rect_x), int(rect_y)),
+                                                 (3 * self.number_of_blocks, self.number_of_blocks)))
+                    image = pygame.image.load("assets/boats/BoatB_2.png")
+                    new_image = pygame.transform.rotate(image, 90)
+                    screen.blit(new_image, (rect_x, rect_y))
+                    self.ship_count1 += 1
+                else:
+                    pygame.draw.rect(screen, transparant,
+                                     pygame.Rect((int(rect_x), int(rect_y)),
+                                                 (self.number_of_blocks, 3* self.number_of_blocks)))
+                    image = pygame.image.load("assets/boats/BoatB_2.png")
+                    screen.blit(image, (rect_x, rect_y))
+                    self.ship_count1 += 1
+        elif ship_number == 2:
+            while self.ship_count2 < 1:
+                if ship.check_if_vertical() == False:
+                    pygame.draw.rect(screen, transparant,
+                                     pygame.Rect((int(rect_x), int(rect_y)),
+                                                 (3 * self.number_of_blocks, self.number_of_blocks)))
+                    image = pygame.image.load("assets/boats/BoatB_2.png")
+                    new_image = pygame.transform.rotate(image, 90)
+                    screen.blit(new_image, (rect_x, rect_y))
+                    self.ship_count2 += 1
+                else:
+                    pygame.draw.rect(screen, transparant,
+                                     pygame.Rect((int(rect_x), int(rect_y)),
+                                                 (self.number_of_blocks, 3* self.number_of_blocks)))
+                    image = pygame.image.load("assets/boats/BoatB_2.png")
+                    screen.blit(image, (rect_x, rect_y))
+                    self.ship_count2 += 1
+        elif ship_number == 3:
+            while self.ship_count3 < 1:
+                if ship.check_if_vertical() == False:
+                    pygame.draw.rect(screen, transparant,
+                                     pygame.Rect((int(rect_x), int(rect_y)),
+                                                 (4 * self.number_of_blocks, self.number_of_blocks)))
+                    image = pygame.image.load("assets/boats/BoatB_3.png")
+                    new_image = pygame.transform.rotate(image, 90)
+                    screen.blit(new_image, (rect_x, rect_y))
+                    self.ship_count3 += 1
+                else:
+                    pygame.draw.rect(screen, transparant,
+                                     pygame.Rect((int(rect_x), int(rect_y)),
+                                                 (self.number_of_blocks, 4 * self.number_of_blocks)))
+                    image = pygame.image.load("assets/boats/BoatB_3.png")
+                    screen.blit(image, (rect_x, rect_y))
+                    self.ship_count3 += 1
 
     def set_grid_color(self, color):
         screen = self.screen
@@ -136,5 +282,14 @@ class Grid:
 
     def get_random_y(self):
         return random.randint(1, 20)
-    
-                                            
+
+    def reset_ship_counts(self):
+        self.ship_count2 = 0
+        self.ship_count1 = 0
+        self.ship_count0 = 0
+        self.ship_count3 = 0
+
+
+    def return_ship(self):
+        image = pygame.image.load("assets/boats/BoatB_3.png")
+        return image

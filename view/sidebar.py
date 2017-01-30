@@ -1,6 +1,7 @@
 import pygame
 import math
 import time
+from modules import cards
 
 pygame.init()
 class Show:
@@ -10,6 +11,7 @@ class Show:
 
 		self.Game 	= Game
 		self.Player = Turn.get_player()
+		self.Players = Players
 		if(self.Player.get_id() == 1):
 			self.Other_player = Players[2]
 		else:
@@ -36,8 +38,8 @@ class Show:
 
 		self.draw_sidebar()
 		self.draw_toolbar()
-		self.draw_skip_turn()
-		self.set_ship()
+		self.draw_skip_turn()	
+		#self.set_ship()
 		#self.draw_steps_left()
 		self.show_instructions()
 		self.show_menu()
@@ -82,8 +84,13 @@ class Show:
 	def draw_skip_turn(self):
 		button = self.Game.button({'color': (211,211,211), 'start_x': self.start + 5, 'start_y': 65, 'width': self.width - 10, 'height': 40}, 'End turn')
 		if(button):
-			print(self.Other_player.get_name())
-			self.Turn.set_player(self.Other_player)
+			self.Turn.add_normal_card(cards.normal_card().get_random())
+
+			# reset ship movement and powerups
+			for ship in self.Turn.get_ships():
+				ship.reset()
+
+			self.Turn.set_player(self.Other_player, self.Player)
 			time.sleep(0.25)
 
 	def draw_steps_left(self):
@@ -105,18 +112,29 @@ class Show:
 	def set_wiki(self, card):
 		self.Game.get_screen().blit(card.get_wiki(), (self.start + 65, (280)))
 
-		button = self.Game.button({'color': (211,211,211), 'start_x': self.start + 65, 'start_y': 280 + 220, 'width': 127, 'height': 40})
+		button = self.Game.button({'color': (211,211,211), 'start_x': self.start + 65, 'start_y': 280 + 220, 'width': 127, 'height': 40}, 'Use Card')
 
 		if(button):
 			self.Turn.use_normal_card(card)
 
 
-	def set_ship(self):
-		ship = self.Turn.get_selected_ship()
-		if(ship):
-			self.Game.set_font('inherit', (0,0,0), 'inherit')
-			self.Game.draw_text('Health: ' + str(ship.get_health()), (self.start, 120))
-			self.Game.draw_text('Moves left: ' + str(ship.get_moves()), (self.start, 140))
+	def set_ship(self, ship):
+		#ship = self.Turn.get_selected_ship()
+		self.Game.set_font('inherit', (0,0,0), 'inherit')
+		self.Game.draw_text(str(ship.get_name()), (self.start, 120))
+		self.Game.draw_text('Health: ' + str(ship.get_health()) + ' | Moves left: ' + str(ship.get_moves()), (self.start, 140))
+		self.Game.draw_text('O: ' + str(ship.get_offensive_range()) + ' | D: ' + str(ship.get_defensive_range()) + ' | A: ' + str(ship.get_damage()), (self.start, 160))
+
+	def set_placing_ship(self, ship):
+		if not ship:
+			self.placing_ship = False
+			return 
+
+		self.Game.set_font('inherit', (0,0,0), 'inherit')
+		self.Game.draw_text(ship.get_name(), (self.start + 80, 180))
+		image = pygame.image.load(ship.get_image())
+		self.Game.get_screen().blit(image, (self.start + 100, 200))
+		self.placing_ship = True
 			 									
 	def show_menu(self):
 		event = self.Game.get_event()
