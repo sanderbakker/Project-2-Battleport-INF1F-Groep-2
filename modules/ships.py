@@ -168,7 +168,7 @@ class Saltire(MainShip):
         self.y = y
         self.health = 2
         self.size = 2
-        self.move_ship = 100
+        self.move_ship = 3
         self.offensive_range = 2
         self.defensive_range = 3
         self.damage = 1
@@ -188,11 +188,11 @@ class Windsurf(MainShip):
     def __init__(self, name, x, y, color = 'red'):
         super().__init__(name, x, y, color)
         self.name = name
-        self.x = x -100
+        self.x = x - 100
         self.y = y
         self.health = 3
         self.size = 3
-        self.move_ship = 100
+        self.move_ship = 2
         self.offensive_range = 3
         self.defensive_range = 4
         self.damage = 1
@@ -216,7 +216,7 @@ class Amadea(MainShip):
         self.y = y
         self.health = 4
         self.size = 4
-        self.move_ship = 100
+        self.move_ship = 1
         self.offensive_range = 4
         self.defensive_range = 5
         self.damage = 1
