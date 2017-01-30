@@ -124,27 +124,34 @@ while not Game.events():
         count += 1
 
         if count == 1:
+            menu.Sounds().place_ship()
             Turn = player.Turn(Player1)
             Turn.add_normal_card(cards.normal_card().get_random())
             Turn.add_normal_card(cards.normal_card().get_random())
         if count == 2:
+            menu.Sounds().place_ship()
             Turn = player.Turn(Player2)
             Turn.add_normal_card(cards.normal_card().get_random())
             Turn.add_normal_card(cards.normal_card().get_random())
         if count % 2 != 0 and count < 9:
             if click[0] == ship_list_player1[0].x:
+                menu.Sounds().error()
                 print("Invalid placement, try again.")
                 count -= 1
             elif click[0] == ship_list_player1[1].x:
+                menu.Sounds().error()
                 print("Invalid placement, try again.")
                 count -= 1
             elif click[0] == ship_list_player1[2].x:
+                menu.Sounds().error()
                 print("Invalid placement, try again.")
                 count -= 1
             elif click[0] == ship_list_player1[3].x:
+                menu.Sounds().error()
                 print("Invalid placement, try again.")
                 count -= 1
             else:
+                menu.Sounds().place_ship()
                 ship_list_player1[p1_count].x = click[0]
                 p1_count += 1
 
@@ -152,18 +159,23 @@ while not Game.events():
 
         elif count % 2 == 0 and count < 9:
             if click[0] == ship_list_player2[0].x:
+                menu.Sounds().error()
                 print("Invalid placement, try again.")
                 count -= 1
             elif click[0] == ship_list_player2[1].x:
+                menu.Sounds().error()
                 print("Invalid placement, try again.")
                 count -= 1
             elif click[0] == ship_list_player2[2].x:
+                menu.Sounds().error()
                 print("Invalid placement, try again.")
                 count -= 1
             elif click[0] == ship_list_player2[3].x:
+                menu.Sounds().error()
                 print("Invalid placement, try again.")
                 count -= 1
             else:
+                menu.Sounds().place_ship()
                 ship_list_player2[p2_count].x = click[0]
                 ship_list_player2[p2_count].y = 1
                 p2_count += 1

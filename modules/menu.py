@@ -1,11 +1,13 @@
 import pygame, sys
 import math
+import random
+import time
 from modules import highscores
 WHITE = (255 ,255 ,255)
 pygame.init()
 width_screen = 800
 height = 575
-
+pygame.mixer.init(frequency=22050, size=-16, channels=2, buffer=4096)
 # Set height and width of the screen
 
 
@@ -109,12 +111,38 @@ class Menu:
             if (mouse[1] >= (math.ceil(((7/8) * self.height) - 35)) and mouse[1] <= math.ceil(7/8 * self.height)):
                 if (mouse[0] >= coordinates and mouse[0] <= coordinates + self.width_blocks):
                     if event.type == pygame.MOUSEBUTTONDOWN:
+                        Sounds().exit_sound()
+                        time.sleep(0.3)
                         sys.exit()
                 elif (mouse[0] >= (coordinates + self.width_blocks +  self.distance_between) and mouse[0] <= (coordinates + self.width_blocks + self.distance_between + self.width_blocks)):
                     if event.type == pygame.MOUSEBUTTONDOWN:
+                        Sounds().click_sound()
+                        time.sleep(0.2)
                         return True
                 elif (mouse[0] >= 565 and mouse[0] <= 665):
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         highscores.Highscores(800, 575).show()
         return False
 
+
+class Sounds:
+    def play_explosion(self):
+        explosion_sound = pygame.mixer.Sound("assets/sounds/explosion_1.wav")
+        pygame.mixer.Sound.play(explosion_sound)
+
+    def place_ship(self):
+        place_sounds = ["assets/sounds/place_ship_0.wav","assets/sounds/place_ship_1.wav"]
+        placing_sound = pygame.mixer.Sound(random.choice(place_sounds))
+        pygame.mixer.Sound.play(placing_sound)
+
+    def exit_sound(self):
+        exit_sfx = pygame.mixer.Sound("assets/sounds/exit_sound.wav")
+        pygame.mixer.Sound.play(exit_sfx)
+
+    def click_sound(self):
+        click_sfx = pygame.mixer.Sound("assets/sounds/click_sound.wav")
+        pygame.mixer.Sound.play(click_sfx)
+
+    def error(self):
+        error_sfx = pygame.mixer.Sound("assets/sounds/error.wav")
+        pygame.mixer.Sound.play(error_sfx)
