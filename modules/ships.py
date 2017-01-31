@@ -74,6 +74,12 @@ class MainShip:
                                 "Could not move ship {} (pos {} {}) because its colliding with ship {} (pos {} {})".format(
                                     self.name, self.x, self.y, ship.name, ship.x, ship.y))
                             return False
+                    elif pos[0] == ship.x:
+                        if pos[1] >= ship.y - (self.get_size() - 1) and pos[0] <= ship.y + ship.size - 1:
+                            print(
+                                "Could not move ship {} (pos {} {}) because its colliding with ship {} (pos {} {})".format(
+                                    self.name, self.x, self.y, ship.name, ship.x, ship.y))
+                            return False
 
         return True
 
@@ -154,36 +160,37 @@ class MainShip:
         """Loops through until select returns false"""
 
         if self.move_ship > 0:
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_UP and self.canGoHere((self.x, self.y - 1), player1, player2):
-                    Sounds().waves()
-                    self.y -= 1
-                    self.move_ship -= 1
-                    self.direction = 1
-                elif event.key == pygame.K_LEFT and self.canGoHere((self.x - 1, self.y), player1, player2):
-                    Sounds().waves()
-                    self.x -= 1
-                    self.move_ship -= 1
-                    self.direction = 2
-                    #self.select = False
-                elif event.key == pygame.K_RIGHT and self.canGoHere((self.x + 1, self.y), player1, player2):
-                    Sounds().waves()
-                    self.x += 1
-                    self.move_ship -= 1
-                    self.direction = 3
-                    #self.select = False
-                elif event.key == pygame.K_DOWN and self.canGoHere((self.x, self.y + 1), player1, player2):
-                    Sounds().waves()
-                    self.y += 1
-                    self.move_ship -= 1
-                    self.direction = 4
-                    #select = False
-                elif event.key == pygame.K_l:
-                    Sounds().waves()
-                    self.move_ship -= 1
-                    self.turn_ship()
+            if self.vertical == True:
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_UP and self.canGoHere((self.x, self.y - 1), player1, player2):
+                        Sounds().waves()
+                        self.y -= 1
+                        self.move_ship -= 1
+                        self.direction = 1
+                    elif event.key == pygame.K_LEFT and self.canGoHere((self.x - 1, self.y), player1, player2):
+                        Sounds().waves()
+                        self.x -= 1
+                        self.move_ship -= 1
+                        self.direction = 2
+                        #self.select = False
+                    elif event.key == pygame.K_RIGHT and self.canGoHere((self.x + 1, self.y), player1, player2):
+                        Sounds().waves()
+                        self.x += 1
+                        self.move_ship -= 1
+                        self.direction = 3
+                        #self.select = False
+                    elif event.key == pygame.K_DOWN and self.canGoHere((self.x, self.y + 1), player1, player2):
+                        Sounds().waves()
+                        self.y += 1
+                        self.move_ship -= 1
+                        self.direction = 4
+                        #select = False
+                    elif event.key == pygame.K_l:
+                        Sounds().waves()
+                        self.move_ship -= 1
+                        self.turn_ship()
 
-                time.sleep(0.15)
+                    time.sleep(0.15)
 
     def position(self):
         """Turns ship 180 degrees, allowing for offensive and defensive positioning"""
