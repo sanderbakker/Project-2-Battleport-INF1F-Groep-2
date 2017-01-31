@@ -1,6 +1,7 @@
-import pygame, pymysql, sys
+import math, pygame, pymysql, sys
 from modules import player
 from modules import mysql
+
 pygame.init()
 
 class win_screen:
@@ -31,6 +32,7 @@ class win_screen:
 			self.draw_frame()
 			self.draw_winner()
 			self.get_highscores()
+			self.add_return()
 			pygame.display.flip()
 
 	def draw_winner(self):
@@ -57,6 +59,10 @@ class win_screen:
 			self.screen.blit(score_result, ((self.width / 2 + 65), x))
 			x = x + 25
 		return player
+
+	def add_return(self):
+		pygame.draw.rect(self.screen, (48, 148, 51), pygame.Rect(
+			(self.width / 2 - 50, math.ceil(7 / 8 * (self.height - self.distance_border * 2))), (100, 35)))
 
 #player1 = player.Player(1, "Sander")
 #player2 = player.Player(2, "Lennart")
