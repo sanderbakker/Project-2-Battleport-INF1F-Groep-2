@@ -304,6 +304,7 @@ class action:
 
 	def use_Adrenaline_rush(self):
 		self.Turn.get_selected_ship().add_moves(1)
+		self.Turn.get_selected_ship().add_attack_count(1)
 
 	def use_Rally(self):
 		for ship in self.Turn.get_ships():
