@@ -194,37 +194,40 @@ class MainShip:
                         self.y -= 1
                         self.move_ship -= 1
                         self.direction = 1
-                        time.sleep(0.15)
-                        if(self.check_colsion(player1, player2)):
+                        if(self.check_colsion(player1, player2) or self.y < 1):
                             self.y +=1
-                            time.sleep(0.15)
+                            self.move_ship += 1
+                        time.sleep(0.15)                            
                     elif event.key == pygame.K_LEFT:
                         Sounds().waves()
                         self.x -= 1
                         self.move_ship -= 1
                         self.direction = 2
-                        time.sleep(0.15)
-                        if(self.check_colsion(player1, player2)):
+                        if(self.check_colsion(player1, player2) or self.x < 1):
                             self.x += 1
-                            time.sleep(0.15)
+                            self.move_ship += 1
+
+                        time.sleep(0.15)                            
                     elif event.key == pygame.K_RIGHT:
                         Sounds().waves()
                         self.x += 1
                         self.move_ship -= 1
                         self.direction = 3
-                        time.sleep(0.15)
-                        if(self.check_colsion(player1, player2)):
+                        if(self.check_colsion(player1, player2) or self.x > 20):
                             self.x -= 1
-                            time.sleep(0.15)
+                            self.move_ship += 1
+
+                        time.sleep(0.15)                            
                     elif event.key == pygame.K_DOWN:
                         Sounds().waves()
                         self.y += 1
                         self.move_ship -= 1
                         self.direction = 4
-                        time.sleep(0.15)
-                        if(self.check_colsion(player1, player2)):
+                        if(self.check_colsion(player1, player2) or self.y > (21 - self.get_size())):
                             self.y -= 1
-                            time.sleep(0.15)
+                            self.move_ship += 1
+
+                        time.sleep(0.15)                            
                     elif event.key == pygame.K_l:
                         Sounds().waves()
                         self.move_ship -= 1
@@ -244,8 +247,6 @@ class MainShip:
                     Other_player.delete_mine(mine)
                     self.take_damage(1)
                     print('biem')
-
-            time.sleep(0.15)
 
     def position(self):
         """Turns ship 180 degrees, allowing for offensive and defensive positioning"""
