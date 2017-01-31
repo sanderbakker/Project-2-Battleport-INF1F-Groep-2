@@ -1,6 +1,7 @@
 import math, pygame, pymysql, sys
 from modules import player
 from modules import mysql
+from modules import menu
 
 pygame.init()
 
@@ -20,6 +21,12 @@ class win_screen:
 			if event.type == pygame.QUIT:
 				# Give the signal to quit
 				return True
+			mouse = pygame.mouse.get_pos()
+			if event.type == pygame.MOUSEBUTTONDOWN:
+				if mouse[0] > 350 and mouse[0] < 450:
+					if mouse[1] > math.ceil(7 / 8 * (self.height - self.distance_border * 2)) and mouse[1] < math.ceil(
+											7 / 8 * (self.height - self.distance_border * 2)) + 35:
+						sys.exit()
 		return False
 
 	def draw_frame(self):
@@ -33,6 +40,7 @@ class win_screen:
 			self.draw_winner()
 			self.get_highscores()
 			self.add_return()
+			self.add_highscores()
 			pygame.display.flip()
 
 	def draw_winner(self):
@@ -60,10 +68,18 @@ class win_screen:
 			x = x + 25
 		return player
 
+	def add_highscores(self):
+		mysql_con = mysql.mysql()
+		#check_player = mysql_con.select("SELECT player_name FROM players LIMIT 10")
+		name = self.Winner.get_name()
+		mysql_con.insert('INSERT INTO players(player_name, score) VALUES("' + str(name) + '", 1)')
+
+
+
 	def add_return(self):
 		pygame.draw.rect(self.screen, (48, 148, 51), pygame.Rect(
 			(self.width / 2 - 50, math.ceil(7 / 8 * (self.height - self.distance_border * 2))), (100, 35)))
 
-#player1 = player.Player(1, "Sander")
-#player2 = player.Player(2, "Lennart")
-#win_screen(800, 575, player1, player2)
+player1 = player.Player(1, "Sander")
+player2 = player.Player(2, "Lennart")
+win_screen(800, 575, player1, player2)
