@@ -100,10 +100,10 @@ class MainShip:
 
         return ship_list
 
-    def get_ship(self, ship, p):
+    def get_ship(self, p = None):
         full_ship = []
-        for i in range(ship.get_size()):
-            full_ship.append((ship.x, p(ship.y, i)))
+        for i in range(self.get_size()):
+            full_ship.append((self.x, self.y + i))
 
         return full_ship
 

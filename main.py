@@ -186,7 +186,7 @@ while not Game.events():
         elif count >= 9:         
             """Ship movement logic"""
             for ship in Turn.get_ships():
-                if click[0] == ship.x:
+                if (set([click]).intersection(set(ship.get_ship()))):
                     for ship_unselect in Turn.get_ships():
                         ship_unselect.unset_select()
 
