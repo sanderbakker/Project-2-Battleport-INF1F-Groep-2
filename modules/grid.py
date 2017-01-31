@@ -179,8 +179,8 @@ class Grid:
         middle_box = ((self.opacity_grid / self.number_of_blocks) / 2)
         rect_x = ((rect_x * (middle_box)) + middle_box * (rect_x - 2)) + self.move_grid
         rect_y = ((rect_y * (middle_box)) + middle_box * (rect_y - 2)) + self.move_grid
-        #pygame.draw.rect(screen, (128, 128, 128),
-        #                 pygame.Rect((int(rect_x), int(rect_y)), (self.number_of_blocks, self.number_of_blocks)))
+        pygame.draw.rect(screen, (128, 128, 128),
+                         pygame.Rect((int(rect_x), int(rect_y)), (self.number_of_blocks, self.number_of_blocks)))
     def Turn_Ship(self, rect_x, rect_y, ship_number):
         middle_box = ((self.opacity_grid / self.number_of_blocks) / 2)
         rect_x = ((rect_x * (middle_box)) + middle_box * (rect_x - 2)) + self.move_grid
