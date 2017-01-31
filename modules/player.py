@@ -70,7 +70,11 @@ class Player:
 	def add_mine(self, mine):
 		self.saved_mines.append(mine)
 
-	def delete_mine(self):
+	def delete_mine(self, mine = None):
+		if(mine):
+			self.saved_mines.remove(mine)
+			return 
+
 		try:
 			self.saved_mines.pop(0)
 		except IndexError:
@@ -120,7 +124,7 @@ class Turn:
 		self.normal_cards.remove(card)
 		self.player.save_normal_cards(self.normal_cards)
 		return self.normal_cards
-
+		
 	# retrieve the special cards of the player deck 
 	def get_special_cards(self):
 		self.special_cards = self.player.get_special_cards()
@@ -155,8 +159,8 @@ class Turn:
 	def add_mine(self, mine):
 		self.player.add_mine(mine)
 
-	def delete_mine(self):
-		self.player.delete_mine()
+	def delete_mine(self, mine):
+		self.player.delete_mine(mine)
 
 	def use_normal_card(self, card):
 		card.action(self)
