@@ -2,6 +2,7 @@
 import pygame, time
 from random import randint
 pygame.init()
+pygame.mixer.init(frequency=22050, size=-16, channels=2, buffer=4096)
 
 class MainShip:
     """Main class containing the base values & methods"""
@@ -41,34 +42,38 @@ class MainShip:
     def canGoHere(self, pos, list_player1, list_player2):
 
         for ship in list_player1:
-
             if not ship == self:
-                if self.get_size() == 2:
+                if self.vertical:
                     if pos[0] == ship.x:
-                        if pos[1] >= ship.y - 1 and pos[1] <= ship.y + ship.size - 1:
-                            print("Could not move ship {} (pos {} {}) because its colliding with ship {} (pos {} {})".format(
-                            self.name, self.x, self.y, ship.name, ship.x, ship.y))
+                        if pos[1] >= ship.y - (self.get_size() - 1) and pos[1] <= ship.y + ship.size - 1:
+                            print(
+                                "Could not move ship {} (pos {} {}) because its colliding with ship {} (pos {} {})".format(
+                                    self.name, self.x, self.y, ship.name, ship.x, ship.y))
                             return False
-                elif self.get_size() == 3:
-                    if pos[0] == ship.x:
-                        if pos[1] >= ship.y - 2 and pos[1] <= ship.y + ship.size - 1:
-                            print("Could not move ship {} (pos {} {}) because its colliding with ship {} (pos {} {})".format(
-                            self.name, self.x, self.y, ship.name, ship.x, ship.y))
-                            return False
-                elif self.get_size() == 4:
-                    if pos[0] == ship.x:
-                        if pos[1] >= ship.y - 3 and pos[1] <= ship.y + ship.size - 1:
-                            print("Could not move ship {} (pos {} {}) because its colliding with ship {} (pos {} {})".format(
-                            self.name, self.x, self.y, ship.name, ship.x, ship.y))
+                else:
+                    if pos[1] == ship.y:
+                        if pos[0] >= ship.x - (self.get_size() - 1) and pos[0] <= ship.x + ship.size - 1:
+                            print(
+                                "Could not move ship {} (pos {} {}) because its colliding with ship {} (pos {} {})".format(
+                                    self.name, self.x, self.y, ship.name, ship.x, ship.y))
                             return False
 
         for ship in list_player2:
             if not ship == self:
-                if pos[0] == ship.x:
-                    if pos[1] >= ship.y - 1 and pos[1] <= ship.y + ship.size - 1:
-                        print("Could not move ship {} (pos {} {}) because its colliding with ship {} (pos {} {})".format(
-                            self.name, self.x, self.y, ship.name, ship.x, ship.y))
-                        return False
+                if self.vertical:
+                    if pos[0] == ship.x:
+                        if pos[1] >= ship.y - (self.get_size() - 1) and pos[1] <= ship.y + ship.size - 1:
+                            print(
+                                "Could not move ship {} (pos {} {}) because its colliding with ship {} (pos {} {})".format(
+                                    self.name, self.x, self.y, ship.name, ship.x, ship.y))
+                            return False
+                else:
+                    if pos[1] == ship.y:
+                        if pos[0] >= ship.x - (self.get_size() - 1) and pos[0] <= ship.x + ship.size - 1:
+                            print(
+                                "Could not move ship {} (pos {} {}) because its colliding with ship {} (pos {} {})".format(
+                                    self.name, self.x, self.y, ship.name, ship.x, ship.y))
+                            return False
 
         return True
 
@@ -151,25 +156,30 @@ class MainShip:
         if self.move_ship > 0:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_UP and self.canGoHere((self.x, self.y - 1), player1, player2):
+                    Sounds().waves()
                     self.y -= 1
                     self.move_ship -= 1
                     self.direction = 1
                 elif event.key == pygame.K_LEFT and self.canGoHere((self.x - 1, self.y), player1, player2):
+                    Sounds().waves()
                     self.x -= 1
                     self.move_ship -= 1
                     self.direction = 2
                     #self.select = False
                 elif event.key == pygame.K_RIGHT and self.canGoHere((self.x + 1, self.y), player1, player2):
+                    Sounds().waves()
                     self.x += 1
                     self.move_ship -= 1
                     self.direction = 3
                     #self.select = False
                 elif event.key == pygame.K_DOWN and self.canGoHere((self.x, self.y + 1), player1, player2):
+                    Sounds().waves()
                     self.y += 1
                     self.move_ship -= 1
                     self.direction = 4
                     #select = False
                 elif event.key == pygame.K_l:
+                    Sounds().waves()
                     self.move_ship -= 1
                     self.turn_ship()
 
@@ -333,3 +343,8 @@ class Amadea(MainShip):
         self.defensive_range = 5
         self.damage = 1
         self.attack_count = 1
+
+class Sounds:
+    def waves(self):
+        waves = pygame.mixer.Sound("assets/sounds/waves.wav")
+        pygame.mixer.Sound.play(waves)
