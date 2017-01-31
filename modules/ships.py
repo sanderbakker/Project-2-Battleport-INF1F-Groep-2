@@ -46,9 +46,6 @@ class MainShip:
                 if self.vertical:
                     if pos[0] == ship.x:
                         if pos[1] >= ship.y - (self.get_size() - 1) and pos[1] <= ship.y + ship.size - 1:
-                            print(
-                                "Could not move ship {} (pos {} {}) because its colliding with ship {} (pos {} {})".format(
-                                    self.name, self.x, self.y, ship.name, ship.x, ship.y))
                             return False
                 else:
                     if pos[1] == ship.y:
@@ -63,9 +60,6 @@ class MainShip:
                 if self.vertical:
                     if pos[0] == ship.x:
                         if pos[1] >= ship.y - (self.get_size() - 1) and pos[1] <= ship.y + ship.size - 1:
-                            print(
-                                "Could not move ship {} (pos {} {}) because its colliding with ship {} (pos {} {})".format(
-                                    self.name, self.x, self.y, ship.name, ship.x, ship.y))
                             return False
                 else:
                     if pos[1] == ship.y:
@@ -160,7 +154,7 @@ class MainShip:
         """Loops through until select returns false"""
 
         if self.move_ship > 0:
-            if self.vertical == True:
+            if self.vertical == True and not self.dead:
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_UP and self.canGoHere((self.x, self.y - 1), player1, player2):
                         Sounds().waves()
