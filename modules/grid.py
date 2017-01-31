@@ -97,7 +97,7 @@ class Grid:
          
     def Place_Player_1(self, ship_number, ship):
         screen = self.screen
-        transparant = (212, 212, 212, 0)
+        transparant = (235, 235, 235, 0)
         middle_box = ((self.opacity_grid/self.number_of_blocks) / 2)
         rect_x = ((ship.x * (middle_box)) + middle_box * (ship.x - 2)) + self.move_grid
         rect_y = ((ship.y * (middle_box)) + middle_box * (ship.y - 2)) + self.move_grid
@@ -179,7 +179,7 @@ class Grid:
         middle_box = ((self.opacity_grid / self.number_of_blocks) / 2)
         rect_x = ((rect_x * (middle_box)) + middle_box * (rect_x - 2)) + self.move_grid
         rect_y = ((rect_y * (middle_box)) + middle_box * (rect_y - 2)) + self.move_grid
-        pygame.draw.rect(screen, (212, 212, 212),
+        pygame.draw.rect(screen, (235, 235, 235),
                          pygame.Rect((int(rect_x) + 1 , int(rect_y) + 1 ), (self.number_of_blocks - 1, self.number_of_blocks - 1)))
         image = pygame.image.load("assets/mine.png")
         screen.blit(image, (rect_x, rect_y))
@@ -191,7 +191,7 @@ class Grid:
 
     def Place_Player_2(self, ship_number, ship):
         screen = self.screen
-        transparant = (212, 212, 212, 0)
+        transparant = (235, 235, 235, 0)
         middle_box = ((self.opacity_grid / self.number_of_blocks) / 2)
         rect_x = ((ship.x * (middle_box)) + middle_box * (ship.x - 2)) + self.move_grid
         rect_y = ((ship.y * (middle_box)) + middle_box * (ship.y - 2)) + self.move_grid
