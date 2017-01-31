@@ -294,12 +294,11 @@ class action:
 		self.Turn.add_normal_card(normal_card().get_random())
 
 	def use_Naval_mine(self):
-		x = mine.Mine().get_random_x()
-		y = mine.Mine().get_random_y()
+		for _ in range(3):
+			x = mine.Mine().get_random_x()
+			y = mine.Mine().get_random_y()
 
-		self.Turn.add_mine((x,y))
-		self.Turn.add_mine((x,y))
-		self.Turn.add_mine((x,y))
+			self.Turn.add_mine((x,y))
 	
 	def use_Sonar(self):
 		self.Turn.get_other_player().delete_mine()
