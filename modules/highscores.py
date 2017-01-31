@@ -24,7 +24,13 @@ class Highscores:
                                             7 / 8 * (self.height - self.distance_border * 2)) + 35:
                         return True
         return False
-
+    def add_button_text(self, text):
+        fonts = pygame.font.SysFont("arial", 20)
+        entered_text = fonts.render(text, 1, (0, 0, 0))
+        entered_text_position = entered_text.get_rect()
+        x_position = self.width/2 - math.floor(entered_text_position[2]/2)
+        y_position = math.ceil(7/8 * (self.height - self.distance_border * 2)) + 4
+        self.screen.blit(entered_text, (x_position,y_position ))
     def show(self):
         while not self.process_events():
             self.draw_frame()
@@ -32,6 +38,7 @@ class Highscores:
             self.add_text("Highscores")
             self.get_highscores()
             self.add_return()
+            self.add_button_text("Menu")
             pygame.display.flip()
 
     def draw_frame(self):
