@@ -110,7 +110,7 @@ class Show:
 		pygame.draw.rect(self.Game.get_screen(), (255,255,255), [ self.start_width_card, 380, self.card_width, self.card_height])
 
 	def set_wiki(self, card):
-		self.Game.get_screen().blit(card.get_wiki(), (self.start + 65, (280)))
+		self.Game.get_screen().blit(card.get_wiki(), (self.start + 65, (330)))
 
 		button = self.Game.button({'color': (211,211,211), 'start_x': self.start + 65, 'start_y': 280 + 220, 'width': 127, 'height': 40}, 'Use Card')
 
@@ -121,9 +121,35 @@ class Show:
 	def set_ship(self, ship):
 		#ship = self.Turn.get_selected_ship()
 		self.Game.set_font('inherit', (0,0,0), 'inherit')
-		self.Game.draw_text(str(ship.get_name()), (self.start, 120))
-		self.Game.draw_text('Health: ' + str(ship.get_health()) + ' | Moves left: ' + str(ship.get_moves()), (self.start, 140))
+		self.Game.draw_text(str(ship.get_name()), (self.start + 101, 120))
+		image = pygame.image.load(ship.get_image())
+		rotated_image = pygame.transform.rotate(image, 90)
+		self.Game.get_screen().blit(rotated_image, (self.start, 120))		
+		self.Game.draw_text('H: ' + str(ship.get_health()) + ' | M: ' + str(ship.get_moves()) + ' | A_L: ' + str(ship.get_attack_count()), (self.start, 140))
 		self.Game.draw_text('O: ' + str(ship.get_offensive_range()) + ' | D: ' + str(ship.get_defensive_range()) + ' | A: ' + str(ship.get_damage()), (self.start, 160))
+		self.Game.draw_text('________________________', (self.start, 170))
+
+	def draw_attackable_ships(self, ships):
+		selected_ship = self.Turn.get_selected_ship()
+		y_start = 200
+
+		for ship in ships:
+			self.Game.set_font('inherit', (0,0,0), 'inherit')			
+			image = pygame.image.load(ship.get_image())
+			rotated_image = pygame.transform.rotate(image, 90)
+			self.Game.get_screen().blit(rotated_image, (self.start, y_start))			
+			self.Game.draw_text('H: ' + str(ship.get_health()), (self.start + 101, y_start))
+
+			if(selected_ship.get_attack_count() > 0):
+				button = self.Game.button({'color': (211,211,211), 'start_x': self.start + 150, 'start_y': y_start, 'width': 60, 'height': 20}, 'Attack')
+
+				if(button) and selected_ship.get_attack_count() > 0:
+					damage = selected_ship.get_damage()
+					ship.take_damage(damage)
+					selected_ship.subtract_attack_count(1)
+					time.sleep(0.15)
+
+			y_start += 30
 
 	def set_placing_ship(self, ship):
 		if not ship:
