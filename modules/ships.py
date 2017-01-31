@@ -15,6 +15,7 @@ class MainShip:
         self.select = False
         self.direction = 0
         self.image = ''
+        self.attack_count = 0
 
         self.offensive_range = 0
         self.defensive_range = 0
@@ -218,6 +219,15 @@ class MainShip:
     def take_damage(self, number):
         self.health -= number
 
+    def add_attack_count(self, number):
+        self.attack_count += 1
+
+    def subtract_attack_count(self, number):
+        self.attack_count -= 1
+
+    def get_attack_count(self, number):
+        return self.attack_count
+
     def get_image(self):
         return self.image
 
@@ -243,6 +253,7 @@ class Saltire(MainShip):
         self.offensive_range = 2
         self.defensive_range = 3
         self.damage = 1
+        self.attack_count = 1
         if(color == 'red'):
             self.image = "assets/boats/BoatR_1.png"
         else:
@@ -253,6 +264,7 @@ class Saltire(MainShip):
         self.offensive_range = 2
         self.defensive_range = 3
         self.damage = 1
+        self.attack_count = 1
 
 class Windsurf(MainShip):
     """Silver Whisper, Windsurf, Sea Spirit & Intensity class"""
@@ -267,6 +279,7 @@ class Windsurf(MainShip):
         self.offensive_range = 3
         self.defensive_range = 4
         self.damage = 1
+        self.attack_count = 1
         if(color == 'red'):
             self.image = "assets/boats/BoatR_2.png"        
         else:
@@ -277,6 +290,7 @@ class Windsurf(MainShip):
         self.offensive_range = 3
         self.defensive_range = 4
         self.damage = 1
+        self.attack_count = 1
 
 class Amadea(MainShip):
     """Amadea & Merapi class"""
@@ -287,10 +301,11 @@ class Amadea(MainShip):
         self.y = y
         self.health = 4
         self.size = 4
-        self.move_ship = 100
+        self.move_ship = 1
         self.offensive_range = 4
         self.defensive_range = 5
         self.damage = 1
+        self.attack_count = 1
         if(color == 'red'):
             self.image = "assets/boats/BoatR_3.png"
         else:
@@ -301,3 +316,4 @@ class Amadea(MainShip):
         self.offensive_range = 4
         self.defensive_range = 5
         self.damage = 1
+        self.attack_count = 1
