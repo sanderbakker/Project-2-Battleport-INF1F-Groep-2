@@ -79,7 +79,12 @@ class MainShip:
 
     def get_ship_list_cords(self, Player, p, get_ship = False):
         ship_list = []
-        for ship in Player.get_saved_ships():
+        try:
+            ships = Player.get_saved_ships()
+        except AttributeError:
+            ships = [Player]
+
+        for ship in ships:
 
             full_ship = []
             for i in range(ship.get_size()):
@@ -145,12 +150,13 @@ class MainShip:
         return ships_in_range
 
 
-    def movement(self, event, player1, player2):
+    def movement(self, event, player1, player2, Other_player = None):
         """Allows for movement on the grid"""
         # if select:
         #     print("You selected: " + self.name)
         #     print(str(self.move_ship) + " move(s) left for this ship.")
-
+        if(Other_player):
+            mines = Other_player.get_mines() 
         """Loops through until select returns false"""
 
         if self.move_ship > 0:
@@ -161,6 +167,7 @@ class MainShip:
                         self.y -= 1
                         self.move_ship -= 1
                         self.direction = 1
+
                     elif event.key == pygame.K_LEFT and self.canGoHere((self.x - 1, self.y), player1, player2):
                         Sounds().waves()
                         self.x -= 1
@@ -183,6 +190,15 @@ class MainShip:
                         Sounds().waves()
                         self.move_ship -= 1
                         self.turn_ship()
+
+
+                    # check if ship hits a mine
+                    ship = self.get_ship_list_cords(self, lambda x, y: x + y, True)                    
+                    for mine in mines:
+                        if(set([mine]).intersection(set(ship[0]['coords']))):
+                            Other_player.delete_mine(mine)
+                            ship[0]['ship'].take_damage(1)
+                            print('biem')
 
                     time.sleep(0.15)
 
