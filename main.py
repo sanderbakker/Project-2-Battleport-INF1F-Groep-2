@@ -220,9 +220,6 @@ while not Game.events():
         if not ship.check_if_dead():
             won = False
 
-    if(won):
-        modules.win_screen(800, 575, Player, Other_player)
-
     """Save and load hooks"""
     save.sendsave("", Game.get_event())
     load.getsave("", Game.get_event())
