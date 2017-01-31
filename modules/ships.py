@@ -219,7 +219,7 @@ class MainShip:
 
     def take_damage(self, number):
         self.health -= number
-        if(self.health == 0):
+        if(self.health <= 0):
             self.image = self.dead_image
             self.dead  = True
 
@@ -227,10 +227,10 @@ class MainShip:
         return self.dead
 
     def add_attack_count(self, number):
-        self.attack_count += 1
+        self.attack_count += number
 
     def subtract_attack_count(self, number):
-        self.attack_count -= 1
+        self.attack_count -= number
 
     def get_attack_count(self):
         return self.attack_count
