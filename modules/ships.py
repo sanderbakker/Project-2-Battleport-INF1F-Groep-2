@@ -160,7 +160,7 @@ class MainShip:
         """Loops through until select returns false"""
 
         if self.move_ship > 0:
-            if self.vertical == True:
+            if self.vertical == True and not self.dead:
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_UP and self.canGoHere((self.x, self.y - 1), player1, player2):
                         Sounds().waves()
