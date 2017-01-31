@@ -16,6 +16,14 @@ class win_screen:
 		self.show()
 		self.draw_winner()
 
+	def add_button_text(self, text):
+		fonts = pygame.font.SysFont("arial", 20)
+		entered_text = fonts.render(text, 1, (0, 0, 0))
+		entered_text_position = entered_text.get_rect()
+		x_position = self.width / 2 - math.floor(entered_text_position[2] / 2)
+		y_position = math.ceil(7 / 8 * (self.height - self.distance_border * 2)) + 4
+		self.screen.blit(entered_text, (x_position, y_position))
+
 	def process_events(self):
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
@@ -41,6 +49,7 @@ class win_screen:
 			self.get_highscores()
 			self.add_return()
 			self.add_highscores()
+			self.add_button_text("Exit")
 			pygame.display.flip()
 
 	def draw_winner(self):
@@ -72,7 +81,7 @@ class win_screen:
 		mysql_con = mysql.mysql()
 		#check_player = mysql_con.select("SELECT player_name FROM players LIMIT 10")
 		name = self.Winner.get_name()
-		mysql_con.insert('INSERT INTO players(player_name, score) VALUES("' + str(name) + '", 1)')
+		mysql_con.insert("INSERT INTO players(player_name, score) VALUES(Sander, 1)")
 
 
 
