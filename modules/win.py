@@ -58,6 +58,6 @@ class win_screen:
 			x = x + 25
 		return player
 
-player1 = player.Player(1, "Sander")
-player2 = player.Player(2, "Lennart")
-win_screen(800, 575, player1, player2)
+#player1 = player.Player(1, "Sander")
+#player2 = player.Player(2, "Lennart")
+#win_screen(800, 575, player1, player2)
