@@ -251,12 +251,12 @@ while not Game.events():
 
     """Save and load hooks"""
     """Writes player 1 data"""
-    for i in range(0, len(ship_list_player1)):
-        save(ship_list_player1[i].name, ship_list_player1[i].x, ship_list_player1[i].y, "1337",  "placeholder", "placeholder", 22, "placeholder", 22, Game.get_event()).sendsave(Game.get_event())
-
+    #for i in range(0, len(ship_list_player1)):
+    #    save(ship_list_player1[i].name, ship_list_player1[i].x, ship_list_player1[i].y, "1337",  "placeholder", "placeholder", 22, "placeholder", 22, Game.get_event()).sendsave(Game.get_event())
+    #
     """Writes player 1 data"""
-    for i in range(0, len(ship_list_player2)):
-        save(ship_list_player2[i].name, ship_list_player2[i].x, ship_list_player2[i].y, "1337", "placeholder", "placeholder", 22, "placeholder", 22, Game.get_event()).sendsave(Game.get_event())
+    #for i in range(0, len(ship_list_player2)):
+    #    save(ship_list_player2[i].name, ship_list_player2[i].x, ship_list_player2[i].y, "1337", "placeholder", "placeholder", 22, "placeholder", 22, Game.get_event()).sendsave(Game.get_event())
 
     """Load hook"""
     load.getsave("", Game.get_event())
