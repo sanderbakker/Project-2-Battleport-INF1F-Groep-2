@@ -70,7 +70,7 @@ class MainShip:
 
         return True
 
-    def get_ship_list_cords(self, Player, p):
+    def get_ship_list_cords(self, Player, p, get_ship = False):
         ship_list = []
         for ship in Player.get_saved_ships():
 
@@ -78,7 +78,13 @@ class MainShip:
             for i in range(ship.get_size()):
                 full_ship.append((ship.x, p(ship.y, i)))
 
-            ship_list.append(full_ship)
+            if(get_ship):
+                ship_list.append({
+                    'ship': ship,
+                    'coords': full_ship
+                    })
+            else:
+                ship_list.append(full_ship)
 
         return ship_list
 
@@ -96,7 +102,7 @@ class MainShip:
         else:
             ship_range = self.defensive_range
 
-        enemy_ship_list = self.get_ship_list_cords(Enemy, lambda x, y: x + y)
+        enemy_ship_list = self.get_ship_list_cords(Enemy, lambda x, y: x + y, True)
 
         ship_range_cords = []
 
@@ -124,9 +130,12 @@ class MainShip:
                     # right
                     ship_range_cords.append((self.x + a, self.y - i))              
 
+        ships_in_range = []
         for enemy_ship in enemy_ship_list:
-           if(set(enemy_ship).intersection(set(ship_range_cords))):
-                print(randint(0,9))
+           if(set(enemy_ship['coords']).intersection(set(ship_range_cords))):
+                ships_in_range.append(enemy_ship['ship'])
+
+        return ships_in_range
 
 
     def movement(self, event, player1, player2):
