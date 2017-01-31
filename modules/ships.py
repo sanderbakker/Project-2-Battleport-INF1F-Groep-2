@@ -96,18 +96,33 @@ class MainShip:
         else:
             ship_range = self.defensive_range
 
-        enemy_ship_list     = self.get_ship_list_cords(Enemy, lambda x, y: x + y)
-        player_ship_list    = self.get_ship_list_cords(Player, lambda x, y: x + y)
-        player_list         = self.get_ship(Turn.get_selected_ship(), lambda x, y: x + y)
+        enemy_ship_list = self.get_ship_list_cords(Enemy, lambda x, y: x + y)
 
         ship_range_cords = []
-        for i in range(ship_range + 2):
-            ship_range_cords.append((self.x, self.y - i))
-            ship_range_cords.append((self.x, (self.y + self.size) + i))
+
+        for i in range(ship_range + 1):
+            if(self.check_if_vertical()):
+                # top
+                ship_range_cords.append((self.x, self.y - i))
+                # bottom
+                ship_range_cords.append((self.x, (self.y + self.size) + i))    
+            else:
+                # top 
+                ship_range_cords.append((self.x - i, self.y))
+                # bottom
+                ship_range_cords.append(((self.x + self.size) + i, self.y))
 
             for a in range(self.size):
-                ship_range_cords.append((self.x - i, self.y))
-                ship_range_cords.append((self.x + i, self.y))
+                if(self.check_if_vertical()):
+                    # left 
+                    ship_range_cords.append((self.x - i, self.y + a))
+                    # right
+                    ship_range_cords.append((self.x + i, self.y + a))
+                else:
+                    # left 
+                    ship_range_cords.append((self.x + a, self.y - i))
+                    # right
+                    ship_range_cords.append((self.x + a, self.y - i))              
 
         for enemy_ship in enemy_ship_list:
            if(set(enemy_ship).intersection(set(ship_range_cords))):
@@ -222,7 +237,7 @@ class Saltire(MainShip):
             self.image = "assets/boats/BoatB_1.png"        
 
     def reset(self):
-        self.move_ship = 3
+        self.move_ship = 300
         self.offensive_range = 2
         self.defensive_range = 3
         self.damage = 1
@@ -246,7 +261,7 @@ class Windsurf(MainShip):
             self.image = "assets/boats/BoatB_2.png"
 
     def reset(self):
-        self.move_ship = 2
+        self.move_ship = 200
         self.offensive_range = 3
         self.defensive_range = 4
         self.damage = 1
@@ -270,7 +285,7 @@ class Amadea(MainShip):
             self.image = "assets/boats/BoatB_3.png"
 
     def reset(self):
-        self.move_ship = 1
+        self.move_ship = 100
         self.offensive_range = 4
         self.defensive_range = 5
         self.damage = 1
