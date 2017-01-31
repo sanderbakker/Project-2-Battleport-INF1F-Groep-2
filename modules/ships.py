@@ -15,6 +15,7 @@ class MainShip:
         self.select = False
         self.direction = 0
         self.image = ''
+        self.dead_image = ''
         self.attack_count = 0
 
         self.offensive_range = 0
@@ -218,6 +219,9 @@ class MainShip:
 
     def take_damage(self, number):
         self.health -= number
+        if(self.health == 0):
+            self.image = self.dead_image
+            self.dead  = True
 
     def add_attack_count(self, number):
         self.attack_count += 1
@@ -257,7 +261,10 @@ class Saltire(MainShip):
         if(color == 'red'):
             self.image = "assets/boats/BoatR_1.png"
         else:
-            self.image = "assets/boats/BoatB_1.png"        
+            self.image = "assets/boats/BoatB_1.png"
+
+        self.dead_image = "assets/boats/BoatG_1.png"
+        self.dead       = False        
 
     def reset(self):
         self.move_ship = 300
@@ -285,6 +292,9 @@ class Windsurf(MainShip):
         else:
             self.image = "assets/boats/BoatB_2.png"
 
+        self.dead_image = "assets/boats/BoatG_2.png"
+        self.dead       = False
+
     def reset(self):
         self.move_ship = 200
         self.offensive_range = 3
@@ -310,6 +320,9 @@ class Amadea(MainShip):
             self.image = "assets/boats/BoatR_3.png"
         else:
             self.image = "assets/boats/BoatB_3.png"
+
+        self.dead_image = "assets/boats/BoatG_3.png"
+        self.dead       = False
 
     def reset(self):
         self.move_ship = 100
