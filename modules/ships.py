@@ -223,6 +223,9 @@ class MainShip:
             self.image = self.dead_image
             self.dead  = True
 
+    def check_if_dead(self):
+        return self.dead
+
     def add_attack_count(self, number):
         self.attack_count += 1
 

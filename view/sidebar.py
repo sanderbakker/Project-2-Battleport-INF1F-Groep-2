@@ -138,16 +138,20 @@ class Show:
 			image = pygame.image.load(ship.get_image())
 			rotated_image = pygame.transform.rotate(image, 90)
 			self.Game.get_screen().blit(rotated_image, (self.start, y_start))			
-			self.Game.draw_text('H: ' + str(ship.get_health()), (self.start + 101, y_start))
 
-			if(selected_ship.get_attack_count() > 0):
+			if ship.check_if_dead():
+				self.Game.draw_text('Destroyed!', (self.start + 101, y_start))
+			else:
+				self.Game.draw_text('H: ' + str(ship.get_health()), (self.start + 101, y_start))	
+
+			if(selected_ship.get_attack_count() > 0 and not ship.check_if_dead()):
 				button = self.Game.button({'color': (211,211,211), 'start_x': self.start + 150, 'start_y': y_start, 'width': 60, 'height': 20}, 'Attack')
 
 				if(button) and selected_ship.get_attack_count() > 0:
 					damage = selected_ship.get_damage()
 					ship.take_damage(damage)
 					selected_ship.subtract_attack_count(1)
-					time.sleep(0.15)
+					time.sleep(0.15)			
 
 			y_start += 30
 
