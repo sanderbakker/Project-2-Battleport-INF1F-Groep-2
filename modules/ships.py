@@ -85,10 +85,16 @@ class MainShip:
             ships = [Player]
 
         for ship in ships:
+            if ship == self:
+                continue
 
             full_ship = []
-            for i in range(ship.get_size()):
-                full_ship.append((ship.x, p(ship.y, i)))
+            if(ship.check_if_vertical()):
+                for i in range(ship.get_size()):
+                    full_ship.append((ship.x, p(ship.y, i)))
+            else:
+                for i in range(ship.get_size()):
+                    full_ship.append((p(ship.x, i), ship.y))
 
             if(get_ship):
                 ship_list.append({
@@ -100,12 +106,33 @@ class MainShip:
 
         return ship_list
 
-    def get_ship(self, p = None):
+    def get_ship(self):
         full_ship = []
         for i in range(self.get_size()):
-            full_ship.append((self.x, self.y + i))
+            if(self.check_if_vertical()):
+                full_ship.append((self.x, self.y + i))
+            else:
+                full_ship.append((self.x + i, self.y))
 
         return full_ship
+
+    def check_colsion(self, player1, player2):
+
+        ships_player_1 = self.get_ship_list_cords(player1, lambda x, y: x + y, False)
+        ships_player_2 = self.get_ship_list_cords(player2, lambda x, y: x + y, False)
+
+        ship = self.get_ship()
+
+        for ship_player_1 in ships_player_1:
+            if(set(ship_player_1).intersection(set(ship))):
+                return True
+
+        for ship_player_2 in ships_player_2:
+            if(set(ship_player_2).intersection(set(ship))):
+                return True 
+
+        return False
+
 
     def locate_enemy_ships(self, Turn, Enemy):
         Player = Turn.get_player()
@@ -162,30 +189,36 @@ class MainShip:
         if self.move_ship > 0:
             if self.vertical == True and not self.dead:
                 if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_UP and self.canGoHere((self.x, self.y - 1), player1, player2):
+                    if event.key == pygame.K_UP:
                         Sounds().waves()
                         self.y -= 1
                         self.move_ship -= 1
                         self.direction = 1
+                        if(self.check_colsion(player1, player2)):
+                            self.y +=1
 
-                    elif event.key == pygame.K_LEFT and self.canGoHere((self.x - 1, self.y), player1, player2):
+                    elif event.key == pygame.K_LEFT:
                         Sounds().waves()
                         self.x -= 1
                         self.move_ship -= 1
                         self.direction = 2
-                        #self.select = False
-                    elif event.key == pygame.K_RIGHT and self.canGoHere((self.x + 1, self.y), player1, player2):
+                        if(self.check_colsion(player1, player2)):
+                            self.x += 1
+
+                    elif event.key == pygame.K_RIGHT:
                         Sounds().waves()
                         self.x += 1
                         self.move_ship -= 1
                         self.direction = 3
-                        #self.select = False
-                    elif event.key == pygame.K_DOWN and self.canGoHere((self.x, self.y + 1), player1, player2):
+                        if(self.check_colsion(player1, player2)):
+                            self.x -= 1
+                    elif event.key == pygame.K_DOWN:
                         Sounds().waves()
                         self.y += 1
                         self.move_ship -= 1
                         self.direction = 4
-                        #select = False
+                        if(self.check_colsion(player1, player2)):
+                            self.y -= 1
                     elif event.key == pygame.K_l:
                         Sounds().waves()
                         self.move_ship -= 1
