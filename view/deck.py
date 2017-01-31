@@ -42,7 +42,9 @@ class Show:
 		if(i < 0):
 			return 
 		else:
-			card = pygame.draw.rect(self.Game.get_screen(), (196, 196, 196), [ offset, ( (self.display_height - self.card_height) - 10), self.card_width, self.card_height])
+			#card = pygame.draw.rect(self.Game.get_screen(), (196, 196, 196), [ offset, ( (self.display_height - self.card_height) - 10), self.card_width, self.card_height])
+			cardholder = pygame.image.load("assets/card_holder.png")
+			card = self.Game.get_screen().blit(cardholder, (offset, ((self.display_height - self.card_height) - 10)))
 
 		return self.draw_empty_card(i, (offset + self.card_width + self.card_spacing))
 
