@@ -221,7 +221,7 @@ while not Game.events():
             won = False
 
     if(won):
-        modules.win_screen(800, 575, Player, Other_player)
+        win.win_screen(800, 575, Player, Other_player)
 
     """Save and load hooks"""
     save.sendsave("", Game.get_event())
