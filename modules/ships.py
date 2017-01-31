@@ -232,12 +232,19 @@ class MainShip:
                         Sounds().waves()
                         self.move_ship -= 1
                         self.turn_ship()
+                        if(self.check_colsion(player1, player2)):
+                            self.move_ship += 1
+                            self.turn_ship()                        
                         time.sleep(0.15)
             elif self.vertical == False and not self.dead:
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_l:
                         self.move_ship -= 1
                         self.turn_ship()
+                        if(self.check_colsion(player1, player2)):
+                            self.move_ship += 1
+                            self.turn_ship()
+
                         time.sleep(0.15)
 
             # check if ship hits a mine
