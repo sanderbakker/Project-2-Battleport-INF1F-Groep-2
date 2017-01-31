@@ -36,8 +36,7 @@ class mysql:
 	def __alter_table(self, query):
 		with self.connection.cursor() as cursor:
 			try:
-				with self.connection.cursor as cursor:
-					cursor.execute(query)
+				cursor.execute(query)
 
 				self.connection.commit()
 			except:
