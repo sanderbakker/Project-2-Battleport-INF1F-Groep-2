@@ -298,8 +298,12 @@ class action:
 		y = mine.Mine().get_random_y()
 
 		self.Turn.add_mine((x,y))
+		self.Turn.add_mine((x,y))
+		self.Turn.add_mine((x,y))
 	
 	def use_Sonar(self):
+		self.Turn.get_other_player().delete_mine()
+		self.Turn.get_other_player().delete_mine()
 		self.Turn.get_other_player().delete_mine()
 
 	def use_Adrenaline_rush(self):
