@@ -225,7 +225,7 @@ class MainShip:
     def subtract_attack_count(self, number):
         self.attack_count -= 1
 
-    def get_attack_count(self, number):
+    def get_attack_count(self):
         return self.attack_count
 
     def get_image(self):

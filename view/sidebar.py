@@ -125,7 +125,7 @@ class Show:
 		image = pygame.image.load(ship.get_image())
 		rotated_image = pygame.transform.rotate(image, 90)
 		self.Game.get_screen().blit(rotated_image, (self.start, 120))		
-		self.Game.draw_text('Health: ' + str(ship.get_health()) + ' | Moves left: ' + str(ship.get_moves()), (self.start, 140))
+		self.Game.draw_text('H: ' + str(ship.get_health()) + ' | M: ' + str(ship.get_moves()) + ' | A_L: ' + str(ship.get_attack_count()), (self.start, 140))
 		self.Game.draw_text('O: ' + str(ship.get_offensive_range()) + ' | D: ' + str(ship.get_defensive_range()) + ' | A: ' + str(ship.get_damage()), (self.start, 160))
 		self.Game.draw_text('________________________', (self.start, 170))
 
@@ -138,9 +138,13 @@ class Show:
 			self.Game.get_screen().blit(rotated_image, (self.start, y_start))			
 			self.Game.draw_text('H: ' + str(ship.get_health()), (self.start + 101, y_start))
 			button = self.Game.button({'color': (211,211,211), 'start_x': self.start + 150, 'start_y': y_start, 'width': 60, 'height': 20}, 'Attack')
-			if(button):
-				damage = self.Turn.get_selected_ship().get_damage()
+
+			selected_ship = self.Turn.get_selected_ship()
+
+			if(button) and selected_ship:
+				damage = selected_ship.get_damage()
 				ship.take_damage(damage)
+				selected_ship.subtract_attack_count(1)
 				time.sleep(0.15)
 
 			y_start += 30
