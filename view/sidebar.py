@@ -130,22 +130,24 @@ class Show:
 		self.Game.draw_text('________________________', (self.start, 170))
 
 	def draw_attackable_ships(self, ships):
+		selected_ship = self.Turn.get_selected_ship()
 		y_start = 200
+
 		for ship in ships:
 			self.Game.set_font('inherit', (0,0,0), 'inherit')			
 			image = pygame.image.load(ship.get_image())
 			rotated_image = pygame.transform.rotate(image, 90)
 			self.Game.get_screen().blit(rotated_image, (self.start, y_start))			
 			self.Game.draw_text('H: ' + str(ship.get_health()), (self.start + 101, y_start))
-			button = self.Game.button({'color': (211,211,211), 'start_x': self.start + 150, 'start_y': y_start, 'width': 60, 'height': 20}, 'Attack')
 
-			selected_ship = self.Turn.get_selected_ship()
+			if(selected_ship.get_attack_count() > 0):
+				button = self.Game.button({'color': (211,211,211), 'start_x': self.start + 150, 'start_y': y_start, 'width': 60, 'height': 20}, 'Attack')
 
-			if(button) and selected_ship:
-				damage = selected_ship.get_damage()
-				ship.take_damage(damage)
-				selected_ship.subtract_attack_count(1)
-				time.sleep(0.15)
+				if(button) and selected_ship.get_attack_count() > 0:
+					damage = selected_ship.get_damage()
+					ship.take_damage(damage)
+					selected_ship.subtract_attack_count(1)
+					time.sleep(0.15)
 
 			y_start += 30
 
