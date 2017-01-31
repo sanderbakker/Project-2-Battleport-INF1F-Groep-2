@@ -237,15 +237,15 @@ class MainShip:
                         self.turn_ship()
                         time.sleep(0.15)
 
-                    # check if ship hits a mine
-                    ship = self.get_ship_list_cords(self, lambda x, y: x + y, True)                    
-                    for mine in mines:
-                        if(set([mine]).intersection(set(ship[0]['coords']))):
-                            Other_player.delete_mine(mine)
-                            ship[0]['ship'].take_damage(1)
-                            print('biem')
+            # check if ship hits a mine
+            ship = self.get_ship()
+            for mine in mines:
+                if(set([mine]).intersection(set(ship))):
+                    Other_player.delete_mine(mine)
+                    self.take_damage(1)
+                    print('biem')
 
-                    time.sleep(0.15)
+            time.sleep(0.15)
 
     def position(self):
         """Turns ship 180 degrees, allowing for offensive and defensive positioning"""
