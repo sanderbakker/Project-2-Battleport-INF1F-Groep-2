@@ -137,7 +137,7 @@ class Show:
 		if(selected_ship.check_if_dead()):
 			return False
 
-		
+
 		y_start = 200
 
 		for ship in ships:
@@ -158,6 +158,7 @@ class Show:
 					damage = selected_ship.get_damage()
 					ship.take_damage(damage)
 					selected_ship.subtract_attack_count(1)
+					Sounds().fire_shot()
 					time.sleep(0.15)			
 
 			y_start += 30
@@ -179,6 +180,11 @@ class Show:
 		if mouse[1] >= 15 and mouse[1] <= 45:
 			if mouse[0] >= 575 and mouse[0] <= 650:
 				if event.type == pygame.MOUSEBUTTONDOWN:
-					self.Menu.show()		
+					self.Menu.show()
+
+class Sounds:
+    def fire_shot(self):
+        fire_shot = pygame.mixer.Sound("assets/sounds/fire_shot.wav")
+        pygame.mixer.Sound.play(fire_shot)		
 			
 

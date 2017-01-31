@@ -253,7 +253,7 @@ class MainShip:
                 if(set([mine]).intersection(set(ship))):
                     Other_player.delete_mine(mine)
                     self.take_damage(1)
-                    print('biem')
+                    Sounds().biem()
 
     def position(self):
         """Turns ship 180 degrees, allowing for offensive and defensive positioning"""
@@ -418,3 +418,7 @@ class Sounds:
     def waves(self):
         waves = pygame.mixer.Sound("assets/sounds/waves.wav")
         pygame.mixer.Sound.play(waves)
+
+    def biem(self):
+        biem = pygame.mixer.Sound("assets/sounds/biem.wav")
+        pygame.mixer.Sound.play(biem)
