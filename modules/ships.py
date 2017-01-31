@@ -194,36 +194,48 @@ class MainShip:
                         self.y -= 1
                         self.move_ship -= 1
                         self.direction = 1
+                        time.sleep(0.15)
                         if(self.check_colsion(player1, player2)):
                             self.y +=1
-
+                            time.sleep(0.15)
                     elif event.key == pygame.K_LEFT:
                         Sounds().waves()
                         self.x -= 1
                         self.move_ship -= 1
                         self.direction = 2
+                        time.sleep(0.15)
                         if(self.check_colsion(player1, player2)):
                             self.x += 1
-
+                            time.sleep(0.15)
                     elif event.key == pygame.K_RIGHT:
                         Sounds().waves()
                         self.x += 1
                         self.move_ship -= 1
                         self.direction = 3
+                        time.sleep(0.15)
                         if(self.check_colsion(player1, player2)):
                             self.x -= 1
+                            time.sleep(0.15)
                     elif event.key == pygame.K_DOWN:
                         Sounds().waves()
                         self.y += 1
                         self.move_ship -= 1
                         self.direction = 4
+                        time.sleep(0.15)
                         if(self.check_colsion(player1, player2)):
                             self.y -= 1
+                            time.sleep(0.15)
                     elif event.key == pygame.K_l:
                         Sounds().waves()
                         self.move_ship -= 1
                         self.turn_ship()
-
+                        time.sleep(0.15)
+            elif self.vertical == False and not self.dead:
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_l:
+                        self.move_ship -= 1
+                        self.turn_ship()
+                        time.sleep(0.15)
 
                     # check if ship hits a mine
                     ship = self.get_ship_list_cords(self, lambda x, y: x + y, True)                    
