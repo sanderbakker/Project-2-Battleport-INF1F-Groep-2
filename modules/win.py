@@ -43,8 +43,7 @@ class win_screen:
 									 ((self.width - self.distance_border * 2),
 									  (self.height - self.distance_border * 2))))
 	def show(self):
-		self.add_highscores()
-		self.update_highscores()
+		self.add_or_update_highscores()
 		while not self.process_events():
 			self.draw_frame()
 			self.draw_winner()
@@ -77,22 +76,38 @@ class win_screen:
 			self.screen.blit(score_result, ((self.width / 2 + 65), x))
 			x = x + 25
 		return player
-	def get_players(self):
+	def get_score(self):
 		mysql_con = mysql.mysql()
-		score = mysql_con.select("SELECT score FROM players WHERE player_id = 1 ")
+		name = self.Winner.get_name()
+		score = mysql_con.select('SELECT score FROM players WHERE player_name = "' + str(name) + '"')
 		new_score = score[0].get("score") + 1
 		return new_score
-	def update_highscores(self):
-		score = int(self.get_players())
+
+	def get_players(self):
 		mysql_con = mysql.mysql()
-		result = mysql_con.update("UPDATE players SET score=" + str(score) + " WHERE player_id = 1")
+		player_name = mysql_con.select(("SELECT player_name FROM players"))
+		name_list = []
+		for i in range(len(player_name)):
+			name_list.append(player_name[i].get("player_name"))
+		return name_list
 
+	def update_highscores(self):
+		score = int(self.get_score())
+		name = self.Winner.get_name()
+		mysql_con = mysql.mysql()
+		result = mysql_con.update('UPDATE players SET score= "' + str(score) + '" WHERE player_name = "' + str(name) + '"')
+		#('UPDATE players SET score= "' + str(score) + '" WHERE player_name = "' + str(name) + '"')
 
-	def add_highscores(self):
+	def add_or_update_highscores(self):
 		mysql_con = mysql.mysql()
 		#check_player = mysql_con.select("SELECT player_name FROM players LIMIT 10")
 		name = self.Winner.get_name()
-		mysql_con.insert("INSERT INTO players(player_name, score) VALUES('Sander', 1)")
+		if name not in self.get_players():
+			mysql_con.insert('INSERT INTO players(player_name, score) VALUES("' + str(name) + '", 1)')
+		else:
+
+			self.update_highscores()
+
 
 
 
@@ -100,6 +115,6 @@ class win_screen:
 		pygame.draw.rect(self.screen, (48, 148, 51), pygame.Rect(
 			(self.width / 2 - 50, math.ceil(7 / 8 * (self.height - self.distance_border * 2))), (100, 35)))
 
-player1 = player.Player(1, "Sander")
+player1 = player.Player(1, "Tim")
 player2 = player.Player(2, "Lennart")
 win_screen(800, 575, player1, player2)
