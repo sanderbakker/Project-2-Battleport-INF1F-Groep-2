@@ -214,6 +214,15 @@ while not Game.events():
     #            if len(ship_list_player1) > 0:
     #                ship_list_player1.remove(ship_list_player1[i - 1])
 
+    """ check if player won """
+    won = True 
+    for ship in Other_player.get_saved_ships():
+        if not ship.check_if_dead():
+            won = False
+
+    if(won):
+        modules.win_screen(800, 575, Player, Other_player)
+
     """Save and load hooks"""
     save.sendsave("", Game.get_event())
     load.getsave("", Game.get_event())
