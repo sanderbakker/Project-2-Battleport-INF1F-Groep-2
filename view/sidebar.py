@@ -125,12 +125,19 @@ class Show:
 		image = pygame.image.load(ship.get_image())
 		rotated_image = pygame.transform.rotate(image, 90)
 		self.Game.get_screen().blit(rotated_image, (self.start, 120))		
-		self.Game.draw_text('H: ' + str(ship.get_health()) + ' | M: ' + str(ship.get_moves()) + ' | A_L: ' + str(ship.get_attack_count()), (self.start, 140))
-		self.Game.draw_text('O: ' + str(ship.get_offensive_range()) + ' | D: ' + str(ship.get_defensive_range()) + ' | A: ' + str(ship.get_damage()), (self.start, 160))
+		if(ship.check_if_dead()):
+			self.Game.draw_text('This ship is Destroyed!', (self.start, 145))
+		else:
+			self.Game.draw_text('H: ' + str(ship.get_health()) + ' | M: ' + str(ship.get_moves()) + ' | A_L: ' + str(ship.get_attack_count()), (self.start, 140))
+			self.Game.draw_text('O: ' + str(ship.get_offensive_range()) + ' | D: ' + str(ship.get_defensive_range()) + ' | A: ' + str(ship.get_damage()), (self.start, 160))
 		self.Game.draw_text('________________________', (self.start, 170))
 
 	def draw_attackable_ships(self, ships):
 		selected_ship = self.Turn.get_selected_ship()
+		if(selected_ship.check_if_dead()):
+			return False
+
+		
 		y_start = 200
 
 		for ship in ships:
