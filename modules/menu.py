@@ -124,13 +124,17 @@ class Menu:
             if (mouse[1] >= (math.ceil(((7/8) * self.height) - 35)) and mouse[1] <= math.ceil(7/8 * self.height)):
                 if (mouse[0] >= coordinates and mouse[0] <= coordinates + self.width_blocks):
                     if event.type == pygame.MOUSEBUTTONDOWN:
-                        Sounds().exit_sound()
-                        time.sleep(0.3)
+                        chk = settings.Settings(800, 575).play_sound()
+                        if chk == True:
+                            Sounds().exit_sound()
+                            time.sleep(0.3)
                         sys.exit()
                 elif (mouse[0] >= (coordinates + self.width_blocks +  self.distance_between) and mouse[0] <= (coordinates + self.width_blocks + self.distance_between + self.width_blocks)):
                     if event.type == pygame.MOUSEBUTTONDOWN:
-                        Sounds().click_sound()
-                        time.sleep(0.2)
+                        chk = settings.Settings(800, 575).play_sound()
+                        if chk == True:
+                            Sounds().click_sound()
+                            time.sleep(0.2)
                         return True
                 elif (mouse[0] >= 565 and mouse[0] <= 665):
                     if event.type == pygame.MOUSEBUTTONDOWN:
