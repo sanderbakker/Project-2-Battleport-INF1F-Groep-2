@@ -215,6 +215,9 @@ class MainShip:
     def add_damage(self, number):
         self.damage += number
 
+    def take_damage(self, number):
+        self.health -= number
+
     def get_image(self):
         return self.image
 
