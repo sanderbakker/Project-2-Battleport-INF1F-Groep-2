@@ -27,8 +27,7 @@ class win_screen:
 	def process_events(self):
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
-				# Give the signal to quit
-				return True
+				sys.exit()
 			mouse = pygame.mouse.get_pos()
 			if event.type == pygame.MOUSEBUTTONDOWN:
 				if mouse[0] > 350 and mouse[0] < 450:
@@ -115,6 +114,6 @@ class win_screen:
 		pygame.draw.rect(self.screen, (48, 148, 51), pygame.Rect(
 			(self.width / 2 - 50, math.ceil(7 / 8 * (self.height - self.distance_border * 2))), (100, 35)))
 
-player1 = player.Player(1, "Tim")
-player2 = player.Player(2, "Lennart")
-win_screen(800, 575, player1, player2)
+#player1 = player.Player(1, "Tim")
+#player2 = player.Player(2, "Lennart")
+#win_screen(800, 575, player1, player2)
