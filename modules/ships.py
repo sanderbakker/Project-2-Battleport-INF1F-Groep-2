@@ -420,5 +420,5 @@ class Sounds:
         pygame.mixer.Sound.play(waves)
 
     def biem(self):
-        biem = pygame.mixer.Sound("assets/sounds/biem.wav")
+        biem = pygame.mixer.Sound("assets/sounds/explosion_1.wav")
         pygame.mixer.Sound.play(biem)
