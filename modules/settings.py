@@ -58,6 +58,7 @@ class Settings:
         while not self.process_events():
             self.draw_frame()
             self.add_text("Settings")
+            self.sound_text("Sound")
             self.add_button()
             self.add_return()
             pygame.display.flip()
@@ -75,13 +76,35 @@ class Settings:
 
     def add_button(self):
         pygame.draw.rect(self.screen, (48, 148, 51), pygame.Rect((self.width/2 + 100, math.ceil(self.height/4)), (50, 30)))
-        pygame.draw.rect(self.screen, (48, 148, 51),
-                         pygame.Rect((self.width / 2 + 175, math.ceil(self.height / 4)), (50, 30)))
+        fonts = pygame.font.SysFont("arial", 20)
+        menu = fonts.render("On", 1, (0, 0, 0))
+        menu_position = (self.width/2 + 100, math.ceil(self.height/4))
+
+        pygame.draw.rect(self.screen, (48, 148, 51), pygame.Rect((self.width / 2 + 175, math.ceil(self.height / 4)), (50, 30)))
+
+        x = 500
+        fonts = pygame.font.SysFont("arial", 20)
+        start = fonts.render("On", 1, (0, 0, 0))
+        stop = fonts.render("Off", 1, (0, 0, 0))
+        stop_position = (stop.get_rect())
+        start_position = (start.get_rect())
+        list_of_fonts = [start_position, stop_position]
+        list_of_text = [start, stop]
+        text_items = 0
+        for position_items in range(2):
+            self.screen.blit(list_of_text[text_items], (math.ceil(x + ((50 - list_of_fonts[position_items][2]) / 2)),math.ceil(self.height / 4)))
+            x = x + 65
+            position_items = position_items + 1
+            text_items = text_items + 1
+
+    def sound_text(self, texts):
+        font = pygame.font.SysFont("arial", 30)
+        caption = font.render(texts, 1, (48, 148, 51))
+        caption_position = caption.get_rect()
+        self.screen.blit(caption, ((self.width / 2 - math.ceil(caption_position[2])),  math.ceil(self.height / 4)))
 
     def add_return(self):
         pygame.draw.rect(self.screen, (48, 148, 51), pygame.Rect((self.width/2 - 50, math.ceil(7/8 * (self.height - self.distance_border * 2))), (100, 35)))
-        fonts = pygame.font.SysFont("arial", 20)
-        start = fonts.render("Start", 1, (0, 0, 0))
 
     def play_sound(self):
         if self.SoundOn == True:
