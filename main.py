@@ -17,6 +17,8 @@ from modules import settings
 
 """Sets window title"""
 pygame.display.set_caption("Battleport")
+
+"""Sets player names"""
 Player1 = player.Player(1, login.PlayerName().get_name(), 'red')
 Player2 = player.Player(2, login.PlayerName2().get_name(), 'blue')
 Players = {1: Player1, 2: Player2}
@@ -239,7 +241,7 @@ while not Game.events():
     #                ship_list_player1.remove(ship_list_player1[i - 1])
 
     """ check if player won """
-    won = True 
+    won = True
     for ship in Other_player.get_saved_ships():
         if not ship.check_if_dead():
             won = False
@@ -248,7 +250,15 @@ while not Game.events():
         win.win_screen(800, 575, Player, Other_player)
 
     """Save and load hooks"""
-    save.sendsave("", Game.get_event())
+    """Writes player 1 data"""
+    for i in range(0, len(ship_list_player1)):
+        save(ship_list_player1[i].name, ship_list_player1[i].x, ship_list_player1[i].y, "1337",  "placeholder", "placeholder", 22, "placeholder", 22, Game.get_event()).sendsave(Game.get_event())
+
+    """Writes player 1 data"""
+    for i in range(0, len(ship_list_player2)):
+        save(ship_list_player2[i].name, ship_list_player2[i].x, ship_list_player2[i].y, "1337", "placeholder", "placeholder", 22, "placeholder", 22, Game.get_event()).sendsave(Game.get_event())
+
+    """Load hook"""
     load.getsave("", Game.get_event())
 
     #remove_ship()
