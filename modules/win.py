@@ -43,12 +43,13 @@ class win_screen:
 									 ((self.width - self.distance_border * 2),
 									  (self.height - self.distance_border * 2))))
 	def show(self):
+		self.add_highscores()
+		self.update_highscores()
 		while not self.process_events():
 			self.draw_frame()
 			self.draw_winner()
 			self.get_highscores()
 			self.add_return()
-			self.add_highscores()
 			self.add_button_text("Exit")
 			pygame.display.flip()
 
@@ -76,12 +77,22 @@ class win_screen:
 			self.screen.blit(score_result, ((self.width / 2 + 65), x))
 			x = x + 25
 		return player
+	def get_players(self):
+		mysql_con = mysql.mysql()
+		score = mysql_con.select("SELECT score FROM players WHERE player_id = 1 ")
+		new_score = score[0].get("score") + 1
+		return new_score
+	def update_highscores(self):
+		score = int(self.get_players())
+		mysql_con = mysql.mysql()
+		result = mysql_con.update("UPDATE players SET score=" + str(score) + " WHERE player_id = 1")
+
 
 	def add_highscores(self):
 		mysql_con = mysql.mysql()
 		#check_player = mysql_con.select("SELECT player_name FROM players LIMIT 10")
 		name = self.Winner.get_name()
-		mysql_con.insert("INSERT INTO players(player_name, score) VALUES(Sander, 1)")
+		mysql_con.insert("INSERT INTO players(player_name, score) VALUES('Sander', 1)")
 
 
 
