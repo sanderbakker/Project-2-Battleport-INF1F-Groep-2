@@ -134,7 +134,7 @@ class Menu:
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         chk = settings.Settings(800, 575).play_sound()
                         if chk == True:
-                            sounds.sounds.Sounds().click_sound()
+                            sounds.Sounds().click_sound()
                             time.sleep(0.2)
                         return True
                 elif (mouse[0] >= 565 and mouse[0] <= 665):
