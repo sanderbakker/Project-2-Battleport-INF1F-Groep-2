@@ -36,11 +36,15 @@ class Menu:
         # end point of the blocks
         self.end_point = self.width_screen - int(self.start_point + self.width_blocks)
         self.help_needed = False
+        #self.image = pygame.image.load("assets/window.png")
+        #self.add_background()
     # draws a frame
     def draw_frame(self):
         pygame.draw.rect(self.screen, (212, 212, 212),
                          pygame.Rect((self.distance_border, self.distance_border),
                                      ((self.width_screen - self.distance_border * 2), (self.height - self.distance_border * 2))))
+    def add_background(self):
+        self.screen.blit(self.image, (0,0))
     # add a logo
     def add_logo(self):
         size_image = 280

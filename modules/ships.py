@@ -38,7 +38,7 @@ class MainShip:
     def unset_select(self):
         self.select = False
 
-    def get_select(self): 
+    def get_select(self):
         return self.select
 
     def get_size(self):
@@ -340,9 +340,6 @@ class MainShip:
     def add_damage(self, number):
         self.damage += number
 
-    def animation(self):
-        return animation.Animation(Game)
-
     def take_damage(self, number):
         self.health -= number
         if(self.health <= 0):
@@ -388,6 +385,7 @@ class Saltire(MainShip):
         self.defensive_range = 3
         self.damage = 1
         self.attack_count = 1
+        self.ship_number = 1
         if(color == 'red'):
             self.image = "assets/boats/BoatR_1.png"
         else:
@@ -397,7 +395,8 @@ class Saltire(MainShip):
         self.dead       = False        
         self.deactivate = False
         self.deactivated = False
-
+    def get_ship_number(self):
+        return self.ship_number
     def reset(self):
         self.move_ship = 300
         self.offensive_range = 2
@@ -421,6 +420,7 @@ class Windsurf(MainShip):
         self.defensive_range = 4
         self.damage = 1
         self.attack_count = 1
+        self.ship_number = 2
         if(color == 'red'):
             self.image = "assets/boats/BoatR_2.png"        
         else:
@@ -454,6 +454,7 @@ class Amadea(MainShip):
         self.defensive_range = 5
         self.damage = 1
         self.attack_count = 1
+        self.ship_number = 3
         if(color == 'red'):
             self.image = "assets/boats/BoatR_3.png"
         else:
