@@ -3,6 +3,7 @@ import sys
 pygame.init()
 
 class PlayerName():
+    # inits the game
     def __init__(self):
         self.width = 800
         self.height = 575
@@ -12,11 +13,13 @@ class PlayerName():
         self.distance_border = 20
         self.draw_frame()
         self.name(400, 50)
+    # draws a frame
     def draw_frame(self):
         pygame.draw.rect(self.screen, (204, 0, 0),
                          pygame.Rect((self.distance_border, self.distance_border),
                                      ((self.width - self.distance_border * 2),
                                       (self.height - self.distance_border * 2))))
+    # gets the name of player 1 and blit's it on the screen
     def name(self, x, y):
         font = pygame.font.SysFont("Arial", 30)
         while not False:
@@ -56,10 +59,10 @@ class PlayerName():
                 self.screen.blit(username_1,
                                  (self.width / 2 - (username_1_position[2] / 2), self.height / 2 - (ask_position[3] / 2)))
             pygame.display.flip()
-
+    # returns the name of player 1
     def get_name(self):
         return self.Player1
-
+# class for the name of player 2
 class PlayerName2():
     def __init__(self):
         self.width = 800
@@ -70,12 +73,13 @@ class PlayerName2():
         self.distance_border = 20
         self.draw_frame()
         self.name(400, 50)
-
+    # draws a frame
     def draw_frame(self):
         pygame.draw.rect(self.screen, (51, 102, 204),
                          pygame.Rect((self.distance_border, self.distance_border),
                                      ((self.width - self.distance_border * 2),
                                       (self.height - self.distance_border * 2))))
+    # gets the name of player 2 and blit's it on the screen
     def name(self, x, y):
         font = pygame.font.SysFont("arial", 30)
         while not False:
@@ -113,6 +117,6 @@ class PlayerName2():
                 self.screen.blit(username_2,
                                  (self.width / 2 - (username_2_positon[2] / 2), self.height / 2 - (ask_position[3] / 2)))
             pygame.display.flip()
-
+    # returns the name of player 2
     def get_name(self):
         return self.Player2
