@@ -72,3 +72,7 @@ class Sounds:
         number = random.randint(1, 2)
         sound = pygame.mixer.Sound("assets/sounds/blue/turn_offensive/" + str(number) + ".wav")
         pygame.mixer.Sound.play(sound)
+
+    def background_sound(self):
+        sound = pygame.mixer.Sound("assets/sounds/bg_sound.ogg")
+        pygame.mixer.Sound(sound).play(-1)
