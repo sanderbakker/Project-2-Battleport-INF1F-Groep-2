@@ -89,7 +89,7 @@ class Show:
 
 
 	def draw_skip_turn(self):
-		button = self.Game.button({'color': (211,211,211), 'start_x': self.start + 5, 'start_y': 65, 'width': self.width - 10, 'height': 40}, 'End turn')
+		button = self.Game.button({'image_path': 'assets/button_end_turn.png' ,'color': (211,211,211), 'start_x': self.start + 5, 'start_y': 65, 'width': self.width - 10, 'height': 40}, 'End turn')
 		if(button):
 			self.Turn.add_normal_card(cards.normal_card().get_random())
 
@@ -119,7 +119,7 @@ class Show:
 	def set_wiki(self, card):
 		self.Game.get_screen().blit(card.get_wiki(), (self.start + 65, (330)))
 
-		button = self.Game.button({'color': (211,211,211), 'start_x': self.start + 65, 'start_y': 280 + 220, 'width': 127, 'height': 40}, 'Use Card')
+		button = self.Game.button({'image_path': 'assets/button_use_card.png', 'color': (211,211,211), 'start_x': self.start + 65, 'start_y': 280 + 220, 'width': 127, 'height': 40}, 'Use Card')
 
 		if(button):
 			self.Turn.use_normal_card(card)
@@ -163,8 +163,8 @@ class Show:
 				self.Game.draw_text('H: ' + str(ship.get_health()), (self.start + 95, y_start))	
 
 			if(selected_ship.get_attack_count() > 0 and not ship.check_if_dead()):
-				self.Game.set_font(12, 'inherit', 'inherit')
-				button = self.Game.button({'color': (211,211,211), 'start_x': self.start + 140, 'start_y': y_start, 'width': 60, 'height': 20}, 'Attack', True)
+				self.Game.set_font(12, (255,255,255), 'inherit')
+				button = self.Game.button({'image_path': 'assets/button_attack.png', 'color': (211,211,211), 'start_x': self.start + 140, 'start_y': y_start, 'width': 60, 'height': 20}, 'Attack', True)
 
 				if(button) and selected_ship.get_attack_count() > 0:
 					damage = selected_ship.get_damage()
