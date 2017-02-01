@@ -173,3 +173,18 @@ class Game:
     """ blit something on the screen """
     def blit(self, obj, placement):
         self.screen.blit(obj, placement)
+
+
+    def explosion(self, x, y):
+        list_loaded = [pygame.image.load("modules/effects/explosion/explosion_frame_0.png"),
+                       pygame.image.load("modules/effects/explosion/explosion_frame_1.png"),
+                       pygame.image.load("modules/effects/explosion/explosion_frame_2.png"),
+                       pygame.image.load("modules/effects/explosion/explosion_frame_3.png"),
+                       pygame.image.load("modules/effects/explosion/explosion_frame_4.png"),
+                       pygame.image.load("modules/effects/explosion/explosion_frame_5.png"),
+                       pygame.image.load("modules/effects/explosion/explosion_frame_6.png")]
+        for animation in range(len(list_loaded)):
+            print(self.get_screen())
+            screen = self.get_screen()
+            screen.blit(list_loaded[animation], (x, y))
+
