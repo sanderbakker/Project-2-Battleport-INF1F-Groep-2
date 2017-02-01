@@ -47,18 +47,24 @@ class Show:
 		#self.draw_normal_deck()
 
 	def draw_sidebar(self):
-		pygame.draw.rect(self.Game.get_screen(), (self.sidebar_color), [self.start, 0, self.width, self.display_height])
+		#pygame.draw.rect(self.Game.get_screen(), (self.sidebar_color), [self.start, 0, self.width, self.display_height])
+		scr = pygame.image.load("assets/card_table.png")
+		self.Game.get_screen().blit(scr, (self.start, 60))
 
 	def draw_toolbar(self):
 		width_block = self.toolbar_width_block
 		heigth_block = self.toolbar_height_block
 
-		pygame.draw.rect(self.Game.get_screen(), (self.toolbar_color), [self.start, 0, self.width, self.toolbar_height])
+		top = pygame.image.load("assets/sidebar_up.png")
+		button = pygame.image.load("assets/button.png")
+
+		#pygame.draw.rect(self.Game.get_screen(), (self.toolbar_color), [self.start,0, self.width, self.toolbar_height])
+		self.Game.get_screen().blit(top, (self.start, 0))
 
 		y_coordinate = heigth_block/2
 		x_coordinate = self.start + ((self.width - (width_block * 2)) / 4)
 		while x_coordinate < self.display_width:
-			pygame.draw.rect(self.Game.get_screen(), (211, 211, 211), [x_coordinate, y_coordinate, width_block, heigth_block])
+			self.Game.get_screen().blit(button, (x_coordinate, y_coordinate))
 			x_coordinate = (x_coordinate + width_block + ((self.width - (width_block * 2)) /2))
 
 		##TEXT
