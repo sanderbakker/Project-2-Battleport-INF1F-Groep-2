@@ -5,7 +5,10 @@ from modules import menu
 from modules import sounds
 pygame.init()
 # Set height and width of the screen
-trigger = True
+trigger = True #menu effects
+trigger2 = True #game effects
+sounds.Sounds().stop_game_sound()
+sounds.Sounds().start_game_sound()
 class Settings:
     # inits the settings
     def __init__(self, width, height):
@@ -14,6 +17,7 @@ class Settings:
         self.screen = pygame.display.set_mode((self.width, self.height))
         self.distance_border = 20
         self.SoundOn = trigger
+        self.GameSoundOn = trigger2
         #self.image = pygame.image.load("highscores.png")
         #self.add_background()
     # checks if the buttons in the settings are clicked on
@@ -24,7 +28,10 @@ class Settings:
                 return True
             mouse = pygame.mouse.get_pos()
 
-            #sound on
+            chk = Settings(800, 575).play_sound()
+            chk2 = Settings(800, 575).play_gamesound()
+
+            #sound on menu sounds
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if mouse[0] > (self.width/2 + 100) and mouse[0] < (self.width/2 + 150):
                     if mouse[1] > math.ceil(self.height/4) and mouse [1] < math.ceil(self.height/4) + 30:
@@ -34,33 +41,49 @@ class Settings:
                         global trigger
                         trigger = True
 
-            #sound off
+            #sound off menu sounds
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if mouse[0] > (self.width/2 + 175) and mouse[0] < (self.width/2 + 225):
                     if mouse[1] > math.ceil(self.height/4) and mouse [1] < math.ceil(self.height/4) + 30:
-                        chk = Settings(800, 575).play_sound()
+
                         if chk == True:
                             sounds.Sounds().click_sound()
                             time.sleep(0.2)
                         #self.SoundOn = 1
                         global trigger
                         trigger = False
-            # sound on
+
+            # sound on game sounds
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if mouse[0] > (self.width / 2 + 100) and mouse[0] < (self.width / 2 + 150):
                     if mouse[1] > math.ceil(self.height / 3) and mouse[1] < math.ceil(self.height / 3) + 30:
                         pass
-                        # WORK HERE
-            # sound off
+                        if chk == True:
+                            sounds.Sounds().click_sound()
+                            time.sleep(0.2)
+                        #self.SoundOn = 1
+                        #global trigger2
+                        #trigger2 = False
+                    sounds.Sounds().start_game_sound()
+
+            # sound off game sounds
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if mouse[0] > (self.width / 2 + 175) and mouse[0] < (self.width / 2 + 225):
                     if mouse[1] > math.ceil(self.height / 3) and mouse[1] < math.ceil(self.height / 3) + 30:
                         pass
-                        #WORK HERE
+                        if chk == True:
+                            sounds.Sounds().click_sound()
+                            time.sleep(0.2)
+                        #self.SoundOn = 1
+                        #global trigger2
+                        #trigger2 = False
+                    sounds.Sounds().stop_game_sound()
+
+            # start button
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if mouse[0] > 350 and mouse[0] < 450:
                     if mouse[1] > math.ceil(7/8 * (self.height - self.distance_border * 2)) and mouse [1] < math.ceil(7/8 * (self.height - self.distance_border * 2)) + 35:
-                        chk = Settings(800, 575).play_sound()
+
                         if chk == True:
                             sounds.Sounds().click_sound()
                             time.sleep(0.2)
@@ -134,6 +157,10 @@ class Settings:
     # check is the sound is on or off
     def play_sound(self):
         if self.SoundOn == True:
+            return True
+    # check if game sounds is on or off
+    def play_gamesound(self):
+        if self.GameSoundOn == True:
             return True
     # adds text to the button
     def add_button_text(self, text):
