@@ -216,6 +216,7 @@ while not Game.events():
             """Ship movement logic"""
             for ship in Turn.get_ships():
                 if (set([click]).intersection(set(ship.get_ship()))):
+                    sounds.Sounds().click_sound()
                     for ship_unselect in Turn.get_ships():
                         ship_unselect.unset_select()
 
