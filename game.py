@@ -90,7 +90,7 @@ class Game:
     """ 
     button generator 
     """
-    def button(self, array, text = ''):
+    def button(self, array, text = '', custom_font = None):
         start_x = array['start_x']
         start_y = array['start_y']
 
@@ -100,8 +100,19 @@ class Game:
         color  = array['color']
 
         pygame.draw.rect(self.get_screen(), color, [start_x, start_y, width, height])
+        if not custom_font:
+            self.reset_font()
+
+        custom_font = pygame.font.SysFont(self.font, self.font_size)
+
+
+        text_width, text_height = custom_font.size(text)
+        start_text_width = start_x + (width - text_width) / 2
+        start_text_height = start_y + (height - text_height) / 2
+
+        self.draw_text(text, (start_text_width, start_text_height))
+
         self.reset_font()
-        self.draw_text(text, (start_x + 5, start_y + 5))
         event = self.get_event()
         mouse = pygame.mouse.get_pos()
         if mouse[0] >= start_x and mouse[0] <= start_x + width:
