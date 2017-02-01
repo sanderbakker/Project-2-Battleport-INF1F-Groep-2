@@ -14,17 +14,20 @@ class Sounds:
 
     def stop_game_sound(self):
         self.play_gamesound = False
-        print('Nuu bitchh')
+        print(self.play_gamesound)
         return self.play_gamesound
 
     def start_game_sound(self):
         self.play_gamesound = True
-        print('Yas bitchh')
+        print(self.play_gamesound)
         return self.play_gamesound
 
     def check_gamesound(self):
         if self.play_gamesound == True:
             return True
+        elif self.play_gamesound == False:
+            return False
+
     # returns false so the sound will stop
     def stop_sound(self):
         self.play_sound = False
@@ -49,6 +52,11 @@ class Sounds:
     def click_sound(self):
         click_sfx = pygame.mixer.Sound("assets/sounds/click_sound.wav")
         pygame.mixer.Sound.play(click_sfx)
+
+    def card_place(self):
+        sound = pygame.mixer.Sound("assets/sounds/card_place.wav")
+        pygame.mixer.Sound.play(sound)
+
     # play error sounds
     def error(self):
         error_sfx = pygame.mixer.Sound("assets/sounds/error.wav")
@@ -95,3 +103,5 @@ class Sounds:
     def background_sound(self):
         sound = pygame.mixer.Sound("assets/sounds/bg_sound.ogg")
         pygame.mixer.Sound(sound).play(-1)
+
+sounds = Sounds()

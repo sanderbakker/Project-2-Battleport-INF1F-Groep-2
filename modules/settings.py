@@ -7,8 +7,8 @@ pygame.init()
 # Set height and width of the screen
 trigger = True #menu effects
 trigger2 = True #game effects
-sounds.Sounds().stop_game_sound()
-sounds.Sounds().start_game_sound()
+sounds.sounds.stop_game_sound()
+sounds.sounds.start_game_sound()
 class Settings:
     # inits the settings
     def __init__(self, width, height):
@@ -35,11 +35,12 @@ class Settings:
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if mouse[0] > (self.width/2 + 100) and mouse[0] < (self.width/2 + 150):
                     if mouse[1] > math.ceil(self.height/4) and mouse [1] < math.ceil(self.height/4) + 30:
-                        sounds.Sounds().click_sound()
+                        sounds.sounds.click_sound()
                         time.sleep(0.2)
                         #self.SoundOn = 0
                         global trigger
                         trigger = True
+
 
             #sound off menu sounds
             if event.type == pygame.MOUSEBUTTONDOWN:
@@ -47,7 +48,7 @@ class Settings:
                     if mouse[1] > math.ceil(self.height/4) and mouse [1] < math.ceil(self.height/4) + 30:
 
                         if chk == True:
-                            sounds.Sounds().click_sound()
+                            sounds.sounds.click_sound()
                             time.sleep(0.2)
                         #self.SoundOn = 1
                         global trigger
@@ -57,27 +58,25 @@ class Settings:
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if mouse[0] > (self.width / 2 + 100) and mouse[0] < (self.width / 2 + 150):
                     if mouse[1] > math.ceil(self.height / 3) and mouse[1] < math.ceil(self.height / 3) + 30:
-                        pass
                         if chk == True:
-                            sounds.Sounds().click_sound()
+                            sounds.sounds.click_sound()
                             time.sleep(0.2)
                         #self.SoundOn = 1
                         #global trigger2
                         #trigger2 = False
-                    sounds.Sounds().start_game_sound()
+                        sounds.sounds.start_game_sound()
 
             # sound off game sounds
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if mouse[0] > (self.width / 2 + 175) and mouse[0] < (self.width / 2 + 225):
                     if mouse[1] > math.ceil(self.height / 3) and mouse[1] < math.ceil(self.height / 3) + 30:
-                        pass
                         if chk == True:
-                            sounds.Sounds().click_sound()
+                            sounds.sounds.click_sound()
                             time.sleep(0.2)
                         #self.SoundOn = 1
                         #global trigger2
                         #trigger2 = False
-                    sounds.Sounds().stop_game_sound()
+                        sounds.sounds.stop_game_sound()
 
             # start button
             if event.type == pygame.MOUSEBUTTONDOWN:
@@ -85,7 +84,7 @@ class Settings:
                     if mouse[1] > math.ceil(7/8 * (self.height - self.distance_border * 2)) and mouse [1] < math.ceil(7/8 * (self.height - self.distance_border * 2)) + 35:
 
                         if chk == True:
-                            sounds.Sounds().click_sound()
+                            sounds.sounds.click_sound()
                             time.sleep(0.2)
                         return True
         return False
