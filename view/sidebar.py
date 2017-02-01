@@ -90,7 +90,7 @@ class Show:
 
 
 	def draw_skip_turn(self):
-		button = self.Game.button({'image_path': 'assets/button_end_turn.png' ,'color': (211,211,211), 'start_x': self.start + 5, 'start_y': 65, 'width': self.width - 10, 'height': 40}, 'End turn')
+		button = self.Game.button({'image_path': 'assets/button_end_turn.png' ,'color': (0,0,0), 'start_x': self.start + 5, 'start_y': 65, 'width': self.width - 10, 'height': 40}, 'End turn')
 		if(button):
 			self.Turn.add_normal_card(cards.normal_card().get_random())
 
