@@ -60,7 +60,7 @@ class Settings:
         while not self.process_events():
             self.draw_frame()
             self.add_text("Settings")
-            self.sound_text("Sound")
+            self.sound_text("Sound Settings")
             self.add_button()
             self.add_return()
             self.add_button_text("Menu")
