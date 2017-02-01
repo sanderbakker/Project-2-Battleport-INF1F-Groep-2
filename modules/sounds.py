@@ -6,6 +6,9 @@ pygame.mixer.init(frequency=22050, size=-16, channels=2, buffer=4096)
 class Sounds:
     def __init__ (self):
         self.play_sound = True
+    def check_sound(self):
+        if self.play_sound == True:
+            return True
     # returns false so the sound will stop
     def stop_sound(self):
         self.play_sound = False
