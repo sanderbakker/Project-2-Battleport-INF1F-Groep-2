@@ -2,6 +2,7 @@ import pygame
 import math
 import time
 from modules import cards
+from modules import sounds
 
 pygame.init()
 class Show:
@@ -137,7 +138,6 @@ class Show:
 		if(selected_ship.check_if_dead()):
 			return False
 
-
 		y_start = 200
 
 		for ship in ships:
@@ -158,7 +158,11 @@ class Show:
 					damage = selected_ship.get_damage()
 					ship.take_damage(damage)
 					selected_ship.subtract_attack_count(1)
-					Sounds().fire_shot()
+					if(self.Player.get_id() == 1):
+						sounds.Sounds().attack_blue()
+					else:
+						sounds.Sounds().attack_red()
+						
 					time.sleep(0.15)			
 
 			y_start += 30
