@@ -230,7 +230,10 @@ class MainShip:
 
                         time.sleep(0.15)                            
                     elif event.key == pygame.K_l:
-                        sounds.Sounds().waves()
+                        if player1.get_id() == 1:
+                            sounds.Sounds().turn_defensive_red()
+                        else:
+                            sounds.Sounds().turn_defensive_blue()
                         self.move_ship -= 1
                         self.turn_ship()
                         if(self.check_colsion(player1, player2)):
@@ -240,6 +243,10 @@ class MainShip:
             elif self.vertical == False and not self.dead:
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_l:
+                        if player1.get_id() == 1:
+                            sounds.Sounds().turn_offensive_red()
+                        else:
+                            sounds.Sounds().turn_offensive_blue()                            
                         self.move_ship -= 1
                         self.turn_ship()
                         if(self.check_colsion(player1, player2)):
