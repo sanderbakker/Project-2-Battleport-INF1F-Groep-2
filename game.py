@@ -184,16 +184,16 @@ class Game:
                        pygame.image.load("modules/effects/explosion/explosion_frame_4.png"),
                        pygame.image.load("modules/effects/explosion/explosion_frame_5.png"),
                        pygame.image.load("modules/effects/explosion/explosion_frame_6.png")]
-        move_grid = 50
+        move_grid = 40
         opacity_grid = 400
         number_of_blocks = 20
         middle_box = ((opacity_grid /number_of_blocks) / 2)
-        new_x = ((x * (middle_box)) + middle_box * (x - 2)) + move_grid
-        new_y = ((x * (middle_box)) + middle_box * (y - 2)) + move_grid
+        new_x = x * number_of_blocks + move_grid - number_of_blocks
+        new_y = y * number_of_blocks + move_grid - (number_of_blocks/2)
         print(new_x, new_y)
         for animation in range(len(list_loaded)):
             screen = self.get_screen()
-            screen.blit(list_loaded[animation], (40, 40))
+            screen.blit(list_loaded[animation], (new_x, new_y))
             time.sleep(0.12)
             pygame.display.flip()
 

@@ -96,9 +96,11 @@ class Grid:
 
     # places the boats of player 1
     def Place_Player_1(self, ship_number, ship):
+
         screen = self.screen
         transparant = (235, 235, 235, 0)
         middle_box = ((self.opacity_grid/self.number_of_blocks) / 2)
+
         rect_x = ((ship.x * (middle_box)) + middle_box * (ship.x - 2)) + self.move_grid
         rect_y = ((ship.y * (middle_box)) + middle_box * (ship.y - 2)) + self.move_grid
         #rect = pygame.draw.rect(screen, (51, 102, 204),
