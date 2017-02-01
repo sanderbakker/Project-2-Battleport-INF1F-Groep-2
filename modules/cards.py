@@ -1,5 +1,6 @@
 import os, pygame, random
 from modules import mine
+from modules import sounds
 
 class card:
 	def __init__(self):
@@ -87,8 +88,6 @@ class normal_card:
 			'EMP_upgrade': 4,
 			'Reinforced_hull': 2,
 			'Sonar': 4,
-			#'Smokescreen': 2,
-			#'Sabotage': 2,
 			'Backup': 2,
 			'Extra_fuel_II': 4,
 			'Extra_fuel': 2,
@@ -281,13 +280,22 @@ class action:
 		return method()
 
 	def use_Extra_fuel(self):
-		self.Turn.get_selected_ship().add_moves(1)
+		try:
+			self.Turn.get_selected_ship().add_moves(1)
+		except AttributeError:
+			sounds.sounds.error()
 
 	def use_Extra_fuel_II(self):
-		self.Turn.get_selected_ship().add_moves(2)
+		try:
+			self.Turn.get_selected_ship().add_moves(2)
+		except AttributeError:
+			sounds.sounds.error()
 
 	def use_Reinforced_hull(self):
-		self.Turn.get_selected_ship().add_health(1)
+		try:
+			self.Turn.get_selected_ship().add_health(1)
+		except AttributeError:
+			sounds.sounds.error()
 
 	def use_Backup(self):
 		self.Turn.add_normal_card(normal_card().get_random())
@@ -306,25 +314,38 @@ class action:
 		self.Turn.get_other_player().delete_mine()
 
 	def use_Adrenaline_rush(self):
-		self.Turn.get_selected_ship().add_moves(1)
-		self.Turn.get_selected_ship().add_attack_count(1)
+		try:
+			self.Turn.get_selected_ship().add_moves(1)
+			self.Turn.get_selected_ship().add_attack_count(1)
+		except AttributeError:
+			sounds.sounds.error()
 
 	def use_Rally(self):
 		for ship in self.Turn.get_ships():
 			ship.add_moves(1)
 
 	def use_Rifling(self):
-		self.Turn.get_selected_ship().add_range(1)
+		try:
+			self.Turn.get_selected_ship().add_range(1)
+		except AttributeError:
+			sounds.sounds.error()			
 
 	def use_Advanced_rifling(self):
-		self.Turn.get_selected_ship().add_range(2)
-
+		try:
+			self.Turn.get_selected_ship().add_range(2)
+		except AttributeError:
+			sounds.sounds.error()
 	def use_FMJ_upgrade(self):
-		self.Turn.get_selected_ship().add_damage(1)
+		try:
+			self.Turn.get_selected_ship().add_damage(1)
+		except AttributeError:
+			sounds.sounds.error()
 
 	def use_EMP_upgrade(self):
-		self.Turn.get_selected_ship().set_deactivate()
-
+		try:
+			self.Turn.get_selected_ship().set_deactivate()
+		except AttributeError:
+			sounds.sounds.error()
 
 
 
