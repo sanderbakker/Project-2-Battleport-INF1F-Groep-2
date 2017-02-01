@@ -266,6 +266,7 @@ while not Game.events():
 
     #remove_ship()
     sidebar_screen.show_instructions()
+    #animation.Animation(Game).add_animation()
     Game.update()
 
 # Turn = player.Turn(Player1)

@@ -1,4 +1,5 @@
 import pygame, sys, pymysql
+from modules import sounds
 
 class Game:
     def __init__(self, width, height):
@@ -100,8 +101,17 @@ class Game:
         color  = array['color']
 
         pygame.draw.rect(self.get_screen(), color, [start_x, start_y, width, height])
+
+        try:
+            img = array['image_path']               
+            image = pygame.image.load(img)
+            self.get_screen().blit(image, (start_x, start_y))
+        except KeyError:
+            img = None
+        
+
         if not custom_font:
-            self.reset_font()
+            self.set_font('inherit', (255,255,255), 'inherit')
 
         custom_font = pygame.font.SysFont(self.font, self.font_size)
 
@@ -118,6 +128,7 @@ class Game:
         if mouse[0] >= start_x and mouse[0] <= start_x + width:
             if mouse[1] >= start_y and mouse[1] <= start_y + height:
                 if event.type == pygame.MOUSEBUTTONDOWN:
+                    sounds.Sounds().click_sound()
                     return True
 
         return False
