@@ -100,7 +100,6 @@ class Game:
 
         color  = array['color']
 
-        pygame.draw.rect(self.get_screen(), color, [start_x, start_y, width, height])
 
         try:
             img = array['image_path']               
@@ -108,13 +107,14 @@ class Game:
             self.get_screen().blit(image, (start_x, start_y))
         except KeyError:
             img = None
+            pygame.draw.rect(self.get_screen(), color, [start_x, start_y, width, height])
+
         
 
         if not custom_font:
             self.set_font('inherit', (255,255,255), 'inherit')
 
         custom_font = pygame.font.SysFont(self.font, self.font_size)
-
 
         text_width, text_height = custom_font.size(text)
         start_text_width = start_x + (width - text_width) / 2
