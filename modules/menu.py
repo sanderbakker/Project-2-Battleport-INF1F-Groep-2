@@ -14,6 +14,7 @@ pygame.mixer.init(frequency=22050, size=-16, channels=2, buffer=4096)
 
 
 class Menu:
+    # init for the menu
     def __init__(self, distance_border, width_screen, height):
         self.distance_border = distance_border
         self.width_screen = width_screen
@@ -35,18 +36,19 @@ class Menu:
         # end point of the blocks
         self.end_point = self.width_screen - int(self.start_point + self.width_blocks)
         self.help_needed = False
+    # draws a frame
     def draw_frame(self):
         pygame.draw.rect(self.screen, (212, 212, 212),
                          pygame.Rect((self.distance_border, self.distance_border),
                                      ((self.width_screen - self.distance_border * 2), (self.height - self.distance_border * 2))))
-
+    # add a logo
     def add_logo(self):
         size_image = 280
         radius_image = 280/2
 
         img = pygame.image.load("assets/logo.png")
         self.screen.blit(img, (self.width_screen/2 - radius_image, self.width_screen*(1/16)))
-
+    # add a help button
     def add_help(self, position):
         help_img = pygame.image.load("assets/help.png")
 
@@ -54,7 +56,7 @@ class Menu:
         pygame.draw.rect(self.screen, (212, 212, 212),
                          pygame.Rect((help_positon_x, self.distance_border),(position, position)))
         self.screen.blit(help_img, (help_positon_x, self.distance_border))
-
+    # add a settings button
     def add_settings(self, position):
         help_img = pygame.image.load("assets/settings.png")
         add_square_x = self.distance_border
@@ -63,7 +65,7 @@ class Menu:
                          pygame.Rect((add_square_x, self.distance_border),(position, position)))
         self.screen.blit(help_img, (settings_x, self.distance_border + 5))
 
-
+    #draws three buttons
     def draw_button(self):
         # calculates the remaining space after the blocks are added
 
@@ -90,7 +92,7 @@ class Menu:
             x = x + self.space_between
             position_items = position_items + 1
             text_items = text_items+ 1
-
+    #displayes the menu
     def show(self):
         while not self.process_events():
             menu = Menu(20, 800, 575)
@@ -101,7 +103,7 @@ class Menu:
             menu.draw_button()
             menu.show_instructions()
             pygame.display.flip()
-
+    #shows instruction in the right corner
     def show_instructions(self):
 
         mouse = pygame.mouse.get_pos()
@@ -110,7 +112,7 @@ class Menu:
                 image = pygame.image.load("assets/help.jpg")
                 self.screen.blit(image, (0, 0))
 
-
+    # checks if a button is clicked on
     def process_events(self):
         coordinates = self.start_point
         for event in pygame.event.get():
