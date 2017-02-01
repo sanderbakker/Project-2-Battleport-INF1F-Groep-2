@@ -2,6 +2,7 @@
 import pygame, time
 from random import randint
 from modules import sounds
+from modules import animation
 pygame.init()
 pygame.mixer.init(frequency=22050, size=-16, channels=2, buffer=4096)
 
@@ -281,7 +282,9 @@ class MainShip:
             for mine in mines:
                 if(set([mine]).intersection(set(ship))):
                     Other_player.delete_mine(mine)
-                    self.take_damage(1)
+                    dead = self.take_damage(1)
+                    if(dead):
+                        return dead
                     sounds.Sounds().biem()
 
     def position(self):
@@ -326,11 +329,15 @@ class MainShip:
     def add_damage(self, number):
         self.damage += number
 
+    def animation(self):
+        return animation.Animation(Game)
+
     def take_damage(self, number):
         self.health -= number
         if(self.health <= 0):
             self.image = self.dead_image
             self.dead  = True
+            return self.dead
 
     def check_if_dead(self):
         return self.dead
