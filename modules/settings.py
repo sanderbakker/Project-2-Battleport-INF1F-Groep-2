@@ -7,6 +7,7 @@ pygame.init()
 # Set height and width of the screen
 trigger = True
 class Settings:
+    # inits the settings
     def __init__(self, width, height):
         self.width = width
         self.height = height
@@ -15,6 +16,7 @@ class Settings:
         self.SoundOn = trigger
         #self.image = pygame.image.load("highscores.png")
         #self.add_background()
+    # checks if the buttons in the settings are clicked on
     def process_events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -53,7 +55,7 @@ class Settings:
                             time.sleep(0.2)
                         return True
         return False
-
+    # shows the settings menu
     def show(self):
         while not self.process_events():
             self.draw_frame()
@@ -62,18 +64,18 @@ class Settings:
             self.add_button()
             self.add_return()
             pygame.display.flip()
-
+    # draws a frame
     def draw_frame(self):
         pygame.draw.rect(self.screen, (212, 212, 212),
                          pygame.Rect((self.distance_border, self.distance_border),
                                      ((self.width - self.distance_border * 2), (self.height - self.distance_border * 2))))
-
+    # add text "Settings" to the screen
     def add_text(self, text):
         font = pygame.font.SysFont("arial", (math.ceil(self.width / 16)))
         caption = font.render(text, 1, (48, 148, 51))
         caption_position = caption.get_rect()
         self.screen.blit(caption, ((self.width / 2 - math.ceil(caption_position[2] / 2)), 50))
-
+    # add's a button to the screen
     def add_button(self):
         pygame.draw.rect(self.screen, (48, 148, 51), pygame.Rect((self.width/2 + 100, math.ceil(self.height/4)), (50, 30)))
         fonts = pygame.font.SysFont("arial", 20)
@@ -96,16 +98,16 @@ class Settings:
             x = x + 65
             position_items = position_items + 1
             text_items = text_items + 1
-
+    #add's the text "Sound" on the screen
     def sound_text(self, texts):
         font = pygame.font.SysFont("arial", 30)
         caption = font.render(texts, 1, (48, 148, 51))
         caption_position = caption.get_rect()
         self.screen.blit(caption, ((self.width / 2 - math.ceil(caption_position[2])),  math.ceil(self.height / 4)))
-
+    # add return button
     def add_return(self):
         pygame.draw.rect(self.screen, (48, 148, 51), pygame.Rect((self.width/2 - 50, math.ceil(7/8 * (self.height - self.distance_border * 2))), (100, 35)))
-
+    # check is the sound is on or off
     def play_sound(self):
         if self.SoundOn == True:
             return True
