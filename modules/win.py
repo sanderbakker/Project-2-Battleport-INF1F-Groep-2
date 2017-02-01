@@ -104,13 +104,19 @@ class win_screen:
 		mysql_con = mysql.mysql()
 		#check_player = mysql_con.select("SELECT player_name FROM players LIMIT 10")
 		name = self.Winner.get_name()
+		loser_name = self.Loser.get_name()
+		self.add_loser()
 		if name not in self.get_players():
 			mysql_con.insert('INSERT INTO players(player_name, score) VALUES("' + str(name) + '", 1)')
 		else:
 
 			self.update_highscores()
 
-
+	def add_loser(self):
+		mysql_con = mysql.mysql()
+		loser_name = self.Loser.get_nameDim()
+		if loser_name not in self.get_players():
+			mysql_con.insert('INSERT INTO players(player_name, score) VALUES("' + str(loser_name) + '", 0)')
 
 	# adds a return button
 	def add_return(self):
