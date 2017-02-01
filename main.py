@@ -76,7 +76,7 @@ Player1.set_mines(mine_list_player2)
 
 
 #remove_ship()
-chk = settings.Settings(0, 0).play_sound()
+chk = sounds.Sounds().check_sound()
 while not Game.events():
     # get the current player    
     Player = Turn.player
