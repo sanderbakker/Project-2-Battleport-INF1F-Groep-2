@@ -49,6 +49,11 @@ class Sounds:
     def click_sound(self):
         click_sfx = pygame.mixer.Sound("assets/sounds/click_sound.wav")
         pygame.mixer.Sound.play(click_sfx)
+
+    def card_place(self):
+        sound = pygame.mixer.Sound("assets/sounds/card_place.wav")
+        pygame.mixer.Sound.play(sound)
+
     # play error sounds
     def error(self):
         error_sfx = pygame.mixer.Sound("assets/sounds/error.wav")

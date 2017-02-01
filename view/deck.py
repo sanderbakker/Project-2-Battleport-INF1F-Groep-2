@@ -1,4 +1,5 @@
 import pygame
+from modules import sounds
 
 pygame.init()
 
@@ -69,7 +70,9 @@ class Show:
 					for cards in self.normal_cards:
 						cards.unset_clicked()
 
+					sounds.Sounds().card_place()
 					card.set_clicked()
+
 
 
 
