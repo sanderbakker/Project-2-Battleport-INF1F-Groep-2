@@ -201,6 +201,8 @@ class MainShip:
 
 
     def movement(self, event, player1, player2, Other_player = None):
+
+        chkgame = sounds.sounds.check_gamesound()
         """Allows for movement on the grid"""
         # if select:
         #     print("You selected: " + self.name)
@@ -213,7 +215,8 @@ class MainShip:
             if self.vertical == True and not self.dead and not self.deactivated:
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_UP:
-                        sounds.Sounds().waves()
+                        if chkgame == True:
+                            sounds.Sounds().waves()
                         self.y -= 1
                         self.move_ship -= 1
                         self.direction = 1
@@ -222,7 +225,8 @@ class MainShip:
                             self.move_ship += 1
                         time.sleep(0.15)                            
                     elif event.key == pygame.K_LEFT:
-                        sounds.Sounds().waves()
+                        if chkgame == True:
+                            sounds.Sounds().waves()
                         self.x -= 1
                         self.move_ship -= 1
                         self.direction = 2
@@ -232,7 +236,8 @@ class MainShip:
 
                         time.sleep(0.15)                            
                     elif event.key == pygame.K_RIGHT:
-                        sounds.Sounds().waves()
+                        if chkgame == True:
+                            sounds.Sounds().waves()
                         self.x += 1
                         self.move_ship -= 1
                         self.direction = 3
@@ -242,7 +247,8 @@ class MainShip:
 
                         time.sleep(0.15)                            
                     elif event.key == pygame.K_DOWN:
-                        sounds.Sounds().waves()
+                        if chkgame == True:
+                            sounds.Sounds().waves()
                         self.y += 1
                         self.move_ship -= 1
                         self.direction = 4
@@ -253,9 +259,11 @@ class MainShip:
                         time.sleep(0.15)                            
                     elif event.key == pygame.K_l:
                         if player1.get_id() == 1:
-                            sounds.Sounds().turn_defensive_red()
+                            if chkgame == True:
+                                sounds.Sounds().turn_defensive_red()
                         else:
-                            sounds.Sounds().turn_defensive_blue()
+                            if chkgame == True:
+                                sounds.Sounds().turn_defensive_blue()
                         self.move_ship -= 1
                         self.turn_ship()
                         if(self.check_colsion(player1, player2) or self.x > (21 - self.get_size())):
@@ -266,9 +274,11 @@ class MainShip:
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_l:
                         if player1.get_id() == 1:
-                            sounds.Sounds().turn_offensive_red()
+                            if chkgame == True:
+                                sounds.Sounds().turn_offensive_red()
                         else:
-                            sounds.Sounds().turn_offensive_blue()                            
+                            if chkgame == True:
+                                sounds.Sounds().turn_offensive_blue()
                         self.move_ship -= 1
                         self.turn_ship()
                         if(self.check_colsion(player1, player2)):
@@ -285,7 +295,8 @@ class MainShip:
                     dead = self.take_damage(1)
                     if(dead):
                         return dead
-                    sounds.Sounds().biem()
+                    if chkgame == True:
+                        sounds.Sounds().biem()
 
     def position(self):
         """Turns ship 180 degrees, allowing for offensive and defensive positioning"""
