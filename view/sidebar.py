@@ -171,8 +171,12 @@ class Show:
 					damage = selected_ship.get_damage()
 					ship.take_damage(damage)
 					if ship.check_if_dead():
-						self.Game.explosion(ship.x, ship.y)
-
+						if ship.get_size() == 2 :
+							self.Game.explosion_ship_1(ship.x, ship.y)
+						elif ship.get_size() == 3:
+							self.Game.explosion_ship_2(ship.x, ship.y)
+						elif ship.get_size() == 4:
+							self.Game.explosion_ship_3(ship.x, ship.y)
 					if(selected_ship.get_deactivate()):
 						ship.set_deactivated()
 

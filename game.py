@@ -176,7 +176,7 @@ class Game:
         self.screen.blit(obj, placement)
 
 
-    def explosion(self, x, y):
+    def explosion_ship_1(self, x, y):
         list_loaded = [pygame.image.load("assets/effects/explosion/explosion_frame_0.png"),
                        pygame.image.load("assets/effects/explosion/explosion_frame_1.png"),
                        pygame.image.load("assets/effects/explosion/explosion_frame_2.png"),
@@ -187,13 +187,88 @@ class Game:
         move_grid = 40
         opacity_grid = 400
         number_of_blocks = 20
-        middle_box = ((opacity_grid /number_of_blocks) / 2)
         new_x = x * number_of_blocks + move_grid - number_of_blocks
-        new_y = y * number_of_blocks + move_grid - (number_of_blocks/2)
-        print(new_x, new_y)
+        new_y = y * number_of_blocks + move_grid - number_of_blocks
         for animation in range(len(list_loaded)):
             screen = self.get_screen()
             screen.blit(list_loaded[animation], (new_x, new_y))
             time.sleep(0.12)
             pygame.display.flip()
-
+        new_x_2 = x * number_of_blocks + move_grid - number_of_blocks
+        new_y_2 = y * number_of_blocks + move_grid
+        for animation in range(len(list_loaded)):
+            screen = self.get_screen()
+            screen.blit(list_loaded[animation], (new_x_2, new_y_2))
+            time.sleep(0.12)
+            pygame.display.flip()
+    def explosion_ship_2(self, x, y):
+        list_loaded = [pygame.image.load("assets/effects/explosion/explosion_frame_0.png"),
+                       pygame.image.load("assets/effects/explosion/explosion_frame_1.png"),
+                       pygame.image.load("assets/effects/explosion/explosion_frame_2.png"),
+                       pygame.image.load("assets/effects/explosion/explosion_frame_3.png"),
+                       pygame.image.load("assets/effects/explosion/explosion_frame_4.png"),
+                       pygame.image.load("assets/effects/explosion/explosion_frame_5.png"),
+                       pygame.image.load("assets/effects/explosion/explosion_frame_6.png")]
+        move_grid = 40
+        opacity_grid = 400
+        number_of_blocks = 20
+        new_x = x * number_of_blocks + move_grid - number_of_blocks
+        new_y = y * number_of_blocks + move_grid - number_of_blocks
+        for animation in range(len(list_loaded)):
+            screen = self.get_screen()
+            screen.blit(list_loaded[animation], (new_x, new_y))
+            time.sleep(0.12)
+            pygame.display.flip()
+        new_x_3 = x * number_of_blocks + move_grid - number_of_blocks
+        new_y_3 = y * number_of_blocks + move_grid + number_of_blocks
+        for animation in range(len(list_loaded)):
+            screen = self.get_screen()
+            screen.blit(list_loaded[animation], (new_x_3, new_y_3))
+            time.sleep(0.12)
+            pygame.display.flip()
+        new_x_2 = x * number_of_blocks + move_grid - number_of_blocks
+        new_y_2 = y * number_of_blocks + move_grid
+        for animation in range(len(list_loaded)):
+            screen = self.get_screen()
+            screen.blit(list_loaded[animation], (new_x_2, new_y_2))
+            time.sleep(0.12)
+            pygame.display.flip()
+    def explosion_ship_3(self, x, y):
+        list_loaded = [pygame.image.load("assets/effects/explosion/explosion_frame_0.png"),
+                       pygame.image.load("assets/effects/explosion/explosion_frame_1.png"),
+                       pygame.image.load("assets/effects/explosion/explosion_frame_2.png"),
+                       pygame.image.load("assets/effects/explosion/explosion_frame_3.png"),
+                       pygame.image.load("assets/effects/explosion/explosion_frame_4.png"),
+                       pygame.image.load("assets/effects/explosion/explosion_frame_5.png"),
+                       pygame.image.load("assets/effects/explosion/explosion_frame_6.png")]
+        move_grid = 40
+        opacity_grid = 400
+        number_of_blocks = 20
+        new_x = x * number_of_blocks + move_grid - number_of_blocks
+        new_y = y * number_of_blocks + move_grid - number_of_blocks
+        for animation in range(len(list_loaded)):
+            screen = self.get_screen()
+            screen.blit(list_loaded[animation], (new_x, new_y))
+            time.sleep(0.12)
+            pygame.display.flip()
+        new_x_3 = x * number_of_blocks + move_grid - number_of_blocks
+        new_y_3 = y * number_of_blocks + move_grid + number_of_blocks
+        for animation in range(len(list_loaded)):
+            screen = self.get_screen()
+            screen.blit(list_loaded[animation], (new_x_3, new_y_3))
+            time.sleep(0.12)
+            pygame.display.flip()
+        new_x_2 = x * number_of_blocks + move_grid - number_of_blocks
+        new_y_2 = y * number_of_blocks + move_grid
+        for animation in range(len(list_loaded)):
+            screen = self.get_screen()
+            screen.blit(list_loaded[animation], (new_x_2, new_y_2))
+            time.sleep(0.12)
+            pygame.display.flip()
+        new_x_4 = x * number_of_blocks + move_grid - number_of_blocks
+        new_y_4 = y * number_of_blocks + move_grid + (number_of_blocks * 2)
+        for animation in range(len(list_loaded)):
+            screen = self.get_screen()
+            screen.blit(list_loaded[animation], (new_x_4, new_y_4))
+            time.sleep(0.12)
+            pygame.display.flip()
