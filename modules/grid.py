@@ -94,7 +94,7 @@ class Grid:
             pygame.draw.rect(screen, (100,200,250), 
                                     pygame.Rect((int(x_ship), int(y_ship)), (20,20)))
 
-         
+    # places the boats of player 1
     def Place_Player_1(self, ship_number, ship):
         screen = self.screen
         transparant = (235, 235, 235, 0)
@@ -172,7 +172,7 @@ class Grid:
                     screen.blit(image, (rect_x, rect_y))
                     self.ship_count3 += 1
 
-
+    # places a mine on the screen
     def Place_Mine(self, rect_x, rect_y):
         screen = self.screen
 
@@ -183,12 +183,13 @@ class Grid:
                          pygame.Rect((int(rect_x) + 1 , int(rect_y) + 1 ), (self.number_of_blocks - 1, self.number_of_blocks - 1)))
         image = pygame.image.load("assets/mine.png")
         screen.blit(image, (rect_x, rect_y))
-    def Turn_Ship(self, rect_x, rect_y, ship_number):
-        middle_box = ((self.opacity_grid / self.number_of_blocks) / 2)
-        rect_x = ((rect_x * (middle_box)) + middle_box * (rect_x - 2)) + self.move_grid
-        rect_y = ((rect_y * (middle_box)) + middle_box * (rect_y - 2)) + self.move_grid
-        pygame.draw.rect(self.screen, (128, 128, 128),pygame.Rect( (rect_x, rect_y), (40, 20) ))
 
+    #def Turn_Ship(self, rect_x, rect_y, ship_number):
+    #    middle_box = ((self.opacity_grid / self.number_of_blocks) / 2)
+    #    rect_x = ((rect_x * (middle_box)) + middle_box * (rect_x - 2)) + self.move_grid
+    #    rect_y = ((rect_y * (middle_box)) + middle_box * (rect_y - 2)) + self.move_grid
+    #    pygame.draw.rect(self.screen, (128, 128, 128),pygame.Rect( (rect_x, rect_y), (40, 20) ))
+    # places the ships of player 2 on the grid
     def Place_Player_2(self, ship_number, ship):
         screen = self.screen
         transparant = (235, 235, 235, 0)
@@ -264,7 +265,7 @@ class Grid:
                     image = pygame.image.load(ship.get_image())
                     screen.blit(image, (rect_x, rect_y))
                     self.ship_count3 += 1
-
+    # adds a color to the grid
     def set_grid_color(self, color):
         screen = self.screen
         pygame.draw.rect(screen, (color), pygame.Rect((self.move_grid, (self.move_grid)), (self.opacity_grid, self.opacity_grid)))
@@ -278,13 +279,13 @@ class Grid:
                     return newpos
 
         return False
-    
+    # get's a random x for the mine
     def get_random_x(self):
         return random.randint(1, 20)
-
+    # get's a random y for the mine
     def get_random_y(self):
         return random.randint(1, 20)
-
+    # reset's the ship count so the player 1 and 2 can place the boats
     def reset_ship_counts(self):
         self.ship_count2 = 0
         self.ship_count1 = 0
@@ -292,6 +293,6 @@ class Grid:
         self.ship_count3 = 0
 
 
-    def return_ship(self):
-        image = pygame.image.load("assets/boats/BoatB_3.png")
-        return image
+    #def return_ship(self):
+    #    image = pygame.image.load("assets/boats/BoatB_3.png")
+    #    return image
