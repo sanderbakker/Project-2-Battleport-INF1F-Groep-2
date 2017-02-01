@@ -114,6 +114,7 @@ class Menu:
 
     # checks if a button is clicked on
     def process_events(self):
+        chk = settings.Settings(800, 575).play_sound()
         coordinates = self.start_point
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -123,23 +124,28 @@ class Menu:
             if mouse[0] > 20 and mouse[0] < 60:
                 if mouse[1] > 20 and mouse[1] < 60:
                     if event.type == pygame.MOUSEBUTTONDOWN:
+                        if chk == True:
+                            sounds.Sounds().click_sound()
+                            time.sleep(0.2)
                         settings.Settings(800, 575).show()
             if (mouse[1] >= (math.ceil(((7/8) * self.height) - 35)) and mouse[1] <= math.ceil(7/8 * self.height)):
                 if (mouse[0] >= coordinates and mouse[0] <= coordinates + self.width_blocks):
                     if event.type == pygame.MOUSEBUTTONDOWN:
-                        chk = settings.Settings(800, 575).play_sound()
                         if chk == True:
                             sounds.Sounds().exit_sound()
                             time.sleep(0.3)
                         sys.exit()
                 elif (mouse[0] >= (coordinates + self.width_blocks +  self.distance_between) and mouse[0] <= (coordinates + self.width_blocks + self.distance_between + self.width_blocks)):
                     if event.type == pygame.MOUSEBUTTONDOWN:
-                        chk = settings.Settings(800, 575).play_sound()
+                        #chk = settings.Settings(800, 575).play_sound()
                         if chk == True:
                             sounds.Sounds().click_sound()
                             time.sleep(0.2)
                         return True
                 elif (mouse[0] >= 565 and mouse[0] <= 665):
                     if event.type == pygame.MOUSEBUTTONDOWN:
+                        if chk == True:
+                            sounds.Sounds().click_sound()
+                            time.sleep(0.2)
                         highscores.Highscores(800, 575).show()
         return False
