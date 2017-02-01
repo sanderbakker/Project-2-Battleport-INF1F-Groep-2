@@ -137,6 +137,10 @@ class Show:
 		selected_ship = self.Turn.get_selected_ship()
 		if(selected_ship.check_if_dead()):
 			return False
+		elif(selected_ship.get_deactivated()):
+			self.Game.draw_text('This ship is Deactivated!', (self.start, 250))
+			return False
+
 
 		y_start = 200
 
@@ -157,12 +161,16 @@ class Show:
 				if(button) and selected_ship.get_attack_count() > 0:
 					damage = selected_ship.get_damage()
 					ship.take_damage(damage)
+
+					if(selected_ship.get_deactivate()):
+						ship.set_deactivated()
+
 					selected_ship.subtract_attack_count(1)
 					if(self.Player.get_id() == 1):
 						sounds.Sounds().attack_blue()
 					else:
 						sounds.Sounds().attack_red()
-						
+
 					time.sleep(0.15)			
 
 			y_start += 30
