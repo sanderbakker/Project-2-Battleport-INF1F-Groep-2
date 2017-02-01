@@ -1,6 +1,7 @@
 """Module containing ship classes"""
 import pygame, time
 from random import randint
+from modules import sounds
 pygame.init()
 pygame.mixer.init(frequency=22050, size=-16, channels=2, buffer=4096)
 
@@ -190,7 +191,7 @@ class MainShip:
             if self.vertical == True and not self.dead:
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_UP:
-                        Sounds().waves()
+                        sounds.Sounds().waves()
                         self.y -= 1
                         self.move_ship -= 1
                         self.direction = 1
@@ -199,7 +200,7 @@ class MainShip:
                             self.move_ship += 1
                         time.sleep(0.15)                            
                     elif event.key == pygame.K_LEFT:
-                        Sounds().waves()
+                        sounds.Sounds().waves()
                         self.x -= 1
                         self.move_ship -= 1
                         self.direction = 2
@@ -209,7 +210,7 @@ class MainShip:
 
                         time.sleep(0.15)                            
                     elif event.key == pygame.K_RIGHT:
-                        Sounds().waves()
+                        sounds.Sounds().waves()
                         self.x += 1
                         self.move_ship -= 1
                         self.direction = 3
@@ -219,7 +220,7 @@ class MainShip:
 
                         time.sleep(0.15)                            
                     elif event.key == pygame.K_DOWN:
-                        Sounds().waves()
+                        sounds.Sounds().waves()
                         self.y += 1
                         self.move_ship -= 1
                         self.direction = 4
@@ -229,7 +230,7 @@ class MainShip:
 
                         time.sleep(0.15)                            
                     elif event.key == pygame.K_l:
-                        Sounds().waves()
+                        sounds.Sounds().waves()
                         self.move_ship -= 1
                         self.turn_ship()
                         if(self.check_colsion(player1, player2)):
@@ -253,7 +254,7 @@ class MainShip:
                 if(set([mine]).intersection(set(ship))):
                     Other_player.delete_mine(mine)
                     self.take_damage(1)
-                    Sounds().biem()
+                    sounds.Sounds().biem()
 
     def position(self):
         """Turns ship 180 degrees, allowing for offensive and defensive positioning"""
@@ -390,7 +391,7 @@ class Amadea(MainShip):
     def __init__(self, name, x, y, color = 'red'):
         super().__init__(name, x, y, color)
         self.name = name
-        self.x = x -100
+        self.x = x - 100
         self.y = y
         self.health = 4
         self.size = 4
@@ -414,11 +415,3 @@ class Amadea(MainShip):
         self.damage = 1
         self.attack_count = 1
 
-class Sounds:
-    def waves(self):
-        waves = pygame.mixer.Sound("assets/sounds/waves.wav")
-        pygame.mixer.Sound.play(waves)
-
-    def biem(self):
-        biem = pygame.mixer.Sound("assets/sounds/explosion_1.wav")
-        pygame.mixer.Sound.play(biem)

@@ -2,7 +2,7 @@ import pygame, sys
 import math
 import time
 from modules import menu
-
+from modules import sounds
 pygame.init()
 # Set height and width of the screen
 trigger = True
@@ -26,7 +26,7 @@ class Settings:
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if mouse[0] > (self.width/2 + 100) and mouse[0] < (self.width/2 + 150):
                     if mouse[1] > math.ceil(self.height/4) and mouse [1] < math.ceil(self.height/4) + 30:
-                        menu.Sounds().click_sound()
+                        sounds.Sounds().click_sound()
                         time.sleep(0.2)
                         #self.SoundOn = 0
                         global trigger
@@ -38,7 +38,7 @@ class Settings:
                     if mouse[1] > math.ceil(self.height/4) and mouse [1] < math.ceil(self.height/4) + 30:
                         chk = Settings(800, 575).play_sound()
                         if chk == True:
-                            menu.Sounds().click_sound()
+                            sounds.Sounds().click_sound()
                             time.sleep(0.2)
                         #self.SoundOn = 1
                         global trigger
@@ -49,7 +49,7 @@ class Settings:
                     if mouse[1] > math.ceil(7/8 * (self.height - self.distance_border * 2)) and mouse [1] < math.ceil(7/8 * (self.height - self.distance_border * 2)) + 35:
                         chk = Settings(800, 575).play_sound()
                         if chk == True:
-                            menu.Sounds().click_sound()
+                            sounds.Sounds().click_sound()
                             time.sleep(0.2)
                         return True
         return False
