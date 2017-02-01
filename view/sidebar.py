@@ -35,7 +35,7 @@ class Show:
 		""" card """
 		self.card_width = 100
 		self.card_height = 150
-		self.start_width_card = self.start + ( (self.width - self.card_width) / 2)
+		self.start_width_card = (self.start - 20) + ( (self.width - self.card_width) / 2)
 
 		self.draw_sidebar()
 		self.draw_toolbar()
@@ -127,8 +127,9 @@ class Show:
 
 	def set_ship(self, ship):
 		#ship = self.Turn.get_selected_ship()
-		self.Game.set_font('inherit', (0,0,0), 'inherit')
-		self.Game.draw_text(str(ship.get_name()), (self.start + 101, 120))
+		self.start = self.start + 20
+		self.Game.set_font('inherit', (130,130,130), 'inherit')
+		self.Game.draw_text(str(ship.get_name()), (self.start + 90, 120))
 		image = pygame.image.load(ship.get_image())
 		rotated_image = pygame.transform.rotate(image, 90)
 		self.Game.get_screen().blit(rotated_image, (self.start, 120))		
@@ -137,7 +138,7 @@ class Show:
 		else:
 			self.Game.draw_text('H: ' + str(ship.get_health()) + ' | M: ' + str(ship.get_moves()) + ' | A_L: ' + str(ship.get_attack_count()), (self.start, 140))
 			self.Game.draw_text('O: ' + str(ship.get_offensive_range()) + ' | D: ' + str(ship.get_defensive_range()) + ' | A: ' + str(ship.get_damage()), (self.start, 160))
-		self.Game.draw_text('________________________', (self.start, 170))
+		self.Game.draw_text('___________________', (self.start, 170))
 
 	def draw_attackable_ships(self, ships):
 		selected_ship = self.Turn.get_selected_ship()
@@ -151,7 +152,7 @@ class Show:
 		y_start = 200
 
 		for ship in ships:
-			self.Game.set_font('inherit', (0,0,0), 'inherit')			
+			self.Game.set_font('inherit', (130,130,130), 'inherit')
 			image = pygame.image.load(ship.get_image())
 			rotated_image = pygame.transform.rotate(image, 90)
 			self.Game.get_screen().blit(rotated_image, (self.start, y_start))			
@@ -159,10 +160,11 @@ class Show:
 			if ship.check_if_dead():
 				self.Game.draw_text('Destroyed!', (self.start + 101, y_start))
 			else:
-				self.Game.draw_text('H: ' + str(ship.get_health()), (self.start + 101, y_start))	
+				self.Game.draw_text('H: ' + str(ship.get_health()), (self.start + 95, y_start))	
 
 			if(selected_ship.get_attack_count() > 0 and not ship.check_if_dead()):
-				button = self.Game.button({'color': (211,211,211), 'start_x': self.start + 150, 'start_y': y_start, 'width': 60, 'height': 20}, 'Attack')
+				self.Game.set_font(12, 'inherit', 'inherit')
+				button = self.Game.button({'color': (211,211,211), 'start_x': self.start + 140, 'start_y': y_start, 'width': 60, 'height': 20}, 'Attack', True)
 
 				if(button) and selected_ship.get_attack_count() > 0:
 					damage = selected_ship.get_damage()
