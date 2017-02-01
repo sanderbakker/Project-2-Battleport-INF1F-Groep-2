@@ -170,6 +170,8 @@ class Show:
 				if(button) and selected_ship.get_attack_count() > 0:
 					damage = selected_ship.get_damage()
 					ship.take_damage(damage)
+					if ship.check_if_dead():
+						self.Game.explosion(ship.x, ship.y)
 
 					if(selected_ship.get_deactivate()):
 						ship.set_deactivated()

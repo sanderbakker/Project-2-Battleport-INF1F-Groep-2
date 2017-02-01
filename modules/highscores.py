@@ -11,8 +11,8 @@ class Highscores:
         self.height = height
         self.screen = pygame.display.set_mode((self.width, self.height))
         self.distance_border = 20
-        #self.image = pygame.image.load("highscores.png")
-        #self.add_background()
+        self.image = pygame.image.load("assets/highscores.png")
+        self.add_background()
     # checks if a button is pressed in the highscore screen and returns to the menu
     def process_events(self):
         for event in pygame.event.get():
@@ -37,8 +37,8 @@ class Highscores:
     # displays the highscore screen
     def show(self):
         while not self.process_events():
-            self.draw_frame()
-            self.draw_box()
+            #self.draw_frame()
+            #self.draw_box()
             self.add_text("Highscores")
             self.get_highscores()
             self.add_return()
