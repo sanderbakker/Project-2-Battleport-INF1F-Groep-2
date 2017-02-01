@@ -42,3 +42,33 @@ class Sounds:
     def biem(self):
         biem = pygame.mixer.Sound("assets/sounds/explosion_1.wav")
         pygame.mixer.Sound.play(biem)
+
+    def attack_red(self):
+        number = random.randint(1, 11)
+        sound = pygame.mixer.Sound("assets/sounds/red/attacked/" + str(number) + ".wav")
+        pygame.mixer.Sound.play(sound)
+
+    def turn_defensive_red(self):
+        number = random.randint(1, 2)
+        sound = pygame.mixer.Sound("assets/sounds/red/turn_defensive/" + str(number) + ".wav")
+        pygame.mixer.Sound.play(sound)        
+
+    def turn_offensive_red(self):
+        number = random.randint(1, 2)
+        sound = pygame.mixer.Sound("assets/sounds/red/turn_offensive/" + str(number) + ".wav")
+        pygame.mixer.Sound.play(sound)        
+
+    def attack_blue(self):
+        number = random.randint(1, 10)
+        sound = pygame.mixer.Sound("assets/sounds/blue/attacked/" + str(number) + ".wav")
+        pygame.mixer.Sound.play(sound)        
+
+    def turn_defensive_blue(self):
+        number = random.randint(1, 2)
+        sound = pygame.mixer.Sound("assets/sounds/blue/turn_defensive/" + str(number) + ".wav")
+        pygame.mixer.Sound.play(sound)        
+
+    def turn_offensive_blue(self):
+        number = random.randint(1, 2)
+        sound = pygame.mixer.Sound("assets/sounds/blue/turn_offensive/" + str(number) + ".wav")
+        pygame.mixer.Sound.play(sound)
