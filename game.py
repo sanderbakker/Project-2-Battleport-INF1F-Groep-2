@@ -177,13 +177,13 @@ class Game:
 
 
     def explosion(self, x, y):
-        list_loaded = [pygame.image.load("modules/effects/explosion/explosion_frame_0.png"),
-                       pygame.image.load("modules/effects/explosion/explosion_frame_1.png"),
-                       pygame.image.load("modules/effects/explosion/explosion_frame_2.png"),
-                       pygame.image.load("modules/effects/explosion/explosion_frame_3.png"),
-                       pygame.image.load("modules/effects/explosion/explosion_frame_4.png"),
-                       pygame.image.load("modules/effects/explosion/explosion_frame_5.png"),
-                       pygame.image.load("modules/effects/explosion/explosion_frame_6.png")]
+        list_loaded = [pygame.image.load("assets/effects/explosion/explosion_frame_0.png"),
+                       pygame.image.load("assets/effects/explosion/explosion_frame_1.png"),
+                       pygame.image.load("assets/effects/explosion/explosion_frame_2.png"),
+                       pygame.image.load("assets/effects/explosion/explosion_frame_3.png"),
+                       pygame.image.load("assets/effects/explosion/explosion_frame_4.png"),
+                       pygame.image.load("assets/effects/explosion/explosion_frame_5.png"),
+                       pygame.image.load("assets/effects/explosion/explosion_frame_6.png")]
         move_grid = 40
         opacity_grid = 400
         number_of_blocks = 20
