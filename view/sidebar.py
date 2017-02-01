@@ -3,6 +3,7 @@ import math
 import time
 from modules import cards
 from modules import sounds
+from modules import settings
 
 pygame.init()
 class Show:
@@ -200,6 +201,10 @@ class Show:
 		if mouse[1] >= 15 and mouse[1] <= 45:
 			if mouse[0] >= 575 and mouse[0] <= 650:
 				if event.type == pygame.MOUSEBUTTONDOWN:
+					chk = settings.Settings(800, 575).play_sound()
+					if chk == True:
+						sounds.Sounds().click_sound()
+						time.sleep(0.2)
 					self.Menu.show()
 
 class Sounds:
