@@ -60,7 +60,7 @@ class Settings:
         while not self.process_events():
             self.draw_frame()
             self.add_text("Settings")
-            self.sound_text("Sound Settings")
+            self.sound_text(["Menu Effects", "Game Effects"])
             self.add_button()
             self.add_return()
             self.add_button_text("Menu")
@@ -87,20 +87,32 @@ class Settings:
         off_text = fonts.render("Off", 1, (0, 0, 0))
         on_position = (on_text.get_rect())
         off_position = (off_text.get_rect())
-        list_of_fonts = [on_position, off_position]
-        list_of_text = [on_text, off_text]
+        list_of_fonts = [on_position, off_position, off_position, on_position]
+        list_of_text = [on_text, off_text, off_text, on_text]
         text_items = 0
-        for position_items in range(2):
-            self.screen.blit(list_of_text[text_items], (math.ceil(x + ((50 - list_of_fonts[position_items][2]) / 2)),math.ceil(self.height / 4) + 2))
-            x = x + 75
-            position_items = position_items + 1
-            text_items = text_items + 1
+        for position_items in range(4):
+            if position_items < 2:
+                self.screen.blit(list_of_text[text_items], (math.ceil(x + ((50 - list_of_fonts[position_items][2]) / 2)),math.ceil(self.height / 4) + 2))
+                x = x + 75
+                position_items = position_items + 1
+                text_items = text_items + 1
+            else:
+                x = x - 75
+                self.screen.blit(list_of_text[text_items], (
+                math.ceil(x + ((50 - list_of_fonts[position_items][2]) / 2)), math.ceil(self.height / 3) + 2))
+                position_items = position_items + 1
+                text_items = text_items + 1
+
+
     #add's the text "Sound" on the screen
     def sound_text(self, texts):
         font = pygame.font.SysFont("arial", 30)
-        caption = font.render(texts, 1, (48, 148, 51))
-        caption_position = caption.get_rect()
-        self.screen.blit(caption, ((self.width / 2 - math.ceil(caption_position[2]) - 100),  self.height / 4))
+        divided_by = 4
+        for i in range(len(texts)):
+            caption = font.render(texts[i], 1, (48, 148, 51))
+            caption_position = caption.get_rect()
+            self.screen.blit(caption, ((self.width / 2 - math.ceil(caption_position[2]) - 100),  self.height / divided_by))
+            divided_by -= 1
     # add return button
     def add_return(self):
         pygame.draw.rect(self.screen, (48, 148, 51), pygame.Rect((self.width/2 - 50, math.ceil(7/8 * (self.height - self.distance_border * 2))), (100, 35)))

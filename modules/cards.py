@@ -322,6 +322,9 @@ class action:
 	def use_FMJ_upgrade(self):
 		self.Turn.get_selected_ship().add_damage(1)
 
+	def use_EMP_upgrade(self):
+		self.Turn.get_selected_ship().set_deactivate()
+
 
 
 

@@ -25,6 +25,9 @@ class MainShip:
         self.damage = 1
         self.vertical = True
 
+        self.deactivate = False
+        self.deactivate = True
+
     def set_select(self):
         if(self.select):
             self.select = False
@@ -39,6 +42,24 @@ class MainShip:
 
     def get_size(self):
         return self.size
+
+    def get_deactivate(self):
+        return self.deactivate
+
+    def set_deactivate(self):
+        self.deactivate = True
+
+    def unset_deactivate(self):
+        self.deactivate = False
+
+    def get_deactivated(self):
+        return self.deactivated
+
+    def set_deactivated(self):
+        self.deactivated = True
+
+    def unset_deactivated(self):
+        self.deactivated = False
 
     def canGoHere(self, pos, list_player1, list_player2):
 
@@ -188,7 +209,7 @@ class MainShip:
         """Loops through until select returns false"""
 
         if self.move_ship > 0:
-            if self.vertical == True and not self.dead:
+            if self.vertical == True and not self.dead and not self.deactivated:
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_UP:
                         sounds.Sounds().waves()
@@ -356,6 +377,8 @@ class Saltire(MainShip):
 
         self.dead_image = "assets/boats/BoatG_1.png"
         self.dead       = False        
+        self.deactivate = False
+        self.deactivated = False
 
     def reset(self):
         self.move_ship = 300
@@ -363,6 +386,8 @@ class Saltire(MainShip):
         self.defensive_range = 3
         self.damage = 1
         self.attack_count = 1
+        self.unset_deactivate()
+        self.unset_deactivated()
 
 class Windsurf(MainShip):
     """Silver Whisper, Windsurf, Sea Spirit & Intensity class"""
@@ -385,6 +410,8 @@ class Windsurf(MainShip):
 
         self.dead_image = "assets/boats/BoatG_2.png"
         self.dead       = False
+        self.deactivate = False
+        self.deactivated = False        
 
     def reset(self):
         self.move_ship = 200
@@ -392,6 +419,8 @@ class Windsurf(MainShip):
         self.defensive_range = 4
         self.damage = 1
         self.attack_count = 1
+        self.unset_deactivate()
+        self.unset_deactivated()
 
 class Amadea(MainShip):
     """Amadea & Merapi class"""
@@ -414,6 +443,8 @@ class Amadea(MainShip):
 
         self.dead_image = "assets/boats/BoatG_3.png"
         self.dead       = False
+        self.deactivate = False
+        self.deactivated = False
 
     def reset(self):
         self.move_ship = 100
@@ -421,4 +452,6 @@ class Amadea(MainShip):
         self.defensive_range = 5
         self.damage = 1
         self.attack_count = 1
+        self.unset_deactivate()
+        self.unset_deactivated()
 
