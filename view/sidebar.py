@@ -90,7 +90,7 @@ class Show:
 
 
 	def draw_skip_turn(self):
-		button = self.Game.button({'image_path': 'assets/button_end_turn.png' ,'color': (211,211,211), 'start_x': self.start + 5, 'start_y': 65, 'width': self.width - 10, 'height': 40}, 'End turn')
+		button = self.Game.button({'image_path': 'assets/button_end_turn.png' ,'color': (0,0,0), 'start_x': self.start + 5, 'start_y': 65, 'width': self.width - 10, 'height': 40}, 'End turn')
 		if(button):
 			self.Turn.add_normal_card(cards.normal_card().get_random())
 
@@ -171,8 +171,12 @@ class Show:
 					damage = selected_ship.get_damage()
 					ship.take_damage(damage)
 					if ship.check_if_dead():
-						self.Game.explosion(ship.x, ship.y)
-
+						if ship.get_size() == 2 :
+							self.Game.explosion_ship_1(ship.x, ship.y)
+						elif ship.get_size() == 3:
+							self.Game.explosion_ship_2(ship.x, ship.y)
+						elif ship.get_size() == 4:
+							self.Game.explosion_ship_3(ship.x, ship.y)
 					if(selected_ship.get_deactivate()):
 						ship.set_deactivated()
 
