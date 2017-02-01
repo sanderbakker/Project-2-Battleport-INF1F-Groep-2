@@ -114,7 +114,7 @@ class win_screen:
 
 	def add_loser(self):
 		mysql_con = mysql.mysql()
-		loser_name = self.Loser.get_nameDim()
+		loser_name = self.Loser.get_name()
 		if loser_name not in self.get_players():
 			mysql_con.insert('INSERT INTO players(player_name, score) VALUES("' + str(loser_name) + '", 0)')
 
