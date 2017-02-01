@@ -45,7 +45,18 @@ class Settings:
                         #self.SoundOn = 1
                         global trigger
                         trigger = False
-
+            # sound on
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if mouse[0] > (self.width / 2 + 100) and mouse[0] < (self.width / 2 + 150):
+                    if mouse[1] > math.ceil(self.height / 3) and mouse[1] < math.ceil(self.height / 3) + 30:
+                        pass
+                        # WORK HERE
+            # sound off
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if mouse[0] > (self.width / 2 + 175) and mouse[0] < (self.width / 2 + 225):
+                    if mouse[1] > math.ceil(self.height / 3) and mouse[1] < math.ceil(self.height / 3) + 30:
+                        pass
+                        #WORK HERE
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if mouse[0] > 350 and mouse[0] < 450:
                     if mouse[1] > math.ceil(7/8 * (self.height - self.distance_border * 2)) and mouse [1] < math.ceil(7/8 * (self.height - self.distance_border * 2)) + 35:
@@ -80,6 +91,10 @@ class Settings:
     def add_button(self):
         pygame.draw.rect(self.screen, (48, 148, 51), pygame.Rect((self.width/2 + 100, math.ceil(self.height/4)), (50, 30)))
         pygame.draw.rect(self.screen, (48, 148, 51), pygame.Rect((self.width / 2 + 175, math.ceil(self.height / 4)), (50, 30)))
+        pygame.draw.rect(self.screen, (48, 148, 51),
+                         pygame.Rect((self.width / 2 + 100, math.ceil(self.height / 3)), (50, 30)))
+        pygame.draw.rect(self.screen, (48, 148, 51),
+                         pygame.Rect((self.width / 2 + 175, math.ceil(self.height / 3)), (50, 30)))
 
         x = 500
         fonts = pygame.font.SysFont("arial", 20)
