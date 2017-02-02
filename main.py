@@ -87,6 +87,15 @@ while not Game.events():
 
     Game.get_screen().fill((235, 235, 235))
 
+    help_img = pygame.image.load("assets/table_back2.png")
+    Game.get_screen().blit(help_img, (0, 0))
+
+    #grid_bg = pygame.image.load("assets/grid_field2.png")
+    #Game.get_screen().blit(grid_bg, (50, 50))
+
+    bar = pygame.image.load("assets/bar.png")
+    Game.get_screen().blit(bar, (100, 0))
+
     # show the current player stats ( name and score )
     player_turn.Show(Game, Player)
 
