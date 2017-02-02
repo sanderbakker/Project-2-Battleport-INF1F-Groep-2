@@ -398,7 +398,7 @@ class Saltire(MainShip):
     def get_ship_number(self):
         return self.ship_number
     def reset(self):
-        self.move_ship = 300
+        self.move_ship = 3
         self.offensive_range = 2
         self.defensive_range = 3
         self.damage = 1
@@ -432,7 +432,7 @@ class Windsurf(MainShip):
         self.deactivated = False        
 
     def reset(self):
-        self.move_ship = 200
+        self.move_ship = 2
         self.offensive_range = 3
         self.defensive_range = 4
         self.damage = 1
@@ -466,7 +466,7 @@ class Amadea(MainShip):
         self.deactivated = False
 
     def reset(self):
-        self.move_ship = 100
+        self.move_ship = 1
         self.offensive_range = 4
         self.defensive_range = 5
         self.damage = 1
